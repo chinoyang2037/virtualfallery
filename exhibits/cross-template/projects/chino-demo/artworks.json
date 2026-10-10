@@ -1,0 +1,276 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "id": "01",
+      "title": "峽谷翠溪",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "翠綠峭壁夾著一道碧藍溪水，直幅構圖拉出峽谷的深度。",
+      "frame": "white",
+      "image": "../../assets/b166ecaba62ceb590231.webp"
+    },
+    {
+      "id": "02",
+      "title": "遠山青嵐",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "層層藍紫山巒籠在霧氣裡，前景一抹新綠點亮畫面。",
+      "frame": "silver",
+      "image": "../../assets/2890d9baff4201936910.webp"
+    },
+    {
+      "id": "03",
+      "title": "港城暮色",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "黃昏的天光落在水岸城鎮，棧橋伸向前景，屋頂透著暖橘。",
+      "frame": "gold",
+      "image": "../../assets/103d8dadd06dbff43faa.webp"
+    },
+    {
+      "id": "04",
+      "title": "碧湖山影",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "碧藍湖面倒映青山，岸邊三兩人影，晴朗而開闊。",
+      "frame": "white",
+      "image": "../../assets/4e5a2b5b67c88a08d395.webp"
+    },
+    {
+      "id": "05",
+      "title": "殘霞林影",
+      "artist": "chino",
+      "year": "2025",
+      "desc": "橙紅色殘霞映照深色林影，灰藍色水面與淡白橫向筆觸交織，呈現暮色中的靜謐景象。",
+      "frame": "silver",
+      "fileName": "11 殘霞林影.jpg",
+      "image": "../../assets/ebb06900a3e86028047b.webp"
+    },
+    {
+      "id": "06",
+      "title": "山城步道",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "木棧步道穿過綠地通往山城，遠山在薄雲下起伏。",
+      "frame": "white",
+      "image": "../../assets/9f8b13c330410ac1ab8f.webp"
+    },
+    {
+      "id": "07",
+      "title": "河橋綠蔭",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "濃密樹影映在河面，一座長橋橫過，水色碧綠清透。",
+      "frame": "white",
+      "image": "../../assets/9719b82d37aca4885786.webp"
+    },
+    {
+      "id": "08",
+      "title": "漁港群帆",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "港灣裡船桅林立、屋舍錯落，背倚一座青灰山頭。",
+      "frame": "silver",
+      "image": "../../assets/ebae579863102418ebbf.webp"
+    },
+    {
+      "id": "09",
+      "title": "霧野紫巒",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "紫灰山巒下是一片黃綠原野，水氣在山腳暈開。",
+      "frame": "silver",
+      "image": "../../assets/2bf0226f7ea1ad078d9c.webp"
+    },
+    {
+      "id": "10",
+      "title": "彩丘層疊",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "藍、綠、橘色丘陵層層堆疊，色塊鬆動而明亮。",
+      "frame": "white",
+      "image": "../../assets/efceb46f445777abab65.webp"
+    },
+    {
+      "id": "11",
+      "title": "山嵐光束",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "一道斜射的亮光劃過藍色山谷，靜謐中帶點戲劇感。",
+      "frame": "black",
+      "image": "../../assets/ccb0bd84b1b060b63183.webp"
+    },
+    {
+      "id": "12",
+      "title": "峰下湖村",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "尖峰聳立，樹林與村落沿湖岸展開，色調明快。",
+      "frame": "white",
+      "image": "../../assets/52db5bdba9e3ed5a7742.webp"
+    },
+    {
+      "id": "13",
+      "title": "霞燒湖岸",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "橘紅晚霞在雲層間燃燒，湖岸剪影沉入暗紫。",
+      "frame": "gold",
+      "image": "../../assets/ea514046bba31136eca0.webp"
+    },
+    {
+      "id": "14",
+      "title": "晚霞綠丘",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "金橘天光斜照綠色丘陵，水面映出霞色。",
+      "frame": "gold",
+      "image": "../../assets/add0f9081ca6c1e64870.webp"
+    },
+    {
+      "id": "15",
+      "title": "雲湧暮山",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "灰黑雲團翻湧，縫隙透出橘光，壓在遠山之上。",
+      "frame": "black",
+      "image": "../../assets/1258534fc68e64b5f10c.webp"
+    },
+    {
+      "id": "16",
+      "title": "落日雲濤",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "落日從厚雲後迸出光芒，水邊停著幾艘小船。",
+      "frame": "gold",
+      "image": "../../assets/7175396a941d3ee83f51.webp"
+    },
+    {
+      "id": "17",
+      "title": "橘雲倒影",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "暗色湖岸上一抹橘雲，倒影在水中拉長、晃動。",
+      "frame": "gold",
+      "image": "../../assets/9d7627501cda1d0e4c9c.webp"
+    },
+    {
+      "id": "18",
+      "title": "灰岬靜灣",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "灰色岬角伸入平靜海灣，小碼頭在淺光中延伸。",
+      "frame": "silver",
+      "image": "../../assets/3880eadd1ad69371cd41.webp"
+    },
+    {
+      "id": "19",
+      "title": "紫霧晨湖",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "紫色霧氣漫過山頭，湖面浮著淡淡的橘色晨光。",
+      "frame": "silver",
+      "image": "../../assets/b65092ccf2acc18c5302.webp"
+    },
+    {
+      "id": "20",
+      "title": "塔影夕照",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "山丘上的樓塔映著夕照，暖光倒映在整片水面。",
+      "frame": "gold",
+      "image": "../../assets/bca328faca21771d9b09.webp"
+    },
+    {
+      "id": "21",
+      "title": "林間村落",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "藍天下林木環抱村落，小徑引向畫面深處。",
+      "frame": "white",
+      "image": "../../assets/e436e0f27d0a49430d87.webp"
+    },
+    {
+      "id": "22",
+      "title": "灰山湖畔",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "灰藍山影臥在湖後，岸邊一點白色醒目。",
+      "frame": "silver",
+      "image": "../../assets/98c4edfa0be939f9af09.webp"
+    },
+    {
+      "id": "23",
+      "title": "煙雨湖舟",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "煙雨中的深色樹叢與小舟，水面一片濕潤灰調。",
+      "frame": "black",
+      "image": "../../assets/3b1e44e787fc1f6430e6.webp"
+    },
+    {
+      "id": "24",
+      "title": "綠堤城塔",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "高塔點綴城市天際線，前景是鮮綠草堤與碧藍水面。",
+      "frame": "white",
+      "image": "../../assets/2c987c01342828155d9c.webp"
+    },
+    {
+      "id": "25",
+      "title": "淡墨遠岫",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "淡墨般的灰藍遠山，留白多、筆觸輕，意境清遠。",
+      "frame": "silver",
+      "image": "../../assets/3a23f2d7b302dd7637c0.webp"
+    },
+    {
+      "id": "26",
+      "title": "山徑溪谷",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "深色山體夾著一條蜿蜒溪徑，綠意從谷底透出。",
+      "frame": "black",
+      "image": "../../assets/56ec1be0a010841b8977.webp"
+    },
+    {
+      "id": "27",
+      "title": "谷中白溪",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "兩側山坡向中間收攏，一道白亮溪流穿過綠谷。",
+      "frame": "white",
+      "image": "../../assets/b37774be9929e8a812d0.webp"
+    },
+    {
+      "id": "28",
+      "title": "藍脊蒼林",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "藍灰山脊橫亙，前景蒼林以濕中濕手法暈染。",
+      "frame": "black",
+      "image": "../../assets/a22f3e7ccf5ae33f06c7.webp"
+    },
+    {
+      "id": "29",
+      "title": "紫峰碧湖",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "紫色山峰倒映在碧藍湖中，岸邊一帶青綠。",
+      "frame": "silver",
+      "image": "../../assets/58e63778dc809d607b91.webp"
+    },
+    {
+      "id": "30",
+      "title": "海中孤岩",
+      "artist": "佚名",
+      "year": "2026",
+      "desc": "一座孤岩立於灰色水面，氣氛沉靜而蒼茫。",
+      "frame": "black",
+      "image": "../../assets/160ae8ca017d532c9085.webp"
+    }
+  ]
+}

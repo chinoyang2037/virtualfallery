@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "template": "cross-v1",
+  "id": "chino-demo",
+  "title": "Chino Yang",
+  "subtitle": "Chino Yang 示範展",
+  "artworks": "artworks.json",
+  "layout": "layout.json",
+  "light": 1,
+  "snow": 0,
+  "panorama": "library-pano-4d0062edca09",
+  "architecture": {
+    "ceiling": false,
+    "white": true,
+    "rig": true
+  },
+  "quality": {
+    "standardDpr": 1.25,
+    "highDpr": 2,
+    "touchHighDpr": 1.5
+  },
+  "artLight": {
+    "brightness": 1,
+    "color": "white"
+  },
+  "envLight": {
+    "brightness": 1,
+    "color": "yellow"
+  },
+  "_source": {
+    "segments": [
+      "TIA",
+      "AWN"
+    ],
+    "owner": "TAIWANchino",
+    "version": "20261010-v1"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "template": "cross-v1",
+  "id": "cross-demo",
+  "title": "Contour Gallery",
+  "subtitle": "十字形工業展廳",
+  "artworks": "artworks.json",
+  "layout": "layout.json",
+  "light": 0,
+  "snow": 0,
+  "panorama": "library-pano-4d0062edca09",
+  "architecture": {
+    "ceiling": false,
+    "white": true,
+    "rig": true
+  },
+  "quality": {
+    "standardDpr": 1.25,
+    "highDpr": 2,
+    "touchHighDpr": 1.5
+  },
+  "artLight": {
+    "brightness": 1,
+    "color": "white"
+  },
+  "envLight": {
+    "brightness": 1,
+    "color": "yellow"
+  },
+  "_source": {
+    "segments": [
+      "TIA",
+      "AWN"
+    ],
+    "owner": "TAIWANchino",
+    "version": "20261010-v1"
+  }
+}

@@ -1,0 +1,184 @@
+<meta name="taiwan-source" content="TIA:AWN|exhibits/cross-template/app/shell.html"><script data-taiwan-telemetry data-ga="G-MKE80L3TLS" data-gallery="exhibits/cross-template/app/shell.html" data-version="20261010-v9" data-hosts="aitaiwan.site,virtualgallery.online,virtualgallery.store">(function(){'use strict';if(window.__taiwanTelemetry)return;window.__taiwanTelemetry=true;
+const el=document.currentScript,ga=el.dataset.ga||'G-MKE80L3TLS',gallery=el.dataset.gallery||location.pathname,version=el.dataset.version||'20261010-v1';
+const pieces=['TIA','cio','AWN','hn'];const owner=pieces[0][0]+pieces[2][0]+pieces[0][1]+pieces[2][1]+pieces[0][2]+pieces[2][2]+pieces[1][0]+pieces[3][0]+pieces[1][1]+pieces[3][1]+pieces[1][2];
+window.TAIWAN_GALLERY_SOURCE={owner,gallery,version};
+if(!/^https?:$/.test(location.protocol)||!/^G-[A-Z0-9]+$/.test(ga))return;
+window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){dataLayer.push(arguments)};
+gtag('js',new Date());gtag('config',ga,{gallery_id:gallery,source_version:version});
+const tag=document.createElement('script');tag.async=true;tag.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(ga);document.head.append(tag);
+const hosts=(el.dataset.hosts||'aitaiwan.site,virtualgallery.online,virtualgallery.store').split(',').map(s=>s.trim().toLowerCase());
+const host=location.hostname.toLowerCase();if(host!=='localhost'&&host!=='127.0.0.1'&&!hosts.includes(host))gtag('event','unapproved_host',{observed_host:host,page_path:location.pathname,gallery_id:gallery,source_version:version,owner_id:owner});
+document.addEventListener('click',e=>{const a=e.target.closest('a[href]');if(a&&/\.html(?:[?#]|$)/i.test(a.getAttribute('href')))gtag('event','gallery_open',{gallery_target:new URL(a.href,location.href).pathname,gallery_id:gallery});});
+document.addEventListener('change',e=>{if(e.target.id==='shared-360-select')gtag('event','panorama_change',{panorama_id:e.target.value,gallery_id:gallery});});
+})();</script>
+  <div id="cover">
+    <div class="card">
+      <div class="crest">R</div>
+      <h1>Contour Gallery</h1>
+      <div class="virtual-gallery-label">Virtual Gallery</div>
+      <h2>十字形工業展廳</h2>
+      <p>十字形白牆展廳・金屬桁架・中央木桌與長椅<br />30 幅作品・完整 360° 環景・場景拍照與封面匯出</p>
+      <div>
+        <button class="btn" id="cover-plan" type="button">佈展平面圖</button>
+        <button class="btn solid" id="enter">進入展廳<kbd>Enter</kbd></button>
+        <button class="btn" id="tour-go">自動導覽<kbd>T</kbd></button>
+        <button class="btn" id="fly-go" title="像蜂鳥一樣在畫與畫之間穿梭、懸停；W A S D／滑鼠隨時接手自由飛">蜂鳥飛行<kbd>H</kbd></button>
+      </div>
+      <div class="sub-row edit-only">
+        <button class="btn share busy" id="share-view" title="自動擷取封面，輸出帶封面的 HTML 與 JPG；包含目前畫作、標籤與佈展配置">分享檔（欣賞版）<kbd>V</kbd></button>
+        <button class="btn share busy" id="share-fly" title="同欣賞版，打開後直接開始蜂鳥飛行">分享檔（直接飛行）<kbd>Shift+V</kbd></button>
+      </div>
+      <div id="share-results" class="edit-only" hidden aria-live="polite"></div>
+      <div class="sub-row edit-only">
+        <label class="btn file-btn busy" id="dir-btn" title="選一個放著畫作圖片（與 Excel）的資料夾，或把資料夾拖到這個頁面；匯入後存進記憶組">匯入作品目錄<kbd>K</kbd><input id="dir-files" type="file" webkitdirectory directory multiple /></label>
+        <label class="btn file-btn busy" id="import-btn" title="一次選多張圖；檔名「01_名稱」會放到第 1 幅，其餘依序">匯入 30 幅畫<kbd>U</kbd><input id="file-multi" type="file" accept="image/*" multiple /></label>
+        <button class="btn busy" id="reset-btn" title="清除自訂圖片與文字，回到預設 30 幅（記憶組保留）">還原預設<kbd>Shift+Z</kbd></button>
+      </div>
+      <div class="dir-row edit-only" id="dir-row">
+        <span class="dir-lab">記憶</span>
+        <button class="dir-add busy" id="dir-add" type="button">+</button>
+      </div>
+      <div class="dir-row edit-only" id="pano-row">
+        <span class="dir-lab">窗外／門外</span>
+        <button class="dir-add" id="pano-add" type="button" title="新增一組窗外／門外環景：選一張風景圖（360° 2:1 最佳）">+</button>
+        <span class="pano-hz" id="pano-hz" hidden title="調整環景的地平線高度"><button class="dir-add" id="hz-up" type="button" title="環景往上移">▲</button><button class="dir-add" id="hz-dn" type="button" title="環景往下移">▼</button></span>
+      </div>
+      <input type="file" id="pano-file" accept="image/*" hidden />
+      <div class="dir-row edit-only" id="mus-row">
+        <span class="dir-lab">音樂</span>
+        <button class="dir-add" id="mus-add" type="button" title="新增音樂：選 MP3（可一次選多首），存進這台瀏覽器">+</button>
+        <button class="dir-add" id="mus-play" type="button" title="播放／暫停">▶</button>
+      </div>
+      <input type="file" id="mus-file" accept="audio/*,.mp3,.m4a,.aac,.wav,.ogg,.flac,.opus" multiple hidden />
+      <div class="sub-row edit-only">
+        <button class="btn" id="excel-tpl" title="匯出 30 幅的編號、位置、檔名、作者、年代、畫框、說明">Excel 匯出<kbd>X</kbd></button>
+        <label class="btn file-btn busy" id="excel-btn" title="依編號或檔名套用標題、作者、年代、說明、畫框">Excel 匯入<kbd>I</kbd><input id="excel-file" type="file" accept=".xlsx,.csv,.tsv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/csv" /></label>
+      </div>
+      <div class="keys">
+        <span><b>點畫面</b>滑鼠控制視角</span><span><b>Esc</b>釋放滑鼠</span><span><b>滾輪</b>前進／後退</span><span><b>拖曳</b>轉視角</span>
+        <span><b>W A S D</b>走路</span><span><b>Shift</b>快走</span><span><b>點畫／E</b>觀賞</span><span><b>右鍵</b>關閉面板</span>
+        <span><b>T</b>導覽</span><span><b>H</b>蜂鳥飛行</span><span><b>O</b>隨機／逐步</span><span><b>P</b>窗外環景</span><span><b>Y</b>飄雪</span><span><b>Tab</b>控制台</span><span><b>M</b>平面圖</span><span><b>S</b>場景拍照</span><span><b>↓</b>後退</span><span><b>J</b>小狗看畫</span><span><b>L</b>燈光</span><span><b>1</b>回到入口</span>
+      </div>
+      <div id="load-msg">載入中…</div>
+    </div>
+  </div>
+
+
+  <dialog id="gallery-plan" aria-labelledby="plan-heading">
+    <div class="plan-header"><h2 id="plan-heading">佈展平面圖</h2><button class="plan-close" id="plan-close" type="button">關閉</button></div>
+    <div class="plan-layout">
+      <div class="plan-map"><svg id="plan-svg" viewBox="-21 -19 42 35" role="group" aria-label="展廳平面配置與畫作位置"></svg><p class="plan-legend">金色編號：畫作位置　藍色箭頭：目前位置與方向<br>點選編號查看畫作，或按「前往觀看」沿展廳動線前往。手機可左右滑動平面圖；選取物件後可用方向鍵微調。</p></div>
+      <div class="plan-details"><div class="layout-editor-controls"><h3>佈展物件</h3><p style="font-size:13px;color:#b2c3cc">拖入平面圖；手機可先點物件，再點位置。窗戶自動靠牆。</p><label class="layout-snap"><input id="layout-snap" type="checkbox" checked>吸附 0.25 m 格線與物件中心線</label><div class="layout-palette">
+<button type="button" data-layout-tool="table"><span aria-hidden="true">▤</span>木桌</button><button type="button" data-layout-tool="bench"><span aria-hidden="true">▰</span>長椅</button><button type="button" data-layout-tool="chair"><span aria-hidden="true">▥</span>單椅</button><button type="button" data-layout-tool="spool"><span aria-hidden="true">◉</span>電纜桌</button><button type="button" data-layout-tool="crate"><span aria-hidden="true">▧</span>木箱</button><button type="button" data-layout-tool="window"><span aria-hidden="true">▥</span>窗戶</button><button type="button" data-layout-tool="skylight"><span aria-hidden="true">△</span>天窗</button></div>
+<button id="layout-cancel" class="plan-action" type="button" hidden>取消放置</button><p id="layout-status" role="status" aria-live="polite">綠色可以放置；紅色請調整位置。天窗沿用 Q 鍵開關。</p><h4 id="layout-object-name">點選物件可移動、調整尺寸</h4><div id="layout-properties" hidden><div class="layout-fields"><label>X 位置（m）<input id="layout-x" type="number" step=".05"></label><label>Z 位置（m）<input id="layout-z" type="number" step=".05"></label>
+<label>寬度（m）<input id="layout-w" type="number" min=".4" max="5" step=".1"></label><label id="layout-depth-row">深度（m）<input id="layout-d" type="number" min=".4" max="5" step=".1"></label><label>高度（m）<input id="layout-h" type="number" min=".25" max="4" step=".1"></label><label id="layout-angle-row">旋轉（°）<input id="layout-angle" type="number" step="15"></label><label id="layout-sill-row">窗台高度（m）<input id="layout-sill" type="number" min=".35" max="5" step=".1"></label></div><div class="layout-nudge"><button type="button" data-nudge="-1,0" aria-label="向左微調">←</button><button type="button" data-nudge="0,-1" aria-label="向上微調">↑</button><button type="button" data-nudge="0,1" aria-label="向下微調">↓</button><button type="button" data-nudge="1,0" aria-label="向右微調">→</button></div><p style="font-size:12px;color:#aabcc8">方向鍵移動 0.25 m；Shift＋方向鍵微調 0.05 m。</p></div>
+<div class="layout-history"><button id="layout-delete" class="plan-action" type="button">刪除</button><button id="layout-undo" class="plan-action" type="button">復原</button><button id="layout-redo" class="plan-action" type="button">重做</button></div><button id="layout-export" class="plan-action primary" type="button">匯出分享檔（含佈展配置）</button></div><label for="plan-art-select">選擇畫作</label><select id="plan-art-select"></select><img id="plan-preview" alt="所選畫作預覽"><h3 id="plan-work-title"></h3><p id="plan-work-meta"></p><button id="plan-go" class="plan-action primary" type="button">前往觀看</button><button id="plan-view" class="plan-action" type="button">查看作品</button></div>
+    </div>
+  </dialog>
+
+  <div id="hud">
+    <div class="brand"><strong>Contour Gallery</strong><span>十字形工業展廳</span></div>
+    <div id="panel">
+      <button id="p-toggle" type="button" title="顯示／隱藏控制台">控制台 <kbd>Tab</kbd></button>
+      <div id="p-body">
+        <div class="p-sec">瀏覽</div>
+        <button id="b-plan" type="button"><span class="lb">佈展平面圖</span><kbd>M</kbd></button>
+        <button id="b-tour" type="button"><span class="lb">導覽</span><kbd>T</kbd></button>
+        <button id="b-fly" type="button"><span class="lb">蜂鳥飛行</span><kbd>H</kbd></button>
+        <button id="b-flyord" type="button" title="隨機：30 幅洗牌後逐一看；逐步：1→30 依序，看完到圓頂下再從頭"><span class="lb">蜂鳥順序：隨機</span><kbd>O</kbd></button>
+        <div class="p-row"><button id="b-prev" type="button" title="蜂鳥飛行：上一幅"><span class="lb">◀ 上一幅</span><kbd>,</kbd></button><button id="b-next" type="button" title="蜂鳥飛行：下一幅"><span class="lb">下一幅 ▶</span><kbd>.</kbd></button></div>
+        <button id="b-pup" type="button" title="用小狗的高度逛展廳；走到畫前叫兩聲，會有人把你抱起來看畫"><span class="lb">小狗看畫模式</span><kbd>J</kbd></button>
+        <button id="b-woof" type="button" title="小狗模式：叫一聲（在畫前連叫兩聲＝請人抱起來）"><span class="lb">汪（叫一聲）</span><kbd>F</kbd></button>
+        <button id="b-ride" type="button" title="像搭手扶梯：自動走到樓梯、沿螺旋上／下樓；途中滑鼠自由看"><span class="lb">搭樓梯 上／下樓</span><kbd>G</kbd></button>
+        <div class="p-row"><button id="b-1f" type="button"><span class="lb">1F</span><kbd>1</kbd></button><button id="b-2f" type="button"><span class="lb">2F</span><kbd>2</kbd></button></div>
+        <button id="b-home" type="button"><span class="lb">首頁</span><kbd>B</kbd></button>
+        <section id="scene-photos" class="edit-only" aria-label="場景照片與封面">
+          <button id="b-scene-photo" type="button" title="擷取目前 3D 場景，保留最近 3 張；後退請用向下方向鍵"><span class="lb">場景拍照</span><kbd>S</kbd></button>
+          <div id="scene-photo-list" role="group" aria-label="選擇分享封面"></div>
+          <p id="scene-photo-status" role="status" aria-live="polite">保留最近 3 張；點選縮圖指定分享封面。</p>
+          <div class="scene-photo-actions"><button id="scene-photo-download" type="button">下載這張 JPG</button><button id="scene-photo-auto" type="button">改用自動封面</button></div>
+          <button id="scene-photo-export" type="button">以選定封面匯出分享檔</button>
+        </section>
+        <div class="p-sec">環境</div>
+        <button id="b-light" type="button"><span class="lb">燈光：日照</span><kbd>L</kbd></button>
+        <button id="b-pano" type="button"><span class="lb">窗外／門外：街景</span><kbd>P</kbd></button>
+        <button id="b-skylight" type="button" aria-pressed="false" title="開啟／關閉屋頂玻璃天窗（Q）"><span class="lb">天窗：開啟</span><kbd>Q</kbd></button>
+        <div class="p-sec">展廳外觀</div>
+        <button id="b-ceiling" type="button"><span class="lb">天花板：隱藏</span></button>
+        <button id="b-wall-style" type="button"><span class="lb">牆面：純白</span></button>
+        <button id="b-light-rig" type="button"><span class="lb">投射燈架：顯示</span></button>
+        <button id="b-furniture" type="button" class="edit-only"><span class="lb">恢復預設桌椅</span></button>
+        <div class="p-sec">畫作投射燈</div>
+        <button id="b-art-light-persistent" type="button" aria-pressed="false"><span class="lb">持續全亮：關</span></button>
+        <button id="b-art-light-all" type="button" aria-pressed="false"><span class="lb">開場全亮：關</span></button>
+        <label for="art-light-brightness" style="display:flex;justify-content:space-between;font-size:12px;padding:4px 2px">亮度 <output id="art-light-value" for="art-light-brightness">100%</output></label>
+        <input id="art-light-brightness" type="range" min="0" max="200" step="1" value="100" aria-label="畫作投射燈亮度" style="width:100%;margin:6px 0 10px;accent-color:#e5bd70;cursor:ew-resize">
+        <div class="p-row" role="group" aria-label="畫作投射燈顏色">
+          <button id="art-light-white" type="button" aria-pressed="false">白光</button>
+          <button id="art-light-yellow" type="button" aria-pressed="true" class="on">黃光</button>
+          <button id="art-light-blue" type="button" aria-pressed="false">藍光</button>
+          <button id="art-light-red" type="button" aria-pressed="false">紅光</button>
+        </div>
+        <div class="p-sec">天窗／牆角／柱子投射燈</div>
+        <label for="env-light-brightness" style="display:flex;justify-content:space-between;font-size:12px;padding:4px 2px">強度 <output id="env-light-value">100%</output></label>
+        <input id="env-light-brightness" type="range" min="0" max="200" step="1" value="100" aria-label="環境投射燈強度" style="width:100%;margin:6px 0 10px;accent-color:#e5bd70">
+        <div class="p-row" role="group" aria-label="環境投射燈顏色">
+          <button id="env-light-white" type="button" aria-pressed="false">白光</button>
+          <button id="env-light-yellow" type="button" aria-pressed="true" class="on">黃光</button>
+          <button id="env-light-blue" type="button" aria-pressed="false">藍光</button>
+          <button id="env-light-red" type="button" aria-pressed="false">紅光</button>
+        </div>
+        <button id="b-snow" type="button" title="窗外飄雪：關 → 小雪 → 大雪（圓頂玻璃上也看得到雪落下）"><span class="lb">窗外飄雪：關</span><kbd>Y</kbd></button>
+        <div class="p-row edit-only"><button id="b-hzup" type="button" title="窗外環景往上移"><span class="lb">環景 ▲</span><kbd>[</kbd></button><button id="b-hzdn" type="button" title="窗外環景往下移"><span class="lb">環景 ▼</span><kbd>]</kbd></button></div>
+        <button id="b-panoadd" class="edit-only" type="button"><span class="lb">新增窗外環景…</span><kbd>Shift+P</kbd></button>
+        <div class="p-sec">音樂</div>
+        <button id="b-mus" type="button"><span class="lb">音樂：海浪聲</span><kbd>M</kbd></button>
+        <button id="b-musnext" type="button"><span class="lb">下一首</span><kbd>N</kbd></button>
+        <div class="p-row"><button id="b-voldn" type="button"><span class="lb">音量 −</span><kbd>-</kbd></button><button id="b-volup" type="button"><span class="lb">音量 ＋</span><kbd>=</kbd></button></div>
+        <button id="b-musadd" class="edit-only" type="button"><span class="lb">新增音樂（MP3）…</span><kbd>Shift+M</kbd></button>
+        <div class="p-sec edit-only">作品</div>
+        <button id="b-dir" class="edit-only busy" type="button"><span class="lb">匯入作品目錄…</span><kbd>K</kbd></button>
+        <button id="b-imp30" class="edit-only busy" type="button"><span class="lb">匯入 30 幅畫…</span><kbd>U</kbd></button>
+        <button id="b-xout" class="edit-only" type="button"><span class="lb">Excel 匯出</span><kbd>X</kbd></button>
+        <button id="b-xin" class="edit-only busy" type="button"><span class="lb">Excel 匯入…</span><kbd>I</kbd></button>
+        <div class="p-sec edit-only"><span>記憶</span><span style="letter-spacing:0"><kbd>Shift+1…9</kbd></span></div>
+        <div class="p-mem edit-only" id="p-mem"></div>
+        <button id="b-reset" class="edit-only busy" type="button"><span class="lb">還原預設</span><kbd>Shift+Z</kbd></button>
+        <div class="p-sec edit-only">分享</div>
+        <button id="b-sv" class="edit-only busy" type="button"><span class="lb">分享檔（欣賞版）</span><kbd>V</kbd></button>
+        <button id="b-sf" class="edit-only busy" type="button"><span class="lb">分享檔（直接飛行）</span><kbd>Shift+V</kbd></button>
+        <div class="p-sec">操作</div>
+        <div class="p-help"><kbd>W A S D</kbd>走路／飛行・<kbd>Shift</kbd>快<br /><kbd>滑鼠</kbd>轉視角・<kbd>滾輪</kbd>前後・<kbd>Esc</kbd>釋放<br /><kbd>E</kbd>觀賞準星對到的畫・<kbd>右鍵</kbd>關面板<br />飛行中 <kbd>Space</kbd>升 <kbd>C</kbd>降<br />樓梯：走上去或<kbd>點樓梯</kbd>自動搭乘・<kbd>W</kbd><kbd>S</kbd>／<kbd>滾輪</kbd>換方向・<kbd>A</kbd><kbd>D</kbd>跨出<br />小狗：自己逛、畫前叫兩聲被抱起・<kbd>空白鍵</kbd>放下・<kbd>W A S D</kbd>暫時自己走</div>
+      </div>
+    </div>
+    <div id="cross"></div>
+    <div id="aim"></div>
+    <div id="resume">點一下畫面：以滑鼠控制視角・滾輪前進後退・Esc 釋放</div>
+    <div id="floor">工業風展廳</div>
+    <div id="hint">滑鼠轉視角・滾輪前進・W A S D 走路・點畫觀賞・窗外／門外可切換環景</div>
+    <div id="caption"></div>
+    <div id="toast"></div>
+    <div id="bark"></div>
+    <div id="pup-hint"></div>
+    <div id="joy"><i></i></div>
+  </div>
+
+  <div id="viewer">
+    <div class="v-img"><img id="v-img" alt="" /></div>
+    <div class="v-info">
+      <div class="where" id="v-where"></div>
+      <label>作品名稱</label><input id="v-title" />
+      <label>作者</label><input id="v-artist" />
+      <label>年份</label><input id="v-year" />
+      <label>說明</label><textarea id="v-desc"></textarea>
+      <label class="edit-only">畫框</label>
+      <div class="row edit-only" id="v-frames">
+        <button data-f="black">黑</button><button data-f="oak">原木</button><button data-f="gold">金</button><button data-f="silver">銀</button><button data-f="white">白</button><button data-f="none">無</button>
+      </div>
+      <button class="btn edit-only" id="v-replace">更換圖片</button>
+      <button class="btn solid" id="v-close">回到展廳</button>
+    </div>
+  </div>
+  <div id="drop">放開以匯入圖片</div>
+  <input type="file" id="file-one" accept="image/*" hidden />
+  

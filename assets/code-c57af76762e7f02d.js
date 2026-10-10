@@ -1,3 +1,4 @@
+/* Source segments: "cio" "hn"; build 20261010-v1 */
 
     /* =====================================================================
        我的展廳 v9（優化版）
@@ -2010,6 +2011,62 @@
     }
     const fileSafe = (s) => String(s || "").replace(/[\\/:*?"<>|\u0000-\u001f]/g, "").trim() || "我的展廳";
     const FLASH_KEY = "my-hall-flash";
+
+    /* ================= v51 網站 Excel 自動套用 =================
+       展廳掛畫完成後自動讀取 works/labels.xlsx（原 Excel 復原）。
+       ・欣賞版（網站，GALLERY_VIEWONLY）：每次載入都套用到記憶體，不寫入瀏覽器；
+         展廳參數只套即時項目（牆面、燈光、建築、視高、速度），不觸發重新載入。
+       ・可編輯版：同一份 Excel 只套用一次（記指紋），本機草稿優先；
+         網站換新 Excel 自動重套；網址加 ?excel=1 可強制復原到 Excel。
+       讀不到檔案時靜默略過。 */
+    const AUTO_XLS_KEY = "my-hall-autoxls-v1" + (GID ? ":" + GID : "");
+    async function autoLabels() {
+      if (location.protocol === "file:") return;
+      let buf;
+      try {
+        const r = await fetch("works/labels.xlsx", { cache: "no-store" });
+        if (!r.ok) return;
+        buf = await r.arrayBuffer();
+      } catch { return; }
+      if (!VIEWONLY) {
+        let sig = "n" + buf.byteLength;
+        try { const b = new Uint8Array(buf); let h = 0; for (let i = 0; i < b.length; i++) h = (Math.imul(h, 31) + b[i]) >>> 0; sig = h + ":" + buf.byteLength; } catch {}
+        if (!/[?&]excel=/.test(location.search) && lsGet(AUTO_XLS_KEY) === sig) return;   // 已套用過這份：草稿優先
+        try { localStorage.setItem(AUTO_XLS_KEY, sig); } catch {}                          // 先記指紋，避免重載後重複套用
+        try { await importLabels({ name: "labels.xlsx", arrayBuffer: async () => buf }, { quiet: true, flashPrefix: "網站 Excel：" }); }
+        catch (e) { console.warn("自動套用 works/labels.xlsx 失敗：", e); }
+        return;
+      }
+      try {                                            /* 欣賞版：直接套用到記憶體 */
+        const book = await readXlsxBook(buf);
+        const hallSheet = book.find((sh) => sh.name && HALL_SHEET_RE.test(sh.name));
+        const labelSheet = book.find((sh) => sh !== hallSheet);
+        const { plan } = labelSheet ? planLabels(labelSheet.rows) : { plan: [] };
+        let n = 0;
+        for (const p of plan) {
+          const a = p.art;
+          const touched = p.title || p.artist || p.year || p.desc || p.shape || p.matte || p.frame;
+          if (!touched) continue;
+          if (p.title) a.title = p.title;
+          if (p.artist) a.artist = p.artist;
+          if (p.year) a.year = p.year;
+          if (p.desc) a.description = p.desc;
+          const newShape = p.shape && p.shape !== (a.shape || "auto");
+          const newMatte = p.matte && p.matte !== matteOf(a);
+          if (newShape) a.shape = p.shape;
+          if (newMatte) a.matte = p.matte;
+          if (newShape || newMatte) rebuildArt(a); else refreshPlaque(a);
+          if (p.frame && p.frame !== (a.frame || "gold")) setFrameColor(a, p.frame);
+          n++;
+          await new Promise((r) => setTimeout(r, 0));
+        }
+        if (hallSheet) {
+          const live = planHall(hallSheet.rows).changes.filter((c) => c.p.now);
+          if (live.length) applyHall(live);
+        }
+        if (n) console.info("網站 Excel：已套用 " + n + " 幅作品資訊（works/labels.xlsx）");
+      } catch (e) { console.warn("套用 works/labels.xlsx 失敗：", e); }
+    }
 
     async function importLabels(file, opts = {}) {
       if (VIEWONLY) return false;
@@ -7907,6 +7964,7 @@
         const f = JSON.parse(sessionStorage.getItem(FLASH_KEY) || "null");
         if (f) { sessionStorage.removeItem(FLASH_KEY); setProgress(f.text, f.warn); }
       } catch {}
+      autoLabels();                                   /* v51：自動套用網站上的 works/labels.xlsx */
     }
 
     applyViewOnly();                  // 欣賞版：開機立刻套用，避免閃出可編輯的文案

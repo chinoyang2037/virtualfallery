@@ -707,7 +707,7 @@
   }
   function musSave(ix) { lsSet(MUS_KEY, JSON.stringify(SHARE ? { active: ix.active, on: ix.on, vol: ix.vol } : ix)); }
   function musList() {
-    const L = [{ id: "piano", name: "鋼琴輕音樂", fixed: true }];
+    const L = [...(window.VG_SHARED_MUSIC_TRACKS||[]),{ id: "piano", name: "鋼琴輕音樂", fixed: true }];
     if (SHARE) { if (SHARE.music && SHARE.music.src) L.push({ id: "share", name: SHARE.music.name || "分享音樂", fixed: true }); return L; }
     return L.concat(musIdx().list.map((t) => ({ id: t.id, name: t.name })));
   }
@@ -807,8 +807,8 @@
     stopSources();
     const oldUrl = MUS.url; MUS.url = null;
     if (id !== "piano") {
-      let src = null;
-      if (id === "share") src = SHARE.music.src;
+      let src = null; const sharedTrack=(window.VG_SHARED_MUSIC_TRACKS||[]).find(t=>t.id===id);
+      if(sharedTrack)src=sharedTrack.src; else if (id === "share") src = SHARE.music.src;
       else { const b = await idbGet("__mus" + id); if (b) src = MUS.url = URL.createObjectURL(b); }
       if (token !== MUS.sw) return;
       let ok = false;
@@ -866,6 +866,7 @@
     musSave(ix);
     if (MUS.cur === id && MUS.playing) await musPlay("piano"); else renderMusic();
   }
+  window.VGSharedNativeMusic={play:musPlay,pause:musPause,setVolume(v){const ix=musIdx();ix.vol=Math.max(0,Math.min(1,+v));musSave(ix);if(MUS.master&&MUS.ctx)fadeTo(ix.vol,.15);renderMusic()},get active(){return MUS.cur||musIdx().active}};
   function renderMusic() {
     const L = musList(), ix = musIdx(), curId = MUS.cur || ix.active, cur = L.find((t) => t.id === curId) || L[0];
     setLbl("b-mus", "音樂：" + cur.name + (MUS.playing ? "　▶" : "（停）"));

@@ -1,0 +1,56 @@
+[
+  {
+    "id": "original-1",
+    "name": "La Rotonde 工業風展覽空間",
+    "href": "industrial.html",
+    "cover": "industrial.jpg"
+  },
+  {
+    "id": "original-2",
+    "name": "Virtual Gallery | STL 工業風展廳",
+    "href": "industrial-2.html",
+    "cover": "industrial-2.jpg"
+  },
+  {
+    "id": "original-3",
+    "name": "La Rotonde 工業風展覽空間",
+    "href": "industrial-3.html",
+    "cover": "industrial-3.jpg"
+  },
+  {
+    "id": "original-4",
+    "name": "白宮風格藝廊 · La Rotonde 圓頂中庭展廳",
+    "href": "white-palace.html",
+    "cover": "white-palace.jpg"
+  },
+  {
+    "id": "original-5",
+    "name": "La Galerie（iPad）v50",
+    "href": "1005-html-La-Galerie-iPad-v50.html",
+    "cover": "1005-html-La-Galerie-iPad-v50.jpg"
+  },
+  {
+    "id": "original-6",
+    "name": "十字形工業展廳",
+    "href": "cross-gallerynew.html",
+    "cover": "cross-gallerynew-cover.jpg"
+  },
+  {
+    "id": "original-7",
+    "name": "十字形可重用模板",
+    "href": "exhibits/cross-template/gallery.html?project=projects/cross-demo/gallery.json",
+    "cover": "exhibits/cross-template/gallery-cover.jpg"
+  },
+  {
+    "id": "original-8",
+    "name": "馬太展廳",
+    "href": "exhibits/Matthew_Gallery_Upload_20261012/exhibits/matthew/gallery.html",
+    "cover": "exhibits/Matthew_Gallery_Upload_20261012/exhibits/matthew/gallery-cover.jpg"
+  },
+  {
+    "id": "generated-cross",
+    "name": "新展廳｜掛畫與燈光 V1.5",
+    "href": "exhibits/generated-cross/gallery.html",
+    "cover": "exhibits/generated-cross/gallery-cover.jpg"
+  }
+]

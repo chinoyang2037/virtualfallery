@@ -52,5 +52,11 @@
     "name": "新展廳｜掛畫與燈光 V1.5",
     "href": "exhibits/generated-cross/gallery.html",
     "cover": "exhibits/generated-cross/gallery-cover.jpg"
+  },
+  {
+    "id": "generated-cross1",
+    "name": "Hex｜掛畫與燈光 V1.5",
+    "href": "exhibits/generated-cross1/gallery.html",
+    "cover": "exhibits/generated-cross1/gallery-cover.jpg"
   }
 ]

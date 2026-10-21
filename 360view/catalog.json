@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "id": "library-pano-d8b4ab57bf3a",
+      "name": "夕陽紅屋山海穹頂全景",
+      "file": "pano-d8b4ab57bf3a.webp",
+      "thumbnail": "pano-d8b4ab57bf3a-thumb.webp",
+      "format": "equirectangular",
+      "width": 1774,
+      "height": 887,
+      "hz": 0.5,
+      "rotation": 0
+    },
+    {
+      "id": "library-pano-4d0062edca09",
+      "name": "巴黎大皇宮・完整天頂",
+      "file": "pano-4d0062edca09.webp",
+      "thumbnail": "pano-4d0062edca09-thumb.webp",
+      "format": "equirectangular",
+      "width": 1774,
+      "height": 887,
+      "hz": 0.5,
+      "rotation": 0
+    },
+    {
+      "id": "library-pano-9557dd7409a6",
+      "name": "挪威石村木橋銀河全景",
+      "file": "pano-9557dd7409a6.webp",
+      "thumbnail": "pano-9557dd7409a6-thumb.webp",
+      "format": "equirectangular",
+      "width": 1774,
+      "height": 887,
+      "hz": 0.5,
+      "rotation": 0
+    },
+    {
+      "id": "library-pano-30320f26c207",
+      "name": "羅弗敦冬日雪峰漁港全景",
+      "file": "pano-30320f26c207.webp",
+      "thumbnail": "pano-30320f26c207-thumb.webp",
+      "format": "equirectangular",
+      "width": 1774,
+      "height": 887,
+      "hz": 0.5,
+      "rotation": 0
+    },
+    {
+      "id": "library-pano-6e7c5ab1748e",
+      "name": "羅弗敦峽灣玫瑰暮色全景",
+      "file": "pano-6e7c5ab1748e.webp",
+      "thumbnail": "pano-6e7c5ab1748e-thumb.webp",
+      "format": "equirectangular",
+      "width": 1774,
+      "height": 887,
+      "hz": 0.5,
+      "rotation": 0
+    },
+    {
+      "id": "library-pano-dae3024ce891",
+      "name": "羅弗敦漁村峽灣全景",
+      "file": "pano-dae3024ce891.webp",
+      "thumbnail": "pano-dae3024ce891-thumb.webp",
+      "format": "equirectangular",
+      "width": 1774,
+      "height": 887,
+      "hz": 0.5,
+      "rotation": 0
+    },
+    {
+      "id": "library-pano-b7b8b18d11e1",
+      "name": "羅弗敦金色漁屋雪山全景",
+      "file": "pano-b7b8b18d11e1.webp",
+      "thumbnail": "pano-b7b8b18d11e1-thumb.webp",
+      "format": "equirectangular",
+      "width": 1774,
+      "height": 887,
+      "hz": 0.5,
+      "rotation": 0
+    },
+    {
+      "id": "library-pano-a9eb7526ce85",
+      "name": "羅弗敦雪港星河全景",
+      "file": "pano-a9eb7526ce85.webp",
+      "thumbnail": "pano-a9eb7526ce85-thumb.webp",
+      "format": "equirectangular",
+      "width": 1774,
+      "height": 887,
+      "hz": 0.5,
+      "rotation": 0
+    },
+    {
+      "id": "library-pano-aa0795690d50",
+      "name": "藍玻璃中庭的中央瀑布",
+      "file": "pano-aa0795690d50.webp",
+      "thumbnail": "pano-aa0795690d50-thumb.webp",
+      "format": "equirectangular",
+      "width": 1774,
+      "height": 887,
+      "hz": 0.5,
+      "rotation": 0
+    },
+    {
+      "id": "library-pano-3c90908eede1",
+      "name": "銀河下的挪威峽灣全景",
+      "file": "pano-3c90908eede1.webp",
+      "thumbnail": "pano-3c90908eede1-thumb.webp",
+      "format": "equirectangular",
+      "width": 1774,
+      "height": 887,
+      "hz": 0.5,
+      "rotation": 0
+    }
+  ]
+}

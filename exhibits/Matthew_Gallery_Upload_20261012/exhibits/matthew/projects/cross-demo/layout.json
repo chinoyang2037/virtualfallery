@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "template": "cross-v1",
+  "footprint": "wall-step-cross-v1",
+  "slots": [],
+  "objects": [
+    {
+      "id": "photo-table",
+      "type": "table",
+      "name": "木桌",
+      "w": 1.25,
+      "d": 2.6,
+      "h": 0.76,
+      "x": 0,
+      "z": 0,
+      "angle": 0
+    },
+    {
+      "id": "photo-bench-left",
+      "type": "bench",
+      "name": "長椅",
+      "w": 0.5,
+      "d": 2.6,
+      "h": 0.45,
+      "x": -1.3,
+      "z": 0,
+      "angle": 0
+    },
+    {
+      "id": "photo-bench-right",
+      "type": "bench",
+      "name": "長椅",
+      "w": 0.5,
+      "d": 2.6,
+      "h": 0.45,
+      "x": 1.3,
+      "z": 0,
+      "angle": 0
+    }
+  ]
+}

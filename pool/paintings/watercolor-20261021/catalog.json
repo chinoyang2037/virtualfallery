@@ -1,0 +1,925 @@
+{
+  "version": 1,
+  "id": "watercolor-20261021",
+  "name": "水彩山光｜18幅",
+  "items": [
+    {
+      "id": "wc20261021_001",
+      "title": "晨景",
+      "titleStatus": "依畫面整理命名，可修改",
+      "artist": "Chino Yang",
+      "year": "",
+      "desc": "水彩山色與暮光；由上下兩幅原作照片分割。",
+      "filename": "wc20261021_001.webp",
+      "image": "/pool/paintings/watercolor-20261021/images/wc20261021_001.webp",
+      "originalFilename": "wc20261021_001.jpg",
+      "originalImage": "/pool/paintings/watercolor-20261021/originals/wc20261021_001.jpg",
+      "category": "watercolor",
+      "subcategory": "山水風景",
+      "frame": "wood",
+      "width": 640,
+      "height": 453,
+      "aspect": 1.4128035320088301,
+      "originalWidth": 1013,
+      "originalHeight": 717,
+      "shape": "橫幅",
+      "source": "IMG_1151.jpeg",
+      "sourcePosition": 1,
+      "sourceHalf": "上",
+      "crop": {
+        "quad": [
+          [
+            50,
+            0
+          ],
+          [
+            1060,
+            0
+          ],
+          [
+            1070,
+            732
+          ],
+          [
+            55,
+            702
+          ]
+        ],
+        "note": "原始照片上緣已截斷；依現有內容裁切"
+      },
+      "collection": "watercolor-20261021",
+      "collections": [
+        "watercolor-20261021"
+      ],
+      "preview": true,
+      "sha256": "914a3c3a16a29cf5efaf254ac5b134bef027d6adc111a65da779c968569c13c1"
+    },
+    {
+      "id": "wc20261021_002",
+      "title": "暮色餘暉",
+      "titleStatus": "依畫面整理命名，可修改",
+      "artist": "Chino Yang",
+      "year": "",
+      "desc": "水彩山色與暮光；由上下兩幅原作照片分割。",
+      "filename": "wc20261021_002.webp",
+      "image": "/pool/paintings/watercolor-20261021/images/wc20261021_002.webp",
+      "originalFilename": "wc20261021_002.jpg",
+      "originalImage": "/pool/paintings/watercolor-20261021/originals/wc20261021_002.jpg",
+      "category": "watercolor",
+      "subcategory": "山水風景",
+      "frame": "wood",
+      "width": 640,
+      "height": 437,
+      "aspect": 1.4645308924485125,
+      "originalWidth": 1011,
+      "originalHeight": 690,
+      "shape": "橫幅",
+      "source": "IMG_1151.jpeg",
+      "sourcePosition": 2,
+      "sourceHalf": "下",
+      "crop": {
+        "quad": [
+          [
+            50,
+            785
+          ],
+          [
+            1065,
+            815
+          ],
+          [
+            1050,
+            1500
+          ],
+          [
+            43,
+            1480
+          ]
+        ],
+        "note": "分割並校正傾斜，保留原有色彩"
+      },
+      "collection": "watercolor-20261021",
+      "collections": [
+        "watercolor-20261021"
+      ],
+      "preview": true,
+      "sha256": "e5fffb0aa538694417165f2cb38e8390e351863b541be3009eab404900cf0eb7"
+    },
+    {
+      "id": "wc20261021_003",
+      "title": "曉光入谷",
+      "titleStatus": "依畫面整理命名，可修改",
+      "artist": "Chino Yang",
+      "year": "",
+      "desc": "水彩山色與暮光；由上下兩幅原作照片分割。",
+      "filename": "wc20261021_003.webp",
+      "image": "/pool/paintings/watercolor-20261021/images/wc20261021_003.webp",
+      "originalFilename": "wc20261021_003.jpg",
+      "originalImage": "/pool/paintings/watercolor-20261021/originals/wc20261021_003.jpg",
+      "category": "watercolor",
+      "subcategory": "山水風景",
+      "frame": "wood",
+      "width": 640,
+      "height": 428,
+      "aspect": 1.4953271028037383,
+      "originalWidth": 993,
+      "originalHeight": 664,
+      "shape": "橫幅",
+      "source": "IMG_1152.jpeg",
+      "sourcePosition": 3,
+      "sourceHalf": "上",
+      "crop": {
+        "quad": [
+          [
+            70,
+            43
+          ],
+          [
+            1046,
+            40
+          ],
+          [
+            1070,
+            700
+          ],
+          [
+            60,
+            710
+          ]
+        ],
+        "note": "分割並校正傾斜，保留原有色彩"
+      },
+      "collection": "watercolor-20261021",
+      "collections": [
+        "watercolor-20261021"
+      ],
+      "preview": true,
+      "sha256": "8ecc4769262bf13b279b72b2a1da4022334447c71d2ccd4d3d07d4dc4171bd39"
+    },
+    {
+      "id": "wc20261021_004",
+      "title": "遠山靜水",
+      "titleStatus": "依畫面整理命名，可修改",
+      "artist": "Chino Yang",
+      "year": "",
+      "desc": "水彩山色與暮光；由上下兩幅原作照片分割。",
+      "filename": "wc20261021_004.webp",
+      "image": "/pool/paintings/watercolor-20261021/images/wc20261021_004.webp",
+      "originalFilename": "wc20261021_004.jpg",
+      "originalImage": "/pool/paintings/watercolor-20261021/originals/wc20261021_004.jpg",
+      "category": "watercolor",
+      "subcategory": "山水風景",
+      "frame": "wood",
+      "width": 640,
+      "height": 429,
+      "aspect": 1.491841491841492,
+      "originalWidth": 1020,
+      "originalHeight": 683,
+      "shape": "橫幅",
+      "source": "IMG_1152.jpeg",
+      "sourcePosition": 4,
+      "sourceHalf": "下",
+      "crop": {
+        "quad": [
+          [
+            55,
+            791
+          ],
+          [
+            1070,
+            785
+          ],
+          [
+            1075,
+            1477
+          ],
+          [
+            50,
+            1465
+          ]
+        ],
+        "note": "分割並校正傾斜，保留原有色彩"
+      },
+      "collection": "watercolor-20261021",
+      "collections": [
+        "watercolor-20261021"
+      ],
+      "preview": true,
+      "sha256": "1f85993cb576d09c832bba791c452c75bb407ea521e33ec09029d7370ee5f6bd"
+    },
+    {
+      "id": "wc20261021_005",
+      "title": "金霞疊嶂",
+      "titleStatus": "依畫面整理命名，可修改",
+      "artist": "Chino Yang",
+      "year": "",
+      "desc": "水彩山色與暮光；由上下兩幅原作照片分割。",
+      "filename": "wc20261021_005.webp",
+      "image": "/pool/paintings/watercolor-20261021/images/wc20261021_005.webp",
+      "originalFilename": "wc20261021_005.jpg",
+      "originalImage": "/pool/paintings/watercolor-20261021/originals/wc20261021_005.jpg",
+      "category": "watercolor",
+      "subcategory": "山水風景",
+      "frame": "wood",
+      "width": 640,
+      "height": 431,
+      "aspect": 1.4849187935034802,
+      "originalWidth": 1028,
+      "originalHeight": 693,
+      "shape": "橫幅",
+      "source": "IMG_1153.jpeg",
+      "sourcePosition": 5,
+      "sourceHalf": "上",
+      "crop": {
+        "quad": [
+          [
+            0,
+            48
+          ],
+          [
+            1038,
+            73
+          ],
+          [
+            1060,
+            746
+          ],
+          [
+            43,
+            760
+          ]
+        ],
+        "note": "分割並校正傾斜，保留原有色彩"
+      },
+      "collection": "watercolor-20261021",
+      "collections": [
+        "watercolor-20261021"
+      ],
+      "preview": true,
+      "sha256": "6c4d3d5393a820a34f926fe0bce462aa1ee886026321baa796887856a54c8571"
+    },
+    {
+      "id": "wc20261021_006",
+      "title": "雲影澄潭",
+      "titleStatus": "依畫面整理命名，可修改",
+      "artist": "Chino Yang",
+      "year": "",
+      "desc": "水彩山色與暮光；由上下兩幅原作照片分割。",
+      "filename": "wc20261021_006.webp",
+      "image": "/pool/paintings/watercolor-20261021/images/wc20261021_006.webp",
+      "originalFilename": "wc20261021_006.jpg",
+      "originalImage": "/pool/paintings/watercolor-20261021/originals/wc20261021_006.jpg",
+      "category": "watercolor",
+      "subcategory": "山水風景",
+      "frame": "wood",
+      "width": 640,
+      "height": 436,
+      "aspect": 1.4678899082568808,
+      "originalWidth": 980,
+      "originalHeight": 667,
+      "shape": "橫幅",
+      "source": "IMG_1153.jpeg",
+      "sourcePosition": 6,
+      "sourceHalf": "下",
+      "crop": {
+        "quad": [
+          [
+            52,
+            847
+          ],
+          [
+            1055,
+            828
+          ],
+          [
+            1060,
+            1513
+          ],
+          [
+            104,
+            1493
+          ]
+        ],
+        "note": "分割並校正傾斜，保留原有色彩"
+      },
+      "collection": "watercolor-20261021",
+      "collections": [
+        "watercolor-20261021"
+      ],
+      "preview": true,
+      "sha256": "d0f1cd7e8abde6f008c245116f4b2df1665bf9cde7d195dc7345d68e9d2d5fb1"
+    },
+    {
+      "id": "wc20261021_007",
+      "title": "霧裡微光",
+      "titleStatus": "依畫面整理命名，可修改",
+      "artist": "Chino Yang",
+      "year": "",
+      "desc": "水彩山色與暮光；由上下兩幅原作照片分割。",
+      "filename": "wc20261021_007.webp",
+      "image": "/pool/paintings/watercolor-20261021/images/wc20261021_007.webp",
+      "originalFilename": "wc20261021_007.jpg",
+      "originalImage": "/pool/paintings/watercolor-20261021/originals/wc20261021_007.jpg",
+      "category": "watercolor",
+      "subcategory": "山水風景",
+      "frame": "wood",
+      "width": 640,
+      "height": 455,
+      "aspect": 1.4065934065934067,
+      "originalWidth": 1015,
+      "originalHeight": 722,
+      "shape": "橫幅",
+      "source": "IMG_1154.jpeg",
+      "sourcePosition": 7,
+      "sourceHalf": "上",
+      "crop": {
+        "quad": [
+          [
+            0,
+            0
+          ],
+          [
+            1000,
+            0
+          ],
+          [
+            1030,
+            703
+          ],
+          [
+            0,
+            741
+          ]
+        ],
+        "note": "原始照片上緣已截斷；依現有內容裁切"
+      },
+      "collection": "watercolor-20261021",
+      "collections": [
+        "watercolor-20261021"
+      ],
+      "preview": true,
+      "sha256": "e0ad671e17a88ba6807b44e14eccceb6ed9ea7aa8e9a3ca8a06c5196596218ef"
+    },
+    {
+      "id": "wc20261021_008",
+      "title": "暮山泊影",
+      "titleStatus": "依畫面整理命名，可修改",
+      "artist": "Chino Yang",
+      "year": "",
+      "desc": "水彩山色與暮光；由上下兩幅原作照片分割。",
+      "filename": "wc20261021_008.webp",
+      "image": "/pool/paintings/watercolor-20261021/images/wc20261021_008.webp",
+      "originalFilename": "wc20261021_008.jpg",
+      "originalImage": "/pool/paintings/watercolor-20261021/originals/wc20261021_008.jpg",
+      "category": "watercolor",
+      "subcategory": "山水風景",
+      "frame": "wood",
+      "width": 640,
+      "height": 433,
+      "aspect": 1.4780600461893765,
+      "originalWidth": 1006,
+      "originalHeight": 680,
+      "shape": "橫幅",
+      "source": "IMG_1154.jpeg",
+      "sourcePosition": 8,
+      "sourceHalf": "下",
+      "crop": {
+        "quad": [
+          [
+            10,
+            825
+          ],
+          [
+            1030,
+            783
+          ],
+          [
+            1045,
+            1477
+          ],
+          [
+            54,
+            1490
+          ]
+        ],
+        "note": "分割並校正傾斜，保留原有色彩"
+      },
+      "collection": "watercolor-20261021",
+      "collections": [
+        "watercolor-20261021"
+      ],
+      "preview": true,
+      "sha256": "03183ce5b0cda3478542cf799c462de0ad139a6dc7476333c3ffd20b8a8bf82f"
+    },
+    {
+      "id": "wc20261021_009",
+      "title": "秋嶺含煙",
+      "titleStatus": "依畫面整理命名，可修改",
+      "artist": "Chino Yang",
+      "year": "",
+      "desc": "水彩山色與暮光；由上下兩幅原作照片分割。",
+      "filename": "wc20261021_009.webp",
+      "image": "/pool/paintings/watercolor-20261021/images/wc20261021_009.webp",
+      "originalFilename": "wc20261021_009.jpg",
+      "originalImage": "/pool/paintings/watercolor-20261021/originals/wc20261021_009.jpg",
+      "category": "watercolor",
+      "subcategory": "山水風景",
+      "frame": "wood",
+      "width": 640,
+      "height": 458,
+      "aspect": 1.3973799126637554,
+      "originalWidth": 993,
+      "originalHeight": 711,
+      "shape": "橫幅",
+      "source": "IMG_1155.jpeg",
+      "sourcePosition": 9,
+      "sourceHalf": "上",
+      "crop": {
+        "quad": [
+          [
+            70,
+            65
+          ],
+          [
+            1033,
+            61
+          ],
+          [
+            1048,
+            769
+          ],
+          [
+            26,
+            778
+          ]
+        ],
+        "note": "分割並校正傾斜，保留原有色彩"
+      },
+      "collection": "watercolor-20261021",
+      "collections": [
+        "watercolor-20261021"
+      ],
+      "preview": true,
+      "sha256": "cef1a22c5d1282263e9adfcb2fb1d318b0df1e0cf7352bbe4ef7bfbd583aee96"
+    },
+    {
+      "id": "wc20261021_010",
+      "title": "金色水岸",
+      "titleStatus": "依畫面整理命名，可修改",
+      "artist": "Chino Yang",
+      "year": "",
+      "desc": "水彩山色與暮光；由上下兩幅原作照片分割。",
+      "filename": "wc20261021_010.webp",
+      "image": "/pool/paintings/watercolor-20261021/images/wc20261021_010.webp",
+      "originalFilename": "wc20261021_010.jpg",
+      "originalImage": "/pool/paintings/watercolor-20261021/originals/wc20261021_010.jpg",
+      "category": "watercolor",
+      "subcategory": "山水風景",
+      "frame": "wood",
+      "width": 640,
+      "height": 427,
+      "aspect": 1.4988290398126465,
+      "originalWidth": 990,
+      "originalHeight": 660,
+      "shape": "橫幅",
+      "source": "IMG_1155.jpeg",
+      "sourcePosition": 10,
+      "sourceHalf": "下",
+      "crop": {
+        "quad": [
+          [
+            32,
+            870
+          ],
+          [
+            1040,
+            853
+          ],
+          [
+            1040,
+            1525
+          ],
+          [
+            68,
+            1518
+          ]
+        ],
+        "note": "分割並校正傾斜，保留原有色彩"
+      },
+      "collection": "watercolor-20261021",
+      "collections": [
+        "watercolor-20261021"
+      ],
+      "preview": true,
+      "sha256": "01f49a315a1677975424fa4e3deaf14da8705a30a6ab5469393ddda7737ffdba"
+    },
+    {
+      "id": "wc20261021_011",
+      "title": "山巔初照",
+      "titleStatus": "依畫面整理命名，可修改",
+      "artist": "Chino Yang",
+      "year": "",
+      "desc": "水彩山色與暮光；由上下兩幅原作照片分割。",
+      "filename": "wc20261021_011.webp",
+      "image": "/pool/paintings/watercolor-20261021/images/wc20261021_011.webp",
+      "originalFilename": "wc20261021_011.jpg",
+      "originalImage": "/pool/paintings/watercolor-20261021/originals/wc20261021_011.jpg",
+      "category": "watercolor",
+      "subcategory": "山水風景",
+      "frame": "wood",
+      "width": 640,
+      "height": 481,
+      "aspect": 1.3305613305613306,
+      "originalWidth": 1004,
+      "originalHeight": 755,
+      "shape": "橫幅",
+      "source": "IMG_1156.jpeg",
+      "sourcePosition": 11,
+      "sourceHalf": "上",
+      "crop": {
+        "quad": [
+          [
+            22,
+            25
+          ],
+          [
+            1036,
+            12
+          ],
+          [
+            1034,
+            767
+          ],
+          [
+            40,
+            779
+          ]
+        ],
+        "note": "分割並校正傾斜，保留原有色彩"
+      },
+      "collection": "watercolor-20261021",
+      "collections": [
+        "watercolor-20261021"
+      ],
+      "preview": true,
+      "sha256": "9fb6660b9e2706ee04dfebdefd1209ed98eb2757b70080e7e275e655d0ab853f"
+    },
+    {
+      "id": "wc20261021_012",
+      "title": "霞映青峰",
+      "titleStatus": "依畫面整理命名，可修改",
+      "artist": "Chino Yang",
+      "year": "",
+      "desc": "水彩山色與暮光；由上下兩幅原作照片分割。",
+      "filename": "wc20261021_012.webp",
+      "image": "/pool/paintings/watercolor-20261021/images/wc20261021_012.webp",
+      "originalFilename": "wc20261021_012.jpg",
+      "originalImage": "/pool/paintings/watercolor-20261021/originals/wc20261021_012.jpg",
+      "category": "watercolor",
+      "subcategory": "山水風景",
+      "frame": "wood",
+      "width": 640,
+      "height": 427,
+      "aspect": 1.4988290398126465,
+      "originalWidth": 986,
+      "originalHeight": 658,
+      "shape": "橫幅",
+      "source": "IMG_1156.jpeg",
+      "sourcePosition": 12,
+      "sourceHalf": "下",
+      "crop": {
+        "quad": [
+          [
+            46,
+            866
+          ],
+          [
+            1024,
+            848
+          ],
+          [
+            1037,
+            1518
+          ],
+          [
+            43,
+            1511
+          ]
+        ],
+        "note": "分割並校正傾斜，保留原有色彩"
+      },
+      "collection": "watercolor-20261021",
+      "collections": [
+        "watercolor-20261021"
+      ],
+      "preview": true,
+      "sha256": "fffa96ce84eeae3db120bf904d4fdaaf1b1667c9bd6df86e85e0aa00426b195b"
+    },
+    {
+      "id": "wc20261021_013",
+      "title": "山居暖陽",
+      "titleStatus": "依畫面整理命名，可修改",
+      "artist": "Chino Yang",
+      "year": "",
+      "desc": "水彩山色與暮光；由上下兩幅原作照片分割。",
+      "filename": "wc20261021_013.webp",
+      "image": "/pool/paintings/watercolor-20261021/images/wc20261021_013.webp",
+      "originalFilename": "wc20261021_013.jpg",
+      "originalImage": "/pool/paintings/watercolor-20261021/originals/wc20261021_013.jpg",
+      "category": "watercolor",
+      "subcategory": "山水風景",
+      "frame": "wood",
+      "width": 640,
+      "height": 443,
+      "aspect": 1.4446952595936795,
+      "originalWidth": 1003,
+      "originalHeight": 695,
+      "shape": "橫幅",
+      "source": "IMG_1157.jpeg",
+      "sourcePosition": 13,
+      "sourceHalf": "上",
+      "crop": {
+        "quad": [
+          [
+            54,
+            62
+          ],
+          [
+            1063,
+            65
+          ],
+          [
+            1066,
+            753
+          ],
+          [
+            70,
+            763
+          ]
+        ],
+        "note": "分割並校正傾斜，保留原有色彩"
+      },
+      "collection": "watercolor-20261021",
+      "collections": [
+        "watercolor-20261021"
+      ],
+      "preview": true,
+      "sha256": "2280f1e115454927019da364f5e58c93272e874748f28bc6a8af44e2cbb1ac0d"
+    },
+    {
+      "id": "wc20261021_014",
+      "title": "藍山清夢",
+      "titleStatus": "依畫面整理命名，可修改",
+      "artist": "Chino Yang",
+      "year": "",
+      "desc": "水彩山色與暮光；由上下兩幅原作照片分割。",
+      "filename": "wc20261021_014.webp",
+      "image": "/pool/paintings/watercolor-20261021/images/wc20261021_014.webp",
+      "originalFilename": "wc20261021_014.jpg",
+      "originalImage": "/pool/paintings/watercolor-20261021/originals/wc20261021_014.jpg",
+      "category": "watercolor",
+      "subcategory": "山水風景",
+      "frame": "wood",
+      "width": 640,
+      "height": 436,
+      "aspect": 1.4678899082568808,
+      "originalWidth": 984,
+      "originalHeight": 670,
+      "shape": "橫幅",
+      "source": "IMG_1157.jpeg",
+      "sourcePosition": 14,
+      "sourceHalf": "下",
+      "crop": {
+        "quad": [
+          [
+            75,
+            855
+          ],
+          [
+            1067,
+            834
+          ],
+          [
+            1078,
+            1502
+          ],
+          [
+            103,
+            1527
+          ]
+        ],
+        "note": "分割並校正傾斜，保留原有色彩"
+      },
+      "collection": "watercolor-20261021",
+      "collections": [
+        "watercolor-20261021"
+      ],
+      "preview": true,
+      "sha256": "010c4cd2c251b50da925752fae3f39b9460ee24c2e47eba2b28fe25390afe8a8"
+    },
+    {
+      "id": "wc20261021_015",
+      "title": "雲開見曦",
+      "titleStatus": "依畫面整理命名，可修改",
+      "artist": "Chino Yang",
+      "year": "",
+      "desc": "水彩山色與暮光；由上下兩幅原作照片分割。",
+      "filename": "wc20261021_015.webp",
+      "image": "/pool/paintings/watercolor-20261021/images/wc20261021_015.webp",
+      "originalFilename": "wc20261021_015.jpg",
+      "originalImage": "/pool/paintings/watercolor-20261021/originals/wc20261021_015.jpg",
+      "category": "watercolor",
+      "subcategory": "山水風景",
+      "frame": "wood",
+      "width": 640,
+      "height": 440,
+      "aspect": 1.4545454545454546,
+      "originalWidth": 1009,
+      "originalHeight": 693,
+      "shape": "橫幅",
+      "source": "IMG_1158.jpeg",
+      "sourcePosition": 15,
+      "sourceHalf": "上",
+      "crop": {
+        "quad": [
+          [
+            50,
+            55
+          ],
+          [
+            1080,
+            56
+          ],
+          [
+            1080,
+            729
+          ],
+          [
+            92,
+            767
+          ]
+        ],
+        "note": "分割並校正傾斜，保留原有色彩"
+      },
+      "collection": "watercolor-20261021",
+      "collections": [
+        "watercolor-20261021"
+      ],
+      "preview": true,
+      "sha256": "c7c8834fd4bb451d29c6f97ad17304bb19ef67904442177e5535c8e2f554ce23"
+    },
+    {
+      "id": "wc20261021_016",
+      "title": "幽谷流光",
+      "titleStatus": "依畫面整理命名，可修改",
+      "artist": "Chino Yang",
+      "year": "",
+      "desc": "水彩山色與暮光；由上下兩幅原作照片分割。",
+      "filename": "wc20261021_016.webp",
+      "image": "/pool/paintings/watercolor-20261021/images/wc20261021_016.webp",
+      "originalFilename": "wc20261021_016.jpg",
+      "originalImage": "/pool/paintings/watercolor-20261021/originals/wc20261021_016.jpg",
+      "category": "watercolor",
+      "subcategory": "山水風景",
+      "frame": "wood",
+      "width": 640,
+      "height": 446,
+      "aspect": 1.4349775784753362,
+      "originalWidth": 965,
+      "originalHeight": 672,
+      "shape": "橫幅",
+      "source": "IMG_1158.jpeg",
+      "sourcePosition": 16,
+      "sourceHalf": "下",
+      "crop": {
+        "quad": [
+          [
+            95,
+            847
+          ],
+          [
+            1078,
+            810
+          ],
+          [
+            1074,
+            1505
+          ],
+          [
+            128,
+            1495
+          ]
+        ],
+        "note": "分割並校正傾斜，保留原有色彩"
+      },
+      "collection": "watercolor-20261021",
+      "collections": [
+        "watercolor-20261021"
+      ],
+      "preview": true,
+      "sha256": "88c821004f0286507304a457339b29d42cabd784f1b7d6f6eff9d8f97e12b817"
+    },
+    {
+      "id": "wc20261021_017",
+      "title": "晨霧山城",
+      "titleStatus": "依畫面整理命名，可修改",
+      "artist": "Chino Yang",
+      "year": "",
+      "desc": "水彩山色與暮光；由上下兩幅原作照片分割。",
+      "filename": "wc20261021_017.webp",
+      "image": "/pool/paintings/watercolor-20261021/images/wc20261021_017.webp",
+      "originalFilename": "wc20261021_017.jpg",
+      "originalImage": "/pool/paintings/watercolor-20261021/originals/wc20261021_017.jpg",
+      "category": "watercolor",
+      "subcategory": "山水風景",
+      "frame": "wood",
+      "width": 640,
+      "height": 449,
+      "aspect": 1.4253897550111359,
+      "originalWidth": 983,
+      "originalHeight": 690,
+      "shape": "橫幅",
+      "source": "IMG_1159.jpeg",
+      "sourcePosition": 17,
+      "sourceHalf": "上",
+      "crop": {
+        "quad": [
+          [
+            50,
+            85
+          ],
+          [
+            1030,
+            64
+          ],
+          [
+            1048,
+            753
+          ],
+          [
+            63,
+            775
+          ]
+        ],
+        "note": "分割並校正傾斜，保留原有色彩"
+      },
+      "collection": "watercolor-20261021",
+      "collections": [
+        "watercolor-20261021"
+      ],
+      "preview": true,
+      "sha256": "636d1395d5f369addb550bd0caacc352a64ebdbf738c05c0de7d2c021ade34a7"
+    },
+    {
+      "id": "wc20261021_018",
+      "title": "晚燈初上",
+      "titleStatus": "依畫面整理命名，可修改",
+      "artist": "Chino Yang",
+      "year": "",
+      "desc": "水彩山色與暮光；由上下兩幅原作照片分割。",
+      "filename": "wc20261021_018.webp",
+      "image": "/pool/paintings/watercolor-20261021/images/wc20261021_018.webp",
+      "originalFilename": "wc20261021_018.jpg",
+      "originalImage": "/pool/paintings/watercolor-20261021/originals/wc20261021_018.jpg",
+      "category": "watercolor",
+      "subcategory": "山水風景",
+      "frame": "wood",
+      "width": 640,
+      "height": 439,
+      "aspect": 1.457858769931663,
+      "originalWidth": 966,
+      "originalHeight": 662,
+      "shape": "橫幅",
+      "source": "IMG_1159.jpeg",
+      "sourcePosition": 18,
+      "sourceHalf": "下",
+      "crop": {
+        "quad": [
+          [
+            70,
+            861
+          ],
+          [
+            1049,
+            831
+          ],
+          [
+            1048,
+            1505
+          ],
+          [
+            95,
+            1510
+          ]
+        ],
+        "note": "分割並校正傾斜，保留原有色彩"
+      },
+      "collection": "watercolor-20261021",
+      "collections": [
+        "watercolor-20261021"
+      ],
+      "preview": true,
+      "sha256": "3cc2e2ca3a858c43be2037273d689bd07ff58dd70ff1d7d4cc20ac064afe1c2f"
+    }
+  ]
+}

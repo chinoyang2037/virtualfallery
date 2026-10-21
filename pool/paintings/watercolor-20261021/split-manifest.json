@@ -1,0 +1,560 @@
+[
+  {
+    "id": "watercolor18_01",
+    "file": "images/watercolor18_01.webp",
+    "original": "images/watercolor18_01.jpg",
+    "source": "IMG_1151.jpeg",
+    "position": "上",
+    "crop": [
+      [
+        50,
+        0
+      ],
+      [
+        1060,
+        0
+      ],
+      [
+        1070,
+        732
+      ],
+      [
+        55,
+        702
+      ]
+    ],
+    "width": 1013,
+    "height": 717,
+    "title": "晨景",
+    "artist": "Chino Yang",
+    "medium": "水彩",
+    "note": "原始照片上緣已截斷；依現有內容裁切"
+  },
+  {
+    "id": "watercolor18_02",
+    "file": "images/watercolor18_02.webp",
+    "original": "images/watercolor18_02.jpg",
+    "source": "IMG_1151.jpeg",
+    "position": "下",
+    "crop": [
+      [
+        50,
+        785
+      ],
+      [
+        1065,
+        815
+      ],
+      [
+        1050,
+        1500
+      ],
+      [
+        43,
+        1480
+      ]
+    ],
+    "width": 1011,
+    "height": 690,
+    "title": "暮色餘暉",
+    "artist": "Chino Yang",
+    "medium": "水彩",
+    "note": "分割並校正傾斜，保留原有色彩"
+  },
+  {
+    "id": "watercolor18_03",
+    "file": "images/watercolor18_03.webp",
+    "original": "images/watercolor18_03.jpg",
+    "source": "IMG_1152.jpeg",
+    "position": "上",
+    "crop": [
+      [
+        70,
+        43
+      ],
+      [
+        1046,
+        40
+      ],
+      [
+        1070,
+        700
+      ],
+      [
+        60,
+        710
+      ]
+    ],
+    "width": 993,
+    "height": 664,
+    "title": "曉光入谷",
+    "artist": "Chino Yang",
+    "medium": "水彩",
+    "note": "分割並校正傾斜，保留原有色彩"
+  },
+  {
+    "id": "watercolor18_04",
+    "file": "images/watercolor18_04.webp",
+    "original": "images/watercolor18_04.jpg",
+    "source": "IMG_1152.jpeg",
+    "position": "下",
+    "crop": [
+      [
+        55,
+        791
+      ],
+      [
+        1070,
+        785
+      ],
+      [
+        1075,
+        1477
+      ],
+      [
+        50,
+        1465
+      ]
+    ],
+    "width": 1020,
+    "height": 683,
+    "title": "遠山靜水",
+    "artist": "Chino Yang",
+    "medium": "水彩",
+    "note": "分割並校正傾斜，保留原有色彩"
+  },
+  {
+    "id": "watercolor18_05",
+    "file": "images/watercolor18_05.webp",
+    "original": "images/watercolor18_05.jpg",
+    "source": "IMG_1153.jpeg",
+    "position": "上",
+    "crop": [
+      [
+        0,
+        48
+      ],
+      [
+        1038,
+        73
+      ],
+      [
+        1060,
+        746
+      ],
+      [
+        43,
+        760
+      ]
+    ],
+    "width": 1028,
+    "height": 693,
+    "title": "金霞疊嶂",
+    "artist": "Chino Yang",
+    "medium": "水彩",
+    "note": "分割並校正傾斜，保留原有色彩"
+  },
+  {
+    "id": "watercolor18_06",
+    "file": "images/watercolor18_06.webp",
+    "original": "images/watercolor18_06.jpg",
+    "source": "IMG_1153.jpeg",
+    "position": "下",
+    "crop": [
+      [
+        52,
+        847
+      ],
+      [
+        1055,
+        828
+      ],
+      [
+        1060,
+        1513
+      ],
+      [
+        104,
+        1493
+      ]
+    ],
+    "width": 980,
+    "height": 667,
+    "title": "雲影澄潭",
+    "artist": "Chino Yang",
+    "medium": "水彩",
+    "note": "分割並校正傾斜，保留原有色彩"
+  },
+  {
+    "id": "watercolor18_07",
+    "file": "images/watercolor18_07.webp",
+    "original": "images/watercolor18_07.jpg",
+    "source": "IMG_1154.jpeg",
+    "position": "上",
+    "crop": [
+      [
+        0,
+        0
+      ],
+      [
+        1000,
+        0
+      ],
+      [
+        1030,
+        703
+      ],
+      [
+        0,
+        741
+      ]
+    ],
+    "width": 1015,
+    "height": 722,
+    "title": "霧裡微光",
+    "artist": "Chino Yang",
+    "medium": "水彩",
+    "note": "原始照片上緣已截斷；依現有內容裁切"
+  },
+  {
+    "id": "watercolor18_08",
+    "file": "images/watercolor18_08.webp",
+    "original": "images/watercolor18_08.jpg",
+    "source": "IMG_1154.jpeg",
+    "position": "下",
+    "crop": [
+      [
+        10,
+        825
+      ],
+      [
+        1030,
+        783
+      ],
+      [
+        1045,
+        1477
+      ],
+      [
+        54,
+        1490
+      ]
+    ],
+    "width": 1006,
+    "height": 680,
+    "title": "暮山泊影",
+    "artist": "Chino Yang",
+    "medium": "水彩",
+    "note": "分割並校正傾斜，保留原有色彩"
+  },
+  {
+    "id": "watercolor18_09",
+    "file": "images/watercolor18_09.webp",
+    "original": "images/watercolor18_09.jpg",
+    "source": "IMG_1155.jpeg",
+    "position": "上",
+    "crop": [
+      [
+        70,
+        65
+      ],
+      [
+        1033,
+        61
+      ],
+      [
+        1048,
+        769
+      ],
+      [
+        26,
+        778
+      ]
+    ],
+    "width": 993,
+    "height": 711,
+    "title": "秋嶺含煙",
+    "artist": "Chino Yang",
+    "medium": "水彩",
+    "note": "分割並校正傾斜，保留原有色彩"
+  },
+  {
+    "id": "watercolor18_10",
+    "file": "images/watercolor18_10.webp",
+    "original": "images/watercolor18_10.jpg",
+    "source": "IMG_1155.jpeg",
+    "position": "下",
+    "crop": [
+      [
+        32,
+        870
+      ],
+      [
+        1040,
+        853
+      ],
+      [
+        1040,
+        1525
+      ],
+      [
+        68,
+        1518
+      ]
+    ],
+    "width": 990,
+    "height": 660,
+    "title": "金色水岸",
+    "artist": "Chino Yang",
+    "medium": "水彩",
+    "note": "分割並校正傾斜，保留原有色彩"
+  },
+  {
+    "id": "watercolor18_11",
+    "file": "images/watercolor18_11.webp",
+    "original": "images/watercolor18_11.jpg",
+    "source": "IMG_1156.jpeg",
+    "position": "上",
+    "crop": [
+      [
+        22,
+        25
+      ],
+      [
+        1036,
+        12
+      ],
+      [
+        1034,
+        767
+      ],
+      [
+        40,
+        779
+      ]
+    ],
+    "width": 1004,
+    "height": 755,
+    "title": "山巔初照",
+    "artist": "Chino Yang",
+    "medium": "水彩",
+    "note": "分割並校正傾斜，保留原有色彩"
+  },
+  {
+    "id": "watercolor18_12",
+    "file": "images/watercolor18_12.webp",
+    "original": "images/watercolor18_12.jpg",
+    "source": "IMG_1156.jpeg",
+    "position": "下",
+    "crop": [
+      [
+        46,
+        866
+      ],
+      [
+        1024,
+        848
+      ],
+      [
+        1037,
+        1518
+      ],
+      [
+        43,
+        1511
+      ]
+    ],
+    "width": 986,
+    "height": 658,
+    "title": "霞映青峰",
+    "artist": "Chino Yang",
+    "medium": "水彩",
+    "note": "分割並校正傾斜，保留原有色彩"
+  },
+  {
+    "id": "watercolor18_13",
+    "file": "images/watercolor18_13.webp",
+    "original": "images/watercolor18_13.jpg",
+    "source": "IMG_1157.jpeg",
+    "position": "上",
+    "crop": [
+      [
+        54,
+        62
+      ],
+      [
+        1063,
+        65
+      ],
+      [
+        1066,
+        753
+      ],
+      [
+        70,
+        763
+      ]
+    ],
+    "width": 1003,
+    "height": 695,
+    "title": "山居暖陽",
+    "artist": "Chino Yang",
+    "medium": "水彩",
+    "note": "分割並校正傾斜，保留原有色彩"
+  },
+  {
+    "id": "watercolor18_14",
+    "file": "images/watercolor18_14.webp",
+    "original": "images/watercolor18_14.jpg",
+    "source": "IMG_1157.jpeg",
+    "position": "下",
+    "crop": [
+      [
+        75,
+        855
+      ],
+      [
+        1067,
+        834
+      ],
+      [
+        1078,
+        1502
+      ],
+      [
+        103,
+        1527
+      ]
+    ],
+    "width": 984,
+    "height": 670,
+    "title": "藍山清夢",
+    "artist": "Chino Yang",
+    "medium": "水彩",
+    "note": "分割並校正傾斜，保留原有色彩"
+  },
+  {
+    "id": "watercolor18_15",
+    "file": "images/watercolor18_15.webp",
+    "original": "images/watercolor18_15.jpg",
+    "source": "IMG_1158.jpeg",
+    "position": "上",
+    "crop": [
+      [
+        50,
+        55
+      ],
+      [
+        1080,
+        56
+      ],
+      [
+        1080,
+        729
+      ],
+      [
+        92,
+        767
+      ]
+    ],
+    "width": 1009,
+    "height": 693,
+    "title": "雲開見曦",
+    "artist": "Chino Yang",
+    "medium": "水彩",
+    "note": "分割並校正傾斜，保留原有色彩"
+  },
+  {
+    "id": "watercolor18_16",
+    "file": "images/watercolor18_16.webp",
+    "original": "images/watercolor18_16.jpg",
+    "source": "IMG_1158.jpeg",
+    "position": "下",
+    "crop": [
+      [
+        95,
+        847
+      ],
+      [
+        1078,
+        810
+      ],
+      [
+        1074,
+        1505
+      ],
+      [
+        128,
+        1495
+      ]
+    ],
+    "width": 965,
+    "height": 672,
+    "title": "幽谷流光",
+    "artist": "Chino Yang",
+    "medium": "水彩",
+    "note": "分割並校正傾斜，保留原有色彩"
+  },
+  {
+    "id": "watercolor18_17",
+    "file": "images/watercolor18_17.webp",
+    "original": "images/watercolor18_17.jpg",
+    "source": "IMG_1159.jpeg",
+    "position": "上",
+    "crop": [
+      [
+        50,
+        85
+      ],
+      [
+        1030,
+        64
+      ],
+      [
+        1048,
+        753
+      ],
+      [
+        63,
+        775
+      ]
+    ],
+    "width": 983,
+    "height": 690,
+    "title": "晨霧山城",
+    "artist": "Chino Yang",
+    "medium": "水彩",
+    "note": "分割並校正傾斜，保留原有色彩"
+  },
+  {
+    "id": "watercolor18_18",
+    "file": "images/watercolor18_18.webp",
+    "original": "images/watercolor18_18.jpg",
+    "source": "IMG_1159.jpeg",
+    "position": "下",
+    "crop": [
+      [
+        70,
+        861
+      ],
+      [
+        1049,
+        831
+      ],
+      [
+        1048,
+        1505
+      ],
+      [
+        95,
+        1510
+      ]
+    ],
+    "width": 966,
+    "height": 662,
+    "title": "晚燈初上",
+    "artist": "Chino Yang",
+    "medium": "水彩",
+    "note": "分割並校正傾斜，保留原有色彩"
+  }
+]

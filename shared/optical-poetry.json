@@ -1,0 +1,965 @@
+{
+  "language": "en",
+  "artworks": {
+    "hexwall-ice-10": {
+      "title": "Frostborne Constellations · Dawn",
+      "desc": "Winter light gathers into a delicate constellation, opening and closing like a breath held in crystal. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "冰 Ih · rotY",
+      "scientificDescription": "雪晶六角外形的根源。氧原子四配位、扭曲六元環沿 c 軸 ABAB 堆疊，基面 {0001} 與柱面 {10-10} 即雪晶的上下面與六個側面。"
+    },
+    "hexwall-ice-6": {
+      "title": "Frostborne Constellations · Drift",
+      "desc": "Winter light gathers into a delicate constellation, opening and closing like a breath held in crystal. Gentle shifts let familiar forms become briefly unfamiliar.",
+      "titleZh": "冰 Ih · Y",
+      "scientificDescription": "雪晶六角外形的根源。氧原子四配位、扭曲六元環沿 c 軸 ABAB 堆疊，基面 {0001} 與柱面 {10-10} 即雪晶的上下面與六個側面。"
+    },
+    "hexwall-ice-5": {
+      "title": "Frostborne Constellations · Resonance",
+      "desc": "Winter light gathers into a delicate constellation, opening and closing like a breath held in crystal. Repeating accents weave a quiet rhythm through the changing image.",
+      "titleZh": "冰 Ih · rotX",
+      "scientificDescription": "雪晶六角外形的根源。氧原子四配位、扭曲六元環沿 c 軸 ABAB 堆疊，基面 {0001} 與柱面 {10-10} 即雪晶的上下面與六個側面。"
+    },
+    "hexwall-ice-15": {
+      "title": "Frostborne Constellations · Reverie",
+      "desc": "Winter light gathers into a delicate constellation, opening and closing like a breath held in crystal. Color lingers between recognition and a waking dream.",
+      "titleZh": "冰 Ih · rotZ",
+      "scientificDescription": "雪晶六角外形的根源。氧原子四配位、扭曲六元環沿 c 軸 ABAB 堆疊，基面 {0001} 與柱面 {10-10} 即雪晶的上下面與六個側面。"
+    },
+    "hexwall-ice-11": {
+      "title": "Frostborne Constellations · Afterglow",
+      "desc": "Winter light gathers into a delicate constellation, opening and closing like a breath held in crystal. A trace of radiance remains as one arrangement gives way to the next.",
+      "titleZh": "冰 Ih · Z",
+      "scientificDescription": "雪晶六角外形的根源。氧原子四配位、扭曲六元環沿 c 軸 ABAB 堆疊，基面 {0001} 與柱面 {10-10} 即雪晶的上下面與六個側面。"
+    },
+    "hexwall-dia-11": {
+      "title": "The Geometry of Starlight · Dawn",
+      "desc": "Points of color find one another in a luminous order, as if starlight had learned the language of form. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "鑽石立方 · Z",
+      "scientificDescription": "四配位共價骨架，鍵長 a√3/4。矽、鍺同此結構，剛度高、密度低。也是 Schwarz D 極小曲面的骨架網。"
+    },
+    "hexwall-dia-1": {
+      "title": "The Geometry of Starlight · Drift",
+      "desc": "Points of color find one another in a luminous order, as if starlight had learned the language of form. Gentle shifts let familiar forms become briefly unfamiliar.",
+      "titleZh": "鑽石立方 · X",
+      "scientificDescription": "四配位共價骨架，鍵長 a√3/4。矽、鍺同此結構，剛度高、密度低。也是 Schwarz D 極小曲面的骨架網。"
+    },
+    "hexwall-dia-10": {
+      "title": "The Geometry of Starlight · Resonance",
+      "desc": "Points of color find one another in a luminous order, as if starlight had learned the language of form. Repeating accents weave a quiet rhythm through the changing image.",
+      "titleZh": "鑽石立方 · rotY",
+      "scientificDescription": "四配位共價骨架，鍵長 a√3/4。矽、鍺同此結構，剛度高、密度低。也是 Schwarz D 極小曲面的骨架網。"
+    },
+    "hexwall-dia-5": {
+      "title": "The Geometry of Starlight · Reverie",
+      "desc": "Points of color find one another in a luminous order, as if starlight had learned the language of form. Color lingers between recognition and a waking dream.",
+      "titleZh": "鑽石立方 · rotX",
+      "scientificDescription": "四配位共價骨架，鍵長 a√3/4。矽、鍺同此結構，剛度高、密度低。也是 Schwarz D 極小曲面的骨架網。"
+    },
+    "hexwall-dia-14": {
+      "title": "The Geometry of Starlight · Afterglow",
+      "desc": "Points of color find one another in a luminous order, as if starlight had learned the language of form. A trace of radiance remains as one arrangement gives way to the next.",
+      "titleZh": "鑽石立方 · Z60",
+      "scientificDescription": "四配位共價骨架，鍵長 a√3/4。矽、鍺同此結構，剛度高、密度低。也是 Schwarz D 極小曲面的骨架網。"
+    },
+    "hexwall-gra-11": {
+      "title": "Nocturne in Carbon · Dawn",
+      "desc": "Layers of quiet radiance drift across the dark, tracing a nocturne between structure and silence. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "石墨 · Z",
+      "scientificDescription": "層內 C–C 1.42 Å 共價六角網，層間 3.35 Å 僅凡得瓦力，AB 堆疊。面內剛度極高、層間易滑移。"
+    },
+    "hexwall-gra-10": {
+      "title": "Nocturne in Carbon · Drift",
+      "desc": "Layers of quiet radiance drift across the dark, tracing a nocturne between structure and silence. Gentle shifts let familiar forms become briefly unfamiliar.",
+      "titleZh": "石墨 · rotY",
+      "scientificDescription": "層內 C–C 1.42 Å 共價六角網，層間 3.35 Å 僅凡得瓦力，AB 堆疊。面內剛度極高、層間易滑移。"
+    },
+    "hexwall-gra-15": {
+      "title": "Nocturne in Carbon · Resonance",
+      "desc": "Layers of quiet radiance drift across the dark, tracing a nocturne between structure and silence. Repeating accents weave a quiet rhythm through the changing image.",
+      "titleZh": "石墨 · rotZ",
+      "scientificDescription": "層內 C–C 1.42 Å 共價六角網，層間 3.35 Å 僅凡得瓦力，AB 堆疊。面內剛度極高、層間易滑移。"
+    },
+    "hexwall-gra-14": {
+      "title": "Nocturne in Carbon · Reverie",
+      "desc": "Layers of quiet radiance drift across the dark, tracing a nocturne between structure and silence. Color lingers between recognition and a waking dream.",
+      "titleZh": "石墨 · Z60",
+      "scientificDescription": "層內 C–C 1.42 Å 共價六角網，層間 3.35 Å 僅凡得瓦力，AB 堆疊。面內剛度極高、層間易滑移。"
+    },
+    "hexwall-gra-5": {
+      "title": "Nocturne in Carbon · Afterglow",
+      "desc": "Layers of quiet radiance drift across the dark, tracing a nocturne between structure and silence. A trace of radiance remains as one arrangement gives way to the next.",
+      "titleZh": "石墨 · rotX",
+      "scientificDescription": "層內 C–C 1.42 Å 共價六角網，層間 3.35 Å 僅凡得瓦力，AB 堆疊。面內剛度極高、層間易滑移。"
+    },
+    "hexwall-c60-10": {
+      "title": "A Sphere of Quiet Suns · Dawn",
+      "desc": "A small universe folds its light inward, holding a constellation of quiet suns in a single, weightless sphere. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "C60 富勒烯 · rotY",
+      "scientificDescription": "截角二十面體：60 原子、20 六角面＋12 五角面、90 鍵。籠徑約 7.1 Å，固態堆成面心立方。名字來自建築師 Buckminster Fuller 的網格穹頂。"
+    },
+    "hexwall-c60-5": {
+      "title": "A Sphere of Quiet Suns · Drift",
+      "desc": "A small universe folds its light inward, holding a constellation of quiet suns in a single, weightless sphere. Gentle shifts let familiar forms become briefly unfamiliar.",
+      "titleZh": "C60 富勒烯 · rotX",
+      "scientificDescription": "截角二十面體：60 原子、20 六角面＋12 五角面、90 鍵。籠徑約 7.1 Å，固態堆成面心立方。名字來自建築師 Buckminster Fuller 的網格穹頂。"
+    },
+    "hexwall-c60-11": {
+      "title": "A Sphere of Quiet Suns · Resonance",
+      "desc": "A small universe folds its light inward, holding a constellation of quiet suns in a single, weightless sphere. Repeating accents weave a quiet rhythm through the changing image.",
+      "titleZh": "C60 富勒烯 · Z",
+      "scientificDescription": "截角二十面體：60 原子、20 六角面＋12 五角面、90 鍵。籠徑約 7.1 Å，固態堆成面心立方。名字來自建築師 Buckminster Fuller 的網格穹頂。"
+    },
+    "hexwall-c60-13": {
+      "title": "A Sphere of Quiet Suns · Reverie",
+      "desc": "A small universe folds its light inward, holding a constellation of quiet suns in a single, weightless sphere. Color lingers between recognition and a waking dream.",
+      "titleZh": "C60 富勒烯 · Z45",
+      "scientificDescription": "截角二十面體：60 原子、20 六角面＋12 五角面、90 鍵。籠徑約 7.1 Å，固態堆成面心立方。名字來自建築師 Buckminster Fuller 的網格穹頂。"
+    },
+    "hexwall-c60-6": {
+      "title": "A Sphere of Quiet Suns · Afterglow",
+      "desc": "A small universe folds its light inward, holding a constellation of quiet suns in a single, weightless sphere. A trace of radiance remains as one arrangement gives way to the next.",
+      "titleZh": "C60 富勒烯 · Y",
+      "scientificDescription": "截角二十面體：60 原子、20 六角面＋12 五角面、90 鍵。籠徑約 7.1 Å，固態堆成面心立方。名字來自建築師 Buckminster Fuller 的網格穹頂。"
+    },
+    "hexwall-cnt-15": {
+      "title": "A Thread Through Infinity · Dawn",
+      "desc": "Color winds along an invisible thread, drawing the eye through a passage that seems to have no end. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "碳奈米管 · rotZ",
+      "scientificDescription": "石墨烯沿手性向量 (n,m) 捲成圓筒，管徑 = a√(n²+nm+m²)/π。n=m 為扶手椅型、m=0 為鋸齒型。"
+    },
+    "hexwall-cnt-6": {
+      "title": "A Thread Through Infinity · Drift",
+      "desc": "Color winds along an invisible thread, drawing the eye through a passage that seems to have no end. Gentle shifts let familiar forms become briefly unfamiliar.",
+      "titleZh": "碳奈米管 · Y",
+      "scientificDescription": "石墨烯沿手性向量 (n,m) 捲成圓筒，管徑 = a√(n²+nm+m²)/π。n=m 為扶手椅型、m=0 為鋸齒型。"
+    },
+    "hexwall-cnt-1": {
+      "title": "A Thread Through Infinity · Resonance",
+      "desc": "Color winds along an invisible thread, drawing the eye through a passage that seems to have no end. Repeating accents weave a quiet rhythm through the changing image.",
+      "titleZh": "碳奈米管 · X",
+      "scientificDescription": "石墨烯沿手性向量 (n,m) 捲成圓筒，管徑 = a√(n²+nm+m²)/π。n=m 為扶手椅型、m=0 為鋸齒型。"
+    },
+    "hexwall-cnt-5": {
+      "title": "A Thread Through Infinity · Reverie",
+      "desc": "Color winds along an invisible thread, drawing the eye through a passage that seems to have no end. Color lingers between recognition and a waking dream.",
+      "titleZh": "碳奈米管 · rotX",
+      "scientificDescription": "石墨烯沿手性向量 (n,m) 捲成圓筒，管徑 = a√(n²+nm+m²)/π。n=m 為扶手椅型、m=0 為鋸齒型。"
+    },
+    "hexwall-cnt-12": {
+      "title": "A Thread Through Infinity · Afterglow",
+      "desc": "Color winds along an invisible thread, drawing the eye through a passage that seems to have no end. A trace of radiance remains as one arrangement gives way to the next.",
+      "titleZh": "碳奈米管 · Z30",
+      "scientificDescription": "石墨烯沿手性向量 (n,m) 捲成圓筒，管徑 = a√(n²+nm+m²)/π。n=m 為扶手椅型、m=0 為鋸齒型。"
+    },
+    "hexwall-kel-10": {
+      "title": "Chambers of Lucent Air · Dawn",
+      "desc": "Light inhabits a gathering of open chambers, giving the empty spaces a gentle, almost musical presence. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "克耳文十四面體 · rotY",
+      "scientificDescription": "截角八面體鑲嵌，體心立方的 Voronoi 胞。等體積下表面積近乎最小，泡沫材料的理想模型。"
+    },
+    "hexwall-kel-5": {
+      "title": "Chambers of Lucent Air · Drift",
+      "desc": "Light inhabits a gathering of open chambers, giving the empty spaces a gentle, almost musical presence. Gentle shifts let familiar forms become briefly unfamiliar.",
+      "titleZh": "克耳文十四面體 · rotX",
+      "scientificDescription": "截角八面體鑲嵌，體心立方的 Voronoi 胞。等體積下表面積近乎最小，泡沫材料的理想模型。"
+    },
+    "hexwall-kel-14": {
+      "title": "Chambers of Lucent Air · Resonance",
+      "desc": "Light inhabits a gathering of open chambers, giving the empty spaces a gentle, almost musical presence. Repeating accents weave a quiet rhythm through the changing image.",
+      "titleZh": "克耳文十四面體 · Z60",
+      "scientificDescription": "截角八面體鑲嵌，體心立方的 Voronoi 胞。等體積下表面積近乎最小，泡沫材料的理想模型。"
+    },
+    "hexwall-kel-1": {
+      "title": "Chambers of Lucent Air · Reverie",
+      "desc": "Light inhabits a gathering of open chambers, giving the empty spaces a gentle, almost musical presence. Color lingers between recognition and a waking dream.",
+      "titleZh": "克耳文十四面體 · X",
+      "scientificDescription": "截角八面體鑲嵌，體心立方的 Voronoi 胞。等體積下表面積近乎最小，泡沫材料的理想模型。"
+    },
+    "hexwall-kel-15": {
+      "title": "Chambers of Lucent Air · Afterglow",
+      "desc": "Light inhabits a gathering of open chambers, giving the empty spaces a gentle, almost musical presence. A trace of radiance remains as one arrangement gives way to the next.",
+      "titleZh": "克耳文十四面體 · rotZ",
+      "scientificDescription": "截角八面體鑲嵌，體心立方的 Voronoi 胞。等體積下表面積近乎最小，泡沫材料的理想模型。"
+    },
+    "hexwall-wp-6": {
+      "title": "Between Invisible Gardens · Dawn",
+      "desc": "Luminous rooms unfold like an invisible garden, where every interval leaves space for another possibility. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "魏爾–費倫 · Y",
+      "scientificDescription": "A15 晶格的 Voronoi 胞：1/4 為十二面體、3/4 為十四面體，表面積較克耳文胞再少 0.3%。北京水立方即以此為外牆骨架。"
+    },
+    "hexwall-wp-1": {
+      "title": "Between Invisible Gardens · Drift",
+      "desc": "Luminous rooms unfold like an invisible garden, where every interval leaves space for another possibility. Gentle shifts let familiar forms become briefly unfamiliar.",
+      "titleZh": "魏爾–費倫 · X",
+      "scientificDescription": "A15 晶格的 Voronoi 胞：1/4 為十二面體、3/4 為十四面體，表面積較克耳文胞再少 0.3%。北京水立方即以此為外牆骨架。"
+    },
+    "hexwall-wp-15": {
+      "title": "Between Invisible Gardens · Resonance",
+      "desc": "Luminous rooms unfold like an invisible garden, where every interval leaves space for another possibility. Repeating accents weave a quiet rhythm through the changing image.",
+      "titleZh": "魏爾–費倫 · rotZ",
+      "scientificDescription": "A15 晶格的 Voronoi 胞：1/4 為十二面體、3/4 為十四面體，表面積較克耳文胞再少 0.3%。北京水立方即以此為外牆骨架。"
+    },
+    "hexwall-wp-5": {
+      "title": "Between Invisible Gardens · Reverie",
+      "desc": "Luminous rooms unfold like an invisible garden, where every interval leaves space for another possibility. Color lingers between recognition and a waking dream.",
+      "titleZh": "魏爾–費倫 · rotX",
+      "scientificDescription": "A15 晶格的 Voronoi 胞：1/4 為十二面體、3/4 為十四面體，表面積較克耳文胞再少 0.3%。北京水立方即以此為外牆骨架。"
+    },
+    "hexwall-wp-2": {
+      "title": "Between Invisible Gardens · Afterglow",
+      "desc": "Luminous rooms unfold like an invisible garden, where every interval leaves space for another possibility. A trace of radiance remains as one arrangement gives way to the next.",
+      "titleZh": "魏爾–費倫 · X30",
+      "scientificDescription": "A15 晶格的 Voronoi 胞：1/4 為十二面體、3/4 為十四面體，表面積較克耳文胞再少 0.3%。北京水立方即以此為外牆骨架。"
+    },
+    "hexwall-sI-6": {
+      "title": "A House for Wandering Light · Dawn",
+      "desc": "A fragile architecture offers shelter to wandering light, revealing its rooms only as the image turns. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "甲烷水合物 sI · Y",
+      "scientificDescription": "水分子以氫鍵圍成 5¹² 小籠 2 個與 5¹²6² 大籠 6 個，每晶胞 46 個水分子；甲烷等客體分子住在籠內。框架與魏爾–費倫泡沫同構。深海「可燃冰」即此結構。"
+    },
+    "hexwall-sI-10": {
+      "title": "A House for Wandering Light · Drift",
+      "desc": "A fragile architecture offers shelter to wandering light, revealing its rooms only as the image turns. Gentle shifts let familiar forms become briefly unfamiliar.",
+      "titleZh": "甲烷水合物 sI · rotY",
+      "scientificDescription": "水分子以氫鍵圍成 5¹² 小籠 2 個與 5¹²6² 大籠 6 個，每晶胞 46 個水分子；甲烷等客體分子住在籠內。框架與魏爾–費倫泡沫同構。深海「可燃冰」即此結構。"
+    },
+    "hexwall-sI-1": {
+      "title": "A House for Wandering Light · Resonance",
+      "desc": "A fragile architecture offers shelter to wandering light, revealing its rooms only as the image turns. Repeating accents weave a quiet rhythm through the changing image.",
+      "titleZh": "甲烷水合物 sI · X",
+      "scientificDescription": "水分子以氫鍵圍成 5¹² 小籠 2 個與 5¹²6² 大籠 6 個，每晶胞 46 個水分子；甲烷等客體分子住在籠內。框架與魏爾–費倫泡沫同構。深海「可燃冰」即此結構。"
+    },
+    "hexwall-sI-5": {
+      "title": "A House for Wandering Light · Reverie",
+      "desc": "A fragile architecture offers shelter to wandering light, revealing its rooms only as the image turns. Color lingers between recognition and a waking dream.",
+      "titleZh": "甲烷水合物 sI · rotX",
+      "scientificDescription": "水分子以氫鍵圍成 5¹² 小籠 2 個與 5¹²6² 大籠 6 個，每晶胞 46 個水分子；甲烷等客體分子住在籠內。框架與魏爾–費倫泡沫同構。深海「可燃冰」即此結構。"
+    },
+    "hexwall-sI-12": {
+      "title": "A House for Wandering Light · Afterglow",
+      "desc": "A fragile architecture offers shelter to wandering light, revealing its rooms only as the image turns. A trace of radiance remains as one arrangement gives way to the next.",
+      "titleZh": "甲烷水合物 sI · Z30",
+      "scientificDescription": "水分子以氫鍵圍成 5¹² 小籠 2 個與 5¹²6² 大籠 6 個，每晶胞 46 個水分子；甲烷等客體分子住在籠內。框架與魏爾–費倫泡沫同構。深海「可燃冰」即此結構。"
+    },
+    "hexwall-sII-1": {
+      "title": "The Architecture of a Whisper · Dawn",
+      "desc": "Interwoven chambers rise and dissolve with the delicacy of a whisper, balancing intricate order with open air. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "水合物 sII · X",
+      "scientificDescription": "5¹² 小籠 16 個加 5¹²6⁴ 大籠 8 個，每晶胞 136 個水分子。即 C15 Laves 相原子位置的 Voronoi 胞：Mg 位得 16 面大籠、Cu 位得 12 面小籠。天然氣管線堵塞的主因。"
+    },
+    "hexwall-sII-15": {
+      "title": "The Architecture of a Whisper · Drift",
+      "desc": "Interwoven chambers rise and dissolve with the delicacy of a whisper, balancing intricate order with open air. Gentle shifts let familiar forms become briefly unfamiliar.",
+      "titleZh": "水合物 sII · rotZ",
+      "scientificDescription": "5¹² 小籠 16 個加 5¹²6⁴ 大籠 8 個，每晶胞 136 個水分子。即 C15 Laves 相原子位置的 Voronoi 胞：Mg 位得 16 面大籠、Cu 位得 12 面小籠。天然氣管線堵塞的主因。"
+    },
+    "hexwall-sII-13": {
+      "title": "The Architecture of a Whisper · Resonance",
+      "desc": "Interwoven chambers rise and dissolve with the delicacy of a whisper, balancing intricate order with open air. Repeating accents weave a quiet rhythm through the changing image.",
+      "titleZh": "水合物 sII · Z45",
+      "scientificDescription": "5¹² 小籠 16 個加 5¹²6⁴ 大籠 8 個，每晶胞 136 個水分子。即 C15 Laves 相原子位置的 Voronoi 胞：Mg 位得 16 面大籠、Cu 位得 12 面小籠。天然氣管線堵塞的主因。"
+    },
+    "hexwall-sII-5": {
+      "title": "The Architecture of a Whisper · Reverie",
+      "desc": "Interwoven chambers rise and dissolve with the delicacy of a whisper, balancing intricate order with open air. Color lingers between recognition and a waking dream.",
+      "titleZh": "水合物 sII · rotX",
+      "scientificDescription": "5¹² 小籠 16 個加 5¹²6⁴ 大籠 8 個，每晶胞 136 個水分子。即 C15 Laves 相原子位置的 Voronoi 胞：Mg 位得 16 面大籠、Cu 位得 12 面小籠。天然氣管線堵塞的主因。"
+    },
+    "hexwall-sII-11": {
+      "title": "The Architecture of a Whisper · Afterglow",
+      "desc": "Interwoven chambers rise and dissolve with the delicacy of a whisper, balancing intricate order with open air. A trace of radiance remains as one arrangement gives way to the next.",
+      "titleZh": "水合物 sII · Z",
+      "scientificDescription": "5¹² 小籠 16 個加 5¹²6⁴ 大籠 8 個，每晶胞 136 個水分子。即 C15 Laves 相原子位置的 Voronoi 胞：Mg 位得 16 面大籠、Cu 位得 12 面小籠。天然氣管線堵塞的主因。"
+    },
+    "hexwall-sod-5": {
+      "title": "A Lantern of Hidden Rooms · Dawn",
+      "desc": "Color glows through a lantern of hidden rooms, inviting the gaze to linger at the threshold of each opening. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "方鈉石 SOD · rotX",
+      "scientificDescription": "β 籠（截角八面體）共面堆滿空間，幾何與克耳文胞相同；T 原子在頂點、O 橋在稜中點。沸石分子篩最基本的建構單元，ZIF-8 也是此拓樸。"
+    },
+    "hexwall-sod-10": {
+      "title": "A Lantern of Hidden Rooms · Drift",
+      "desc": "Color glows through a lantern of hidden rooms, inviting the gaze to linger at the threshold of each opening. Gentle shifts let familiar forms become briefly unfamiliar.",
+      "titleZh": "方鈉石 SOD · rotY",
+      "scientificDescription": "β 籠（截角八面體）共面堆滿空間，幾何與克耳文胞相同；T 原子在頂點、O 橋在稜中點。沸石分子篩最基本的建構單元，ZIF-8 也是此拓樸。"
+    },
+    "hexwall-sod-2": {
+      "title": "A Lantern of Hidden Rooms · Resonance",
+      "desc": "Color glows through a lantern of hidden rooms, inviting the gaze to linger at the threshold of each opening. Repeating accents weave a quiet rhythm through the changing image.",
+      "titleZh": "方鈉石 SOD · X30",
+      "scientificDescription": "β 籠（截角八面體）共面堆滿空間，幾何與克耳文胞相同；T 原子在頂點、O 橋在稜中點。沸石分子篩最基本的建構單元，ZIF-8 也是此拓樸。"
+    },
+    "hexwall-sod-1": {
+      "title": "A Lantern of Hidden Rooms · Reverie",
+      "desc": "Color glows through a lantern of hidden rooms, inviting the gaze to linger at the threshold of each opening. Color lingers between recognition and a waking dream.",
+      "titleZh": "方鈉石 SOD · X",
+      "scientificDescription": "β 籠（截角八面體）共面堆滿空間，幾何與克耳文胞相同；T 原子在頂點、O 橋在稜中點。沸石分子篩最基本的建構單元，ZIF-8 也是此拓樸。"
+    },
+    "hexwall-sod-4": {
+      "title": "A Lantern of Hidden Rooms · Afterglow",
+      "desc": "Color glows through a lantern of hidden rooms, inviting the gaze to linger at the threshold of each opening. A trace of radiance remains as one arrangement gives way to the next.",
+      "titleZh": "方鈉石 SOD · X60",
+      "scientificDescription": "β 籠（截角八面體）共面堆滿空間，幾何與克耳文胞相同；T 原子在頂點、O 橋在稜中點。沸石分子篩最基本的建構單元，ZIF-8 也是此拓樸。"
+    },
+    "hexwall-lta-10": {
+      "title": "Windows into Stillness · Dawn",
+      "desc": "Small windows gather into a rhythm of light, framing a stillness that remains open to movement. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "沸石 LTA · rotY",
+      "scientificDescription": "方鈉石 β 籠排成簡單立方，相鄰籠以雙四元環（小立方體）相連，中央圍出更大的 α 籠（約 11 Å）。洗衣粉軟水劑與 3A／4A／5A 分子篩。"
+    },
+    "hexwall-lta-1": {
+      "title": "Windows into Stillness · Drift",
+      "desc": "Small windows gather into a rhythm of light, framing a stillness that remains open to movement. Gentle shifts let familiar forms become briefly unfamiliar.",
+      "titleZh": "沸石 LTA · X",
+      "scientificDescription": "方鈉石 β 籠排成簡單立方，相鄰籠以雙四元環（小立方體）相連，中央圍出更大的 α 籠（約 11 Å）。洗衣粉軟水劑與 3A／4A／5A 分子篩。"
+    },
+    "hexwall-lta-4": {
+      "title": "Windows into Stillness · Resonance",
+      "desc": "Small windows gather into a rhythm of light, framing a stillness that remains open to movement. Repeating accents weave a quiet rhythm through the changing image.",
+      "titleZh": "沸石 LTA · X60",
+      "scientificDescription": "方鈉石 β 籠排成簡單立方，相鄰籠以雙四元環（小立方體）相連，中央圍出更大的 α 籠（約 11 Å）。洗衣粉軟水劑與 3A／4A／5A 分子篩。"
+    },
+    "hexwall-lta-5": {
+      "title": "Windows into Stillness · Reverie",
+      "desc": "Small windows gather into a rhythm of light, framing a stillness that remains open to movement. Color lingers between recognition and a waking dream.",
+      "titleZh": "沸石 LTA · rotX",
+      "scientificDescription": "方鈉石 β 籠排成簡單立方，相鄰籠以雙四元環（小立方體）相連，中央圍出更大的 α 籠（約 11 Å）。洗衣粉軟水劑與 3A／4A／5A 分子篩。"
+    },
+    "hexwall-lta-7": {
+      "title": "Windows into Stillness · Afterglow",
+      "desc": "Small windows gather into a rhythm of light, framing a stillness that remains open to movement. A trace of radiance remains as one arrangement gives way to the next.",
+      "titleZh": "沸石 LTA · Y30",
+      "scientificDescription": "方鈉石 β 籠排成簡單立方，相鄰籠以雙四元環（小立方體）相連，中央圍出更大的 α 籠（約 11 Å）。洗衣粉軟水劑與 3A／4A／5A 分子篩。"
+    },
+    "hexwall-fau-15": {
+      "title": "A Cathedral of Passing Light · Dawn",
+      "desc": "A luminous architecture opens its spacious chambers, allowing passing light to become both guest and guide. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "八面沸石 FAU · rotZ",
+      "scientificDescription": "方鈉石 β 籠排成鑽石網，沿 <111> 以雙六元環（六角柱）相連，圍出 13 Å 的超籠。Y 型沸石，石油流化催化裂解（FCC）的主力觸媒。"
+    },
+    "hexwall-fau-1": {
+      "title": "A Cathedral of Passing Light · Drift",
+      "desc": "A luminous architecture opens its spacious chambers, allowing passing light to become both guest and guide. Gentle shifts let familiar forms become briefly unfamiliar.",
+      "titleZh": "八面沸石 FAU · X",
+      "scientificDescription": "方鈉石 β 籠排成鑽石網，沿 <111> 以雙六元環（六角柱）相連，圍出 13 Å 的超籠。Y 型沸石，石油流化催化裂解（FCC）的主力觸媒。"
+    },
+    "hexwall-fau-5": {
+      "title": "A Cathedral of Passing Light · Resonance",
+      "desc": "A luminous architecture opens its spacious chambers, allowing passing light to become both guest and guide. Repeating accents weave a quiet rhythm through the changing image.",
+      "titleZh": "八面沸石 FAU · rotX",
+      "scientificDescription": "方鈉石 β 籠排成鑽石網，沿 <111> 以雙六元環（六角柱）相連，圍出 13 Å 的超籠。Y 型沸石，石油流化催化裂解（FCC）的主力觸媒。"
+    },
+    "hexwall-fau-12": {
+      "title": "A Cathedral of Passing Light · Reverie",
+      "desc": "A luminous architecture opens its spacious chambers, allowing passing light to become both guest and guide. Color lingers between recognition and a waking dream.",
+      "titleZh": "八面沸石 FAU · Z30",
+      "scientificDescription": "方鈉石 β 籠排成鑽石網，沿 <111> 以雙六元環（六角柱）相連，圍出 13 Å 的超籠。Y 型沸石，石油流化催化裂解（FCC）的主力觸媒。"
+    },
+    "hexwall-fau-10": {
+      "title": "A Cathedral of Passing Light · Afterglow",
+      "desc": "A luminous architecture opens its spacious chambers, allowing passing light to become both guest and guide. A trace of radiance remains as one arrangement gives way to the next.",
+      "titleZh": "八面沸石 FAU · rotY",
+      "scientificDescription": "方鈉石 β 籠排成鑽石網，沿 <111> 以雙六元環（六角柱）相連，圍出 13 Å 的超籠。Y 型沸石，石油流化催化裂解（FCC）的主力觸媒。"
+    },
+    "optical-01": {
+      "title": "Prism in Bloom",
+      "desc": "Fine strands of color open like a fan in bloom, lifting the eye toward a horizon of blue and gold.",
+      "titleZh": "光譜扇形",
+      "descZh": "多色線束由下方頂點向外展開，上緣排列青藍與黃色節點，形成雙層扇形。"
+    },
+    "optical-02": {
+      "title": "Halo of Six Horizons",
+      "desc": "Nested hexagons gather into a luminous halo, where warm and cool colors circle a quiet center.",
+      "titleZh": "六角光環",
+      "descZh": "藍、綠、黃與紅色細點構成層層六角環，中央留空並有紅色十字標記。"
+    },
+    "optical-03": {
+      "title": "Chromatic Reverie",
+      "desc": "A constellation of colored marks drifts across the field, carrying the warmth of red into the calm of green and blue.",
+      "titleZh": "彩色點陣",
+      "descZh": "彩色短點沿斜向排列，紅色集中於中央，周圍漸變為綠色與青藍色。"
+    },
+    "optical-04": {
+      "title": "Blue Notes in Silence",
+      "desc": "A few blue notes emerge from a spare field of gray, giving silence its own delicate rhythm.",
+      "titleZh": "藍色節點",
+      "descZh": "少量藍色與青色短點散布於灰色方點之間，呈現稀疏排列的截面圖像。"
+    },
+    "optical-05": {
+      "title": "Echoes of Color",
+      "desc": "Familiar colors return in a second encounter, inviting the eye to notice the small differences within repetition.",
+      "titleZh": "彩色點陣・第二組",
+      "descZh": "中央紅色與外圍綠藍色短點構成斜向點陣。與第3組影像相同，依上傳組別獨立保留。"
+    },
+    "optical-06": {
+      "title": "Celestial Hexagon",
+      "desc": "A pale blue veil holds rings of color in suspension, as though a small constellation had found its own sky.",
+      "titleZh": "六角球幕",
+      "descZh": "淡藍色球幕中，彩色細點排列成六角光環，中央可見紅色十字標記。"
+    },
+    "optical-07": {
+      "title": "A Breath of Pale Blue",
+      "desc": "A soft blue sphere gathers a breath of white light, its quiet surface dissolving gently toward the edge.",
+      "titleZh": "淡藍球光",
+      "descZh": "淡藍色球面由左上方柔和亮部向外漸變，周緣散落少量細小暗點。"
+    },
+    "optical-08": {
+      "title": "The Space Between Glimmers",
+      "desc": "A handful of small marks leaves room for the surrounding emptiness to become part of the work.",
+      "titleZh": "稀疏截面",
+      "descZh": "大幅透明留白中，僅有少量灰色方點沿水平位置分布，呈現極簡截面。"
+    },
+    "optical-09": {
+      "title": "A Fan of Borrowed Light",
+      "desc": "Strands of red, green, and blue rise within a translucent sphere, opening like light remembered through water.",
+      "titleZh": "球幕光扇",
+      "descZh": "淡藍色球幕內，多色線束從中央向上展開，形成由紅至綠藍色的光譜扇形。"
+    },
+    "optical-10": {
+      "title": "One Quiet Star",
+      "desc": "Within a pale blue glow, a single green glimmer holds the stillness of a distant star.",
+      "titleZh": "球心微光",
+      "descZh": "淡藍球面上有柔和白色亮部，中央附近留下一個細小綠色亮點。"
+    },
+    "hexwall-hcp-11": {
+      "title": "The Silver Geometry of Silence · Dawn",
+      "desc": "A silver rhythm gathers in close embrace, each quiet layer holding the light of another. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "六方最密堆積 · Z",
+      "scientificDescription": "球體最密排列之一，填充率 74%。鎂、鈦、鋅為此結構。"
+    },
+    "hexwall-hcp-10": {
+      "title": "The Silver Geometry of Silence · Drift",
+      "desc": "A silver rhythm gathers in close embrace, each quiet layer holding the light of another. Its fine lines move with the softness of a passing current.",
+      "titleZh": "六方最密堆積 · rotY",
+      "scientificDescription": "球體最密排列之一，填充率 74%。鎂、鈦、鋅為此結構。"
+    },
+    "hexwall-hcp-5": {
+      "title": "The Silver Geometry of Silence · Resonance",
+      "desc": "A silver rhythm gathers in close embrace, each quiet layer holding the light of another. Every intersection returns a quiet echo of light.",
+      "titleZh": "六方最密堆積 · rotX",
+      "scientificDescription": "球體最密排列之一，填充率 74%。鎂、鈦、鋅為此結構。"
+    },
+    "hexwall-hcp-15": {
+      "title": "The Silver Geometry of Silence · Reverie",
+      "desc": "A silver rhythm gathers in close embrace, each quiet layer holding the light of another. The geometry loosens into the stillness of a dream.",
+      "titleZh": "六方最密堆積 · rotZ",
+      "scientificDescription": "球體最密排列之一，填充率 74%。鎂、鈦、鋅為此結構。"
+    },
+    "hexwall-hcp-6": {
+      "title": "The Silver Geometry of Silence · Afterglow",
+      "desc": "A silver rhythm gathers in close embrace, each quiet layer holding the light of another. A final radiance lingers as the form slips from view.",
+      "titleZh": "六方最密堆積 · Y",
+      "scientificDescription": "球體最密排列之一，填充率 74%。鎂、鈦、鋅為此結構。"
+    },
+    "hexwall-c15-10": {
+      "title": "Chambers of a Hidden Sun · Dawn",
+      "desc": "Interlaced chambers open within chambers, sheltering a small and wandering sun. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "C15 Laves 相（MgCu₂） · rotY",
+      "scientificDescription": "最常見的 Frank–Kasper 四面體密堆積相。Mg 排成鑽石網，Cu 組成共頂點的四面體網（即 3D Kagome）。Mg–Mg a√3/4、Cu–Cu a√2/4、Mg–Cu a√11/8。其 Voronoi 胞即 sII 水合物的籠。"
+    },
+    "hexwall-c15-11": {
+      "title": "Chambers of a Hidden Sun · Drift",
+      "desc": "Interlaced chambers open within chambers, sheltering a small and wandering sun. Its fine lines move with the softness of a passing current.",
+      "titleZh": "C15 Laves 相（MgCu₂） · Z",
+      "scientificDescription": "最常見的 Frank–Kasper 四面體密堆積相。Mg 排成鑽石網，Cu 組成共頂點的四面體網（即 3D Kagome）。Mg–Mg a√3/4、Cu–Cu a√2/4、Mg–Cu a√11/8。其 Voronoi 胞即 sII 水合物的籠。"
+    },
+    "hexwall-c15-5": {
+      "title": "Chambers of a Hidden Sun · Resonance",
+      "desc": "Interlaced chambers open within chambers, sheltering a small and wandering sun. Every intersection returns a quiet echo of light.",
+      "titleZh": "C15 Laves 相（MgCu₂） · rotX",
+      "scientificDescription": "最常見的 Frank–Kasper 四面體密堆積相。Mg 排成鑽石網，Cu 組成共頂點的四面體網（即 3D Kagome）。Mg–Mg a√3/4、Cu–Cu a√2/4、Mg–Cu a√11/8。其 Voronoi 胞即 sII 水合物的籠。"
+    },
+    "hexwall-c15-1": {
+      "title": "Chambers of a Hidden Sun · Reverie",
+      "desc": "Interlaced chambers open within chambers, sheltering a small and wandering sun. The geometry loosens into the stillness of a dream.",
+      "titleZh": "C15 Laves 相（MgCu₂） · X",
+      "scientificDescription": "最常見的 Frank–Kasper 四面體密堆積相。Mg 排成鑽石網，Cu 組成共頂點的四面體網（即 3D Kagome）。Mg–Mg a√3/4、Cu–Cu a√2/4、Mg–Cu a√11/8。其 Voronoi 胞即 sII 水合物的籠。"
+    },
+    "hexwall-c15-7": {
+      "title": "Chambers of a Hidden Sun · Afterglow",
+      "desc": "Interlaced chambers open within chambers, sheltering a small and wandering sun. A final radiance lingers as the form slips from view.",
+      "titleZh": "C15 Laves 相（MgCu₂） · Y30",
+      "scientificDescription": "最常見的 Frank–Kasper 四面體密堆積相。Mg 排成鑽石網，Cu 組成共頂點的四面體網（即 3D Kagome）。Mg–Mg a√3/4、Cu–Cu a√2/4、Mg–Cu a√11/8。其 Voronoi 胞即 sII 水合物的籠。"
+    },
+    "hexwall-nacl-6": {
+      "title": "Salt of the Distant Stars · Dawn",
+      "desc": "Two constellations pass through one another, suspended in a crystalline conversation. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "岩鹽 NaCl · Y",
+      "scientificDescription": "兩套面心立方互相穿插，各離子被 6 個異性離子以八面體包圍。MgO、FeO、多數鹼金屬鹵化物同結構。"
+    },
+    "hexwall-nacl-15": {
+      "title": "Salt of the Distant Stars · Drift",
+      "desc": "Two constellations pass through one another, suspended in a crystalline conversation. Its fine lines move with the softness of a passing current.",
+      "titleZh": "岩鹽 NaCl · rotZ",
+      "scientificDescription": "兩套面心立方互相穿插，各離子被 6 個異性離子以八面體包圍。MgO、FeO、多數鹼金屬鹵化物同結構。"
+    },
+    "hexwall-nacl-5": {
+      "title": "Salt of the Distant Stars · Resonance",
+      "desc": "Two constellations pass through one another, suspended in a crystalline conversation. Every intersection returns a quiet echo of light.",
+      "titleZh": "岩鹽 NaCl · rotX",
+      "scientificDescription": "兩套面心立方互相穿插，各離子被 6 個異性離子以八面體包圍。MgO、FeO、多數鹼金屬鹵化物同結構。"
+    },
+    "hexwall-nacl-9": {
+      "title": "Salt of the Distant Stars · Reverie",
+      "desc": "Two constellations pass through one another, suspended in a crystalline conversation. The geometry loosens into the stillness of a dream.",
+      "titleZh": "岩鹽 NaCl · Y60",
+      "scientificDescription": "兩套面心立方互相穿插，各離子被 6 個異性離子以八面體包圍。MgO、FeO、多數鹼金屬鹵化物同結構。"
+    },
+    "hexwall-nacl-11": {
+      "title": "Salt of the Distant Stars · Afterglow",
+      "desc": "Two constellations pass through one another, suspended in a crystalline conversation. A final radiance lingers as the form slips from view.",
+      "titleZh": "岩鹽 NaCl · Z",
+      "scientificDescription": "兩套面心立方互相穿插，各離子被 6 個異性離子以八面體包圍。MgO、FeO、多數鹼金屬鹵化物同結構。"
+    },
+    "hexwall-cscl-1": {
+      "title": "A Heart within Every Horizon · Dawn",
+      "desc": "At the heart of each horizon, a point of light waits to be discovered. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "氯化銫 CsCl · X",
+      "scientificDescription": "Cs 位於簡單立方角隅、Cl 位於體心，各被 8 個異性離子以立方體包圍。細桿為 Cs 簡單立方框。不是體心立方——兩種原子不同。"
+    },
+    "hexwall-cscl-10": {
+      "title": "A Heart within Every Horizon · Drift",
+      "desc": "At the heart of each horizon, a point of light waits to be discovered. Its fine lines move with the softness of a passing current.",
+      "titleZh": "氯化銫 CsCl · rotY",
+      "scientificDescription": "Cs 位於簡單立方角隅、Cl 位於體心，各被 8 個異性離子以立方體包圍。細桿為 Cs 簡單立方框。不是體心立方——兩種原子不同。"
+    },
+    "hexwall-cscl-2": {
+      "title": "A Heart within Every Horizon · Resonance",
+      "desc": "At the heart of each horizon, a point of light waits to be discovered. Every intersection returns a quiet echo of light.",
+      "titleZh": "氯化銫 CsCl · X30",
+      "scientificDescription": "Cs 位於簡單立方角隅、Cl 位於體心，各被 8 個異性離子以立方體包圍。細桿為 Cs 簡單立方框。不是體心立方——兩種原子不同。"
+    },
+    "hexwall-cscl-5": {
+      "title": "A Heart within Every Horizon · Reverie",
+      "desc": "At the heart of each horizon, a point of light waits to be discovered. The geometry loosens into the stillness of a dream.",
+      "titleZh": "氯化銫 CsCl · rotX",
+      "scientificDescription": "Cs 位於簡單立方角隅、Cl 位於體心，各被 8 個異性離子以立方體包圍。細桿為 Cs 簡單立方框。不是體心立方——兩種原子不同。"
+    },
+    "hexwall-cscl-4": {
+      "title": "A Heart within Every Horizon · Afterglow",
+      "desc": "At the heart of each horizon, a point of light waits to be discovered. A final radiance lingers as the form slips from view.",
+      "titleZh": "氯化銫 CsCl · X60",
+      "scientificDescription": "Cs 位於簡單立方角隅、Cl 位於體心，各被 8 個異性離子以立方體包圍。細桿為 Cs 簡單立方框。不是體心立方——兩種原子不同。"
+    },
+    "hexwall-zns-1": {
+      "title": "Letters in a Luminous Alphabet · Dawn",
+      "desc": "Light writes a delicate alphabet of branching forms, and the silence between them begins to sing. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "閃鋅礦 ZnS · X",
+      "scientificDescription": "鑽石結構的雙原子版：Zn 佔一套面心立方，S 佔四面體空隙的一半。GaAs、SiC（3C）等半導體同結構。"
+    },
+    "hexwall-zns-5": {
+      "title": "Letters in a Luminous Alphabet · Drift",
+      "desc": "Light writes a delicate alphabet of branching forms, and the silence between them begins to sing. Its fine lines move with the softness of a passing current.",
+      "titleZh": "閃鋅礦 ZnS · rotX",
+      "scientificDescription": "鑽石結構的雙原子版：Zn 佔一套面心立方，S 佔四面體空隙的一半。GaAs、SiC（3C）等半導體同結構。"
+    },
+    "hexwall-zns-15": {
+      "title": "Letters in a Luminous Alphabet · Resonance",
+      "desc": "Light writes a delicate alphabet of branching forms, and the silence between them begins to sing. Every intersection returns a quiet echo of light.",
+      "titleZh": "閃鋅礦 ZnS · rotZ",
+      "scientificDescription": "鑽石結構的雙原子版：Zn 佔一套面心立方，S 佔四面體空隙的一半。GaAs、SiC（3C）等半導體同結構。"
+    },
+    "hexwall-zns-6": {
+      "title": "Letters in a Luminous Alphabet · Reverie",
+      "desc": "Light writes a delicate alphabet of branching forms, and the silence between them begins to sing. The geometry loosens into the stillness of a dream.",
+      "titleZh": "閃鋅礦 ZnS · Y",
+      "scientificDescription": "鑽石結構的雙原子版：Zn 佔一套面心立方，S 佔四面體空隙的一半。GaAs、SiC（3C）等半導體同結構。"
+    },
+    "hexwall-zns-11": {
+      "title": "Letters in a Luminous Alphabet · Afterglow",
+      "desc": "Light writes a delicate alphabet of branching forms, and the silence between them begins to sing. A final radiance lingers as the form slips from view.",
+      "titleZh": "閃鋅礦 ZnS · Z",
+      "scientificDescription": "鑽石結構的雙原子版：Zn 佔一套面心立方，S 佔四面體空隙的一半。GaAs、SiC（3C）等半導體同結構。"
+    },
+    "hexwall-caf2-1": {
+      "title": "Fluorite Reverie · Dawn",
+      "desc": "Small rooms of radiance unfold like windows in a dream of violet and gold. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "螢石 CaF₂ · X",
+      "scientificDescription": "Ca 排成面心立方，F 填滿全部 8 個四面體空隙。F 自成簡單立方（細桿），Ca 位於每隔一個 F 立方體的中心。UO₂、ZrO₂ 同結構。"
+    },
+    "hexwall-caf2-5": {
+      "title": "Fluorite Reverie · Drift",
+      "desc": "Small rooms of radiance unfold like windows in a dream of violet and gold. Its fine lines move with the softness of a passing current.",
+      "titleZh": "螢石 CaF₂ · rotX",
+      "scientificDescription": "Ca 排成面心立方，F 填滿全部 8 個四面體空隙。F 自成簡單立方（細桿），Ca 位於每隔一個 F 立方體的中心。UO₂、ZrO₂ 同結構。"
+    },
+    "hexwall-caf2-15": {
+      "title": "Fluorite Reverie · Resonance",
+      "desc": "Small rooms of radiance unfold like windows in a dream of violet and gold. Every intersection returns a quiet echo of light.",
+      "titleZh": "螢石 CaF₂ · rotZ",
+      "scientificDescription": "Ca 排成面心立方，F 填滿全部 8 個四面體空隙。F 自成簡單立方（細桿），Ca 位於每隔一個 F 立方體的中心。UO₂、ZrO₂ 同結構。"
+    },
+    "hexwall-caf2-14": {
+      "title": "Fluorite Reverie · Reverie",
+      "desc": "Small rooms of radiance unfold like windows in a dream of violet and gold. The geometry loosens into the stillness of a dream.",
+      "titleZh": "螢石 CaF₂ · Z60",
+      "scientificDescription": "Ca 排成面心立方，F 填滿全部 8 個四面體空隙。F 自成簡單立方（細桿），Ca 位於每隔一個 F 立方體的中心。UO₂、ZrO₂ 同結構。"
+    },
+    "hexwall-caf2-6": {
+      "title": "Fluorite Reverie · Afterglow",
+      "desc": "Small rooms of radiance unfold like windows in a dream of violet and gold. A final radiance lingers as the form slips from view.",
+      "titleZh": "螢石 CaF₂ · Y",
+      "scientificDescription": "Ca 排成面心立方，F 填滿全部 8 個四面體空隙。F 自成簡單立方（細桿），Ca 位於每隔一個 F 立方體的中心。UO₂、ZrO₂ 同結構。"
+    },
+    "hexwall-perov-1": {
+      "title": "The Palace of Turning Light · Dawn",
+      "desc": "Within a palace of repeated openings, light turns softly from room to room. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "鈣鈦礦 ABX₃ · X",
+      "scientificDescription": "BX₆ 八面體共頂點連成三維框架，大陽離子 A 位於八面體間的空隙。主桿為八面體稜、細桿為 B–X 鍵。SrTiO₃ 為原型；鹵化物鈣鈦礦是高效太陽能電池材料。"
+    },
+    "hexwall-perov-5": {
+      "title": "The Palace of Turning Light · Drift",
+      "desc": "Within a palace of repeated openings, light turns softly from room to room. Its fine lines move with the softness of a passing current.",
+      "titleZh": "鈣鈦礦 ABX₃ · rotX",
+      "scientificDescription": "BX₆ 八面體共頂點連成三維框架，大陽離子 A 位於八面體間的空隙。主桿為八面體稜、細桿為 B–X 鍵。SrTiO₃ 為原型；鹵化物鈣鈦礦是高效太陽能電池材料。"
+    },
+    "hexwall-perov-10": {
+      "title": "The Palace of Turning Light · Resonance",
+      "desc": "Within a palace of repeated openings, light turns softly from room to room. Every intersection returns a quiet echo of light.",
+      "titleZh": "鈣鈦礦 ABX₃ · rotY",
+      "scientificDescription": "BX₆ 八面體共頂點連成三維框架，大陽離子 A 位於八面體間的空隙。主桿為八面體稜、細桿為 B–X 鍵。SrTiO₃ 為原型；鹵化物鈣鈦礦是高效太陽能電池材料。"
+    },
+    "hexwall-perov-14": {
+      "title": "The Palace of Turning Light · Reverie",
+      "desc": "Within a palace of repeated openings, light turns softly from room to room. The geometry loosens into the stillness of a dream.",
+      "titleZh": "鈣鈦礦 ABX₃ · Z60",
+      "scientificDescription": "BX₆ 八面體共頂點連成三維框架，大陽離子 A 位於八面體間的空隙。主桿為八面體稜、細桿為 B–X 鍵。SrTiO₃ 為原型；鹵化物鈣鈦礦是高效太陽能電池材料。"
+    },
+    "hexwall-perov-2": {
+      "title": "The Palace of Turning Light · Afterglow",
+      "desc": "Within a palace of repeated openings, light turns softly from room to room. A final radiance lingers as the form slips from view.",
+      "titleZh": "鈣鈦礦 ABX₃ · X30",
+      "scientificDescription": "BX₆ 八面體共頂點連成三維框架，大陽離子 A 位於八面體間的空隙。主桿為八面體稜、細桿為 B–X 鍵。SrTiO₃ 為原型；鹵化物鈣鈦礦是高效太陽能電池材料。"
+    },
+    "hexwall-oct-11": {
+      "title": "An Architecture of Air · Dawn",
+      "desc": "Slender threads carry a weightless architecture, drawing a luminous refuge in the air. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "八隅體桁架 · Z",
+      "scientificDescription": "面心立方節點配 <110> 桿件。拉伸主導、比剛度最高的經典輕量化晶格。"
+    },
+    "hexwall-oct-5": {
+      "title": "An Architecture of Air · Drift",
+      "desc": "Slender threads carry a weightless architecture, drawing a luminous refuge in the air. Its fine lines move with the softness of a passing current.",
+      "titleZh": "八隅體桁架 · rotX",
+      "scientificDescription": "面心立方節點配 <110> 桿件。拉伸主導、比剛度最高的經典輕量化晶格。"
+    },
+    "hexwall-oct-1": {
+      "title": "An Architecture of Air · Resonance",
+      "desc": "Slender threads carry a weightless architecture, drawing a luminous refuge in the air. Every intersection returns a quiet echo of light.",
+      "titleZh": "八隅體桁架 · X",
+      "scientificDescription": "面心立方節點配 <110> 桿件。拉伸主導、比剛度最高的經典輕量化晶格。"
+    },
+    "hexwall-oct-10": {
+      "title": "An Architecture of Air · Reverie",
+      "desc": "Slender threads carry a weightless architecture, drawing a luminous refuge in the air. The geometry loosens into the stillness of a dream.",
+      "titleZh": "八隅體桁架 · rotY",
+      "scientificDescription": "面心立方節點配 <110> 桿件。拉伸主導、比剛度最高的經典輕量化晶格。"
+    },
+    "hexwall-oct-7": {
+      "title": "An Architecture of Air · Afterglow",
+      "desc": "Slender threads carry a weightless architecture, drawing a luminous refuge in the air. A final radiance lingers as the form slips from view.",
+      "titleZh": "八隅體桁架 · Y30",
+      "scientificDescription": "面心立方節點配 <110> 桿件。拉伸主導、比剛度最高的經典輕量化晶格。"
+    },
+    "hexwall-hon-5": {
+      "title": "Honeyed Horizons · Dawn",
+      "desc": "Hexagonal passages gather into a gentle horizon, where every opening welcomes light. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "六角蜂巢柱 · rotX",
+      "scientificDescription": "夾層板芯材。面外抗壓與剪切效率極高，單位重量剛度遠勝實心板。"
+    },
+    "hexwall-hon-10": {
+      "title": "Honeyed Horizons · Drift",
+      "desc": "Hexagonal passages gather into a gentle horizon, where every opening welcomes light. Its fine lines move with the softness of a passing current.",
+      "titleZh": "六角蜂巢柱 · rotY",
+      "scientificDescription": "夾層板芯材。面外抗壓與剪切效率極高，單位重量剛度遠勝實心板。"
+    },
+    "hexwall-hon-8": {
+      "title": "Honeyed Horizons · Resonance",
+      "desc": "Hexagonal passages gather into a gentle horizon, where every opening welcomes light. Every intersection returns a quiet echo of light.",
+      "titleZh": "六角蜂巢柱 · Y45",
+      "scientificDescription": "夾層板芯材。面外抗壓與剪切效率極高，單位重量剛度遠勝實心板。"
+    },
+    "hexwall-hon-1": {
+      "title": "Honeyed Horizons · Reverie",
+      "desc": "Hexagonal passages gather into a gentle horizon, where every opening welcomes light. The geometry loosens into the stillness of a dream.",
+      "titleZh": "六角蜂巢柱 · X",
+      "scientificDescription": "夾層板芯材。面外抗壓與剪切效率極高，單位重量剛度遠勝實心板。"
+    },
+    "hexwall-hon-7": {
+      "title": "Honeyed Horizons · Afterglow",
+      "desc": "Hexagonal passages gather into a gentle horizon, where every opening welcomes light. A final radiance lingers as the form slips from view.",
+      "titleZh": "六角蜂巢柱 · Y30",
+      "scientificDescription": "夾層板芯材。面外抗壓與剪切效率極高，單位重量剛度遠勝實心板。"
+    },
+    "hexwall-gyr-10": {
+      "title": "Two Gardens in an Endless Dance · Dawn",
+      "desc": "Two hidden gardens wind around one another, forever close, forever unfolding. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "Gyroid 骨架（srs 網） · rotY",
+      "scientificDescription": "Gyroid 極小曲面把空間分成兩個互相纏繞的迷宮，各迷宮的中軸線是 3 配位的手性 srs 網（Laves 圖），鍵長 a√2/4、鍵間夾角 120°。蝴蝶翅膀的結構色即此光子晶體；也是骨植入物與熱交換器常用的 TPMS 晶格。"
+    },
+    "hexwall-gyr-1": {
+      "title": "Two Gardens in an Endless Dance · Drift",
+      "desc": "Two hidden gardens wind around one another, forever close, forever unfolding. Its fine lines move with the softness of a passing current.",
+      "titleZh": "Gyroid 骨架（srs 網） · X",
+      "scientificDescription": "Gyroid 極小曲面把空間分成兩個互相纏繞的迷宮，各迷宮的中軸線是 3 配位的手性 srs 網（Laves 圖），鍵長 a√2/4、鍵間夾角 120°。蝴蝶翅膀的結構色即此光子晶體；也是骨植入物與熱交換器常用的 TPMS 晶格。"
+    },
+    "hexwall-gyr-6": {
+      "title": "Two Gardens in an Endless Dance · Resonance",
+      "desc": "Two hidden gardens wind around one another, forever close, forever unfolding. Every intersection returns a quiet echo of light.",
+      "titleZh": "Gyroid 骨架（srs 網） · Y",
+      "scientificDescription": "Gyroid 極小曲面把空間分成兩個互相纏繞的迷宮，各迷宮的中軸線是 3 配位的手性 srs 網（Laves 圖），鍵長 a√2/4、鍵間夾角 120°。蝴蝶翅膀的結構色即此光子晶體；也是骨植入物與熱交換器常用的 TPMS 晶格。"
+    },
+    "hexwall-gyr-5": {
+      "title": "Two Gardens in an Endless Dance · Reverie",
+      "desc": "Two hidden gardens wind around one another, forever close, forever unfolding. The geometry loosens into the stillness of a dream.",
+      "titleZh": "Gyroid 骨架（srs 網） · rotX",
+      "scientificDescription": "Gyroid 極小曲面把空間分成兩個互相纏繞的迷宮，各迷宮的中軸線是 3 配位的手性 srs 網（Laves 圖），鍵長 a√2/4、鍵間夾角 120°。蝴蝶翅膀的結構色即此光子晶體；也是骨植入物與熱交換器常用的 TPMS 晶格。"
+    },
+    "hexwall-gyr-2": {
+      "title": "Two Gardens in an Endless Dance · Afterglow",
+      "desc": "Two hidden gardens wind around one another, forever close, forever unfolding. A final radiance lingers as the form slips from view.",
+      "titleZh": "Gyroid 骨架（srs 網） · X30",
+      "scientificDescription": "Gyroid 極小曲面把空間分成兩個互相纏繞的迷宮，各迷宮的中軸線是 3 配位的手性 srs 網（Laves 圖），鍵長 a√2/4、鍵間夾角 120°。蝴蝶翅膀的結構色即此光子晶體；也是骨植入物與熱交換器常用的 TPMS 晶格。"
+    },
+    "hexwall-sp-5": {
+      "title": "The Rooms Between Breaths · Dawn",
+      "desc": "A procession of open rooms becomes a quiet meditation on space and breath. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "Schwarz P 骨架 · rotX",
+      "scientificDescription": "P 極小曲面兩側迷宮的中軸都是簡單立方網，彼此錯開半個晶胞。細環標出曲面的「頸部」，即兩側迷宮相通的位置。"
+    },
+    "hexwall-sp-10": {
+      "title": "The Rooms Between Breaths · Drift",
+      "desc": "A procession of open rooms becomes a quiet meditation on space and breath. Its fine lines move with the softness of a passing current.",
+      "titleZh": "Schwarz P 骨架 · rotY",
+      "scientificDescription": "P 極小曲面兩側迷宮的中軸都是簡單立方網，彼此錯開半個晶胞。細環標出曲面的「頸部」，即兩側迷宮相通的位置。"
+    },
+    "hexwall-sp-7": {
+      "title": "The Rooms Between Breaths · Resonance",
+      "desc": "A procession of open rooms becomes a quiet meditation on space and breath. Every intersection returns a quiet echo of light.",
+      "titleZh": "Schwarz P 骨架 · Y30",
+      "scientificDescription": "P 極小曲面兩側迷宮的中軸都是簡單立方網，彼此錯開半個晶胞。細環標出曲面的「頸部」，即兩側迷宮相通的位置。"
+    },
+    "hexwall-sp-15": {
+      "title": "The Rooms Between Breaths · Reverie",
+      "desc": "A procession of open rooms becomes a quiet meditation on space and breath. The geometry loosens into the stillness of a dream.",
+      "titleZh": "Schwarz P 骨架 · rotZ",
+      "scientificDescription": "P 極小曲面兩側迷宮的中軸都是簡單立方網，彼此錯開半個晶胞。細環標出曲面的「頸部」，即兩側迷宮相通的位置。"
+    },
+    "hexwall-sp-14": {
+      "title": "The Rooms Between Breaths · Afterglow",
+      "desc": "A procession of open rooms becomes a quiet meditation on space and breath. A final radiance lingers as the form slips from view.",
+      "titleZh": "Schwarz P 骨架 · Z60",
+      "scientificDescription": "P 極小曲面兩側迷宮的中軸都是簡單立方網，彼此錯開半個晶胞。細環標出曲面的「頸部」，即兩側迷宮相通的位置。"
+    },
+    "hexwall-kag-6": {
+      "title": "Where Triangles Dream · Dawn",
+      "desc": "Triangles meet like fragments of a shared dream, opening into a larger constellation. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "3D Kagome（燒綠石格） · Y",
+      "scientificDescription": "正四面體以頂點相連、沿 [111] 每層都是 Kagome 網（三角形與六邊形交錯）。拉伸主導、剛度與八隅體相當但節點更少；也是自旋冰等阻挫磁性材料的晶格。"
+    },
+    "hexwall-kag-10": {
+      "title": "Where Triangles Dream · Drift",
+      "desc": "Triangles meet like fragments of a shared dream, opening into a larger constellation. Its fine lines move with the softness of a passing current.",
+      "titleZh": "3D Kagome（燒綠石格） · rotY",
+      "scientificDescription": "正四面體以頂點相連、沿 [111] 每層都是 Kagome 網（三角形與六邊形交錯）。拉伸主導、剛度與八隅體相當但節點更少；也是自旋冰等阻挫磁性材料的晶格。"
+    },
+    "hexwall-kag-2": {
+      "title": "Where Triangles Dream · Resonance",
+      "desc": "Triangles meet like fragments of a shared dream, opening into a larger constellation. Every intersection returns a quiet echo of light.",
+      "titleZh": "3D Kagome（燒綠石格） · X30",
+      "scientificDescription": "正四面體以頂點相連、沿 [111] 每層都是 Kagome 網（三角形與六邊形交錯）。拉伸主導、剛度與八隅體相當但節點更少；也是自旋冰等阻挫磁性材料的晶格。"
+    },
+    "hexwall-kag-5": {
+      "title": "Where Triangles Dream · Reverie",
+      "desc": "Triangles meet like fragments of a shared dream, opening into a larger constellation. The geometry loosens into the stillness of a dream.",
+      "titleZh": "3D Kagome（燒綠石格） · rotX",
+      "scientificDescription": "正四面體以頂點相連、沿 [111] 每層都是 Kagome 網（三角形與六邊形交錯）。拉伸主導、剛度與八隅體相當但節點更少；也是自旋冰等阻挫磁性材料的晶格。"
+    },
+    "hexwall-kag-11": {
+      "title": "Where Triangles Dream · Afterglow",
+      "desc": "Triangles meet like fragments of a shared dream, opening into a larger constellation. A final radiance lingers as the form slips from view.",
+      "titleZh": "3D Kagome（燒綠石格） · Z",
+      "scientificDescription": "正四面體以頂點相連、沿 [111] 每層都是 Kagome 網（三角形與六邊形交錯）。拉伸主導、剛度與八隅體相當但節點更少；也是自旋冰等阻挫磁性材料的晶格。"
+    },
+    "hexwall-rhd-6": {
+      "title": "Twelve Windows into Light · Dawn",
+      "desc": "Twelve quiet windows turn toward an invisible sky, gathering light along their edges. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "菱形十二面體 · Y",
+      "scientificDescription": "面心立方的 Voronoi 胞，以 12 片全等菱形無縫堆滿空間；蜂巢巢底就是它的一角。開孔率高、各向接近等向，骨科植入物常用。"
+    },
+    "hexwall-rhd-15": {
+      "title": "Twelve Windows into Light · Drift",
+      "desc": "Twelve quiet windows turn toward an invisible sky, gathering light along their edges. Its fine lines move with the softness of a passing current.",
+      "titleZh": "菱形十二面體 · rotZ",
+      "scientificDescription": "面心立方的 Voronoi 胞，以 12 片全等菱形無縫堆滿空間；蜂巢巢底就是它的一角。開孔率高、各向接近等向，骨科植入物常用。"
+    },
+    "hexwall-rhd-4": {
+      "title": "Twelve Windows into Light · Resonance",
+      "desc": "Twelve quiet windows turn toward an invisible sky, gathering light along their edges. Every intersection returns a quiet echo of light.",
+      "titleZh": "菱形十二面體 · X60",
+      "scientificDescription": "面心立方的 Voronoi 胞，以 12 片全等菱形無縫堆滿空間；蜂巢巢底就是它的一角。開孔率高、各向接近等向，骨科植入物常用。"
+    },
+    "hexwall-rhd-5": {
+      "title": "Twelve Windows into Light · Reverie",
+      "desc": "Twelve quiet windows turn toward an invisible sky, gathering light along their edges. The geometry loosens into the stillness of a dream.",
+      "titleZh": "菱形十二面體 · rotX",
+      "scientificDescription": "面心立方的 Voronoi 胞，以 12 片全等菱形無縫堆滿空間；蜂巢巢底就是它的一角。開孔率高、各向接近等向，骨科植入物常用。"
+    },
+    "hexwall-rhd-2": {
+      "title": "Twelve Windows into Light · Afterglow",
+      "desc": "Twelve quiet windows turn toward an invisible sky, gathering light along their edges. A final radiance lingers as the form slips from view.",
+      "titleZh": "菱形十二面體 · X30",
+      "scientificDescription": "面心立方的 Voronoi 胞，以 12 片全等菱形無縫堆滿空間；蜂巢巢底就是它的一角。開孔率高、各向接近等向，骨科植入物常用。"
+    },
+    "hexwall-reen-15": {
+      "title": "A Geometry that Opens its Arms · Dawn",
+      "desc": "An inward fold opens its arms, turning a small contraction into an unexpected bloom. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "內凹負泊松比 · rotZ",
+      "scientificDescription": "每個胞的立柱在中段向胞內折入，側視呈蝴蝶結形。受拉時折角被拉直、橫向反而膨脹（泊松比為負），抗衝擊與吸能佳。"
+    },
+    "hexwall-reen-11": {
+      "title": "A Geometry that Opens its Arms · Drift",
+      "desc": "An inward fold opens its arms, turning a small contraction into an unexpected bloom. Its fine lines move with the softness of a passing current.",
+      "titleZh": "內凹負泊松比 · Z",
+      "scientificDescription": "每個胞的立柱在中段向胞內折入，側視呈蝴蝶結形。受拉時折角被拉直、橫向反而膨脹（泊松比為負），抗衝擊與吸能佳。"
+    },
+    "hexwall-reen-5": {
+      "title": "A Geometry that Opens its Arms · Resonance",
+      "desc": "An inward fold opens its arms, turning a small contraction into an unexpected bloom. Every intersection returns a quiet echo of light.",
+      "titleZh": "內凹負泊松比 · rotX",
+      "scientificDescription": "每個胞的立柱在中段向胞內折入，側視呈蝴蝶結形。受拉時折角被拉直、橫向反而膨脹（泊松比為負），抗衝擊與吸能佳。"
+    },
+    "hexwall-reen-6": {
+      "title": "A Geometry that Opens its Arms · Reverie",
+      "desc": "An inward fold opens its arms, turning a small contraction into an unexpected bloom. The geometry loosens into the stillness of a dream.",
+      "titleZh": "內凹負泊松比 · Y",
+      "scientificDescription": "每個胞的立柱在中段向胞內折入，側視呈蝴蝶結形。受拉時折角被拉直、橫向反而膨脹（泊松比為負），抗衝擊與吸能佳。"
+    },
+    "hexwall-reen-10": {
+      "title": "A Geometry that Opens its Arms · Afterglow",
+      "desc": "An inward fold opens its arms, turning a small contraction into an unexpected bloom. A final radiance lingers as the form slips from view.",
+      "titleZh": "內凹負泊松比 · rotY",
+      "scientificDescription": "每個胞的立柱在中段向胞內折入，側視呈蝴蝶結形。受拉時折角被拉直、橫向反而膨脹（泊松比為負），抗衝擊與吸能佳。"
+    },
+    "hexwall-pen-5": {
+      "title": "A Pattern beyond Return · Dawn",
+      "desc": "A wandering pattern follows the suggestion of a star, finding harmony without returning. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "Penrose 菱形鋪磚 · rotX",
+      "scientificDescription": "胖菱（72°）與瘦菱（36°）兩種磚，數量比趨近黃金比 φ，永不重複卻具五重對稱——準晶的二維模型（2011 諾貝爾化學獎 Shechtman）。層數 2 以上會疊成立體雙層並以立柱相連。晶胞邊長 a 即菱形邊長。"
+    },
+    "hexwall-pen-11": {
+      "title": "A Pattern beyond Return · Drift",
+      "desc": "A wandering pattern follows the suggestion of a star, finding harmony without returning. Its fine lines move with the softness of a passing current.",
+      "titleZh": "Penrose 菱形鋪磚 · Z",
+      "scientificDescription": "胖菱（72°）與瘦菱（36°）兩種磚，數量比趨近黃金比 φ，永不重複卻具五重對稱——準晶的二維模型（2011 諾貝爾化學獎 Shechtman）。層數 2 以上會疊成立體雙層並以立柱相連。晶胞邊長 a 即菱形邊長。"
+    },
+    "hexwall-pen-10": {
+      "title": "A Pattern beyond Return · Resonance",
+      "desc": "A wandering pattern follows the suggestion of a star, finding harmony without returning. Every intersection returns a quiet echo of light.",
+      "titleZh": "Penrose 菱形鋪磚 · rotY",
+      "scientificDescription": "胖菱（72°）與瘦菱（36°）兩種磚，數量比趨近黃金比 φ，永不重複卻具五重對稱——準晶的二維模型（2011 諾貝爾化學獎 Shechtman）。層數 2 以上會疊成立體雙層並以立柱相連。晶胞邊長 a 即菱形邊長。"
+    },
+    "hexwall-pen-9": {
+      "title": "A Pattern beyond Return · Reverie",
+      "desc": "A wandering pattern follows the suggestion of a star, finding harmony without returning. The geometry loosens into the stillness of a dream.",
+      "titleZh": "Penrose 菱形鋪磚 · Y60",
+      "scientificDescription": "胖菱（72°）與瘦菱（36°）兩種磚，數量比趨近黃金比 φ，永不重複卻具五重對稱——準晶的二維模型（2011 諾貝爾化學獎 Shechtman）。層數 2 以上會疊成立體雙層並以立柱相連。晶胞邊長 a 即菱形邊長。"
+    },
+    "hexwall-pen-12": {
+      "title": "A Pattern beyond Return · Afterglow",
+      "desc": "A wandering pattern follows the suggestion of a star, finding harmony without returning. A final radiance lingers as the form slips from view.",
+      "titleZh": "Penrose 菱形鋪磚 · Z30",
+      "scientificDescription": "胖菱（72°）與瘦菱（36°）兩種磚，數量比趨近黃金比 φ，永不重複卻具五重對稱——準晶的二維模型（2011 諾貝爾化學獎 Shechtman）。層數 2 以上會疊成立體雙層並以立柱相連。晶胞邊長 a 即菱形邊長。"
+    },
+    "hexwall-bee-10": {
+      "title": "The Tender Architecture of Nectar · Dawn",
+      "desc": "A honeyed architecture holds its delicate chambers like a promise of summer. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "蜜蜂巢槽 · rotY",
+      "scientificDescription": "六角柱巢室，封底為三片菱形組成的淺錐（菱形十二面體的一角），錐頂三稜夾角 109.47°、菱面間二面角 120°。兩面巢室背靠背錯開，正面每格的三片菱底分別與背面三格共用。巢室開口端上揚約 9–14°，防止蜂蜜流出。晶胞邊長 a 即巢寬（對邊距）。"
+    },
+    "hexwall-bee-5": {
+      "title": "The Tender Architecture of Nectar · Drift",
+      "desc": "A honeyed architecture holds its delicate chambers like a promise of summer. Its fine lines move with the softness of a passing current.",
+      "titleZh": "蜜蜂巢槽 · rotX",
+      "scientificDescription": "六角柱巢室，封底為三片菱形組成的淺錐（菱形十二面體的一角），錐頂三稜夾角 109.47°、菱面間二面角 120°。兩面巢室背靠背錯開，正面每格的三片菱底分別與背面三格共用。巢室開口端上揚約 9–14°，防止蜂蜜流出。晶胞邊長 a 即巢寬（對邊距）。"
+    },
+    "hexwall-bee-11": {
+      "title": "The Tender Architecture of Nectar · Resonance",
+      "desc": "A honeyed architecture holds its delicate chambers like a promise of summer. Every intersection returns a quiet echo of light.",
+      "titleZh": "蜜蜂巢槽 · Z",
+      "scientificDescription": "六角柱巢室，封底為三片菱形組成的淺錐（菱形十二面體的一角），錐頂三稜夾角 109.47°、菱面間二面角 120°。兩面巢室背靠背錯開，正面每格的三片菱底分別與背面三格共用。巢室開口端上揚約 9–14°，防止蜂蜜流出。晶胞邊長 a 即巢寬（對邊距）。"
+    },
+    "hexwall-bee-6": {
+      "title": "The Tender Architecture of Nectar · Reverie",
+      "desc": "A honeyed architecture holds its delicate chambers like a promise of summer. The geometry loosens into the stillness of a dream.",
+      "titleZh": "蜜蜂巢槽 · Y",
+      "scientificDescription": "六角柱巢室，封底為三片菱形組成的淺錐（菱形十二面體的一角），錐頂三稜夾角 109.47°、菱面間二面角 120°。兩面巢室背靠背錯開，正面每格的三片菱底分別與背面三格共用。巢室開口端上揚約 9–14°，防止蜂蜜流出。晶胞邊長 a 即巢寬（對邊距）。"
+    },
+    "hexwall-bee-14": {
+      "title": "The Tender Architecture of Nectar · Afterglow",
+      "desc": "A honeyed architecture holds its delicate chambers like a promise of summer. A final radiance lingers as the form slips from view.",
+      "titleZh": "蜜蜂巢槽 · Z60",
+      "scientificDescription": "六角柱巢室，封底為三片菱形組成的淺錐（菱形十二面體的一角），錐頂三稜夾角 109.47°、菱面間二面角 120°。兩面巢室背靠背錯開，正面每格的三片菱底分別與背面三格共用。巢室開口端上揚約 9–14°，防止蜂蜜流出。晶胞邊長 a 即巢寬（對邊距）。"
+    },
+    "hexwall-eye-10": {
+      "title": "A Thousand Ways of Seeing · Dawn",
+      "desc": "Many small windows turn toward the world, gathering a thousand glimmers into one gaze. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "昆蟲複眼（果蠅） · rotY",
+      "scientificDescription": "複眼由數百個六角形小眼並排在球冠上，每個小眼自有角膜透鏡、偽晶錐與感光桿，光軸都指向眼球曲率中心。果蠅（D. melanogaster）約 700–800 個小眼，小眼間角約 4.5°，小眼直徑約 16–18 µm。小眼約為寬度的 10 倍長、由表面向內收窄；色素細胞位於六角頂點，每個由三個小眼共用。蠅類為「神經疊加型」：感光桿分成 7 根獨立的 R1–R7（R8 疊在 R7 下方），R1–R6 排成梯形。透明球體即眼球曲率球：Δφ = D／R。"
+    },
+    "hexwall-eye-5": {
+      "title": "A Thousand Ways of Seeing · Drift",
+      "desc": "Many small windows turn toward the world, gathering a thousand glimmers into one gaze. Its fine lines move with the softness of a passing current.",
+      "titleZh": "昆蟲複眼（果蠅） · rotX",
+      "scientificDescription": "複眼由數百個六角形小眼並排在球冠上，每個小眼自有角膜透鏡、偽晶錐與感光桿，光軸都指向眼球曲率中心。果蠅（D. melanogaster）約 700–800 個小眼，小眼間角約 4.5°，小眼直徑約 16–18 µm。小眼約為寬度的 10 倍長、由表面向內收窄；色素細胞位於六角頂點，每個由三個小眼共用。蠅類為「神經疊加型」：感光桿分成 7 根獨立的 R1–R7（R8 疊在 R7 下方），R1–R6 排成梯形。透明球體即眼球曲率球：Δφ = D／R。"
+    },
+    "hexwall-eye-12": {
+      "title": "A Thousand Ways of Seeing · Resonance",
+      "desc": "Many small windows turn toward the world, gathering a thousand glimmers into one gaze. Every intersection returns a quiet echo of light.",
+      "titleZh": "昆蟲複眼（果蠅） · Z30",
+      "scientificDescription": "複眼由數百個六角形小眼並排在球冠上，每個小眼自有角膜透鏡、偽晶錐與感光桿，光軸都指向眼球曲率中心。果蠅（D. melanogaster）約 700–800 個小眼，小眼間角約 4.5°，小眼直徑約 16–18 µm。小眼約為寬度的 10 倍長、由表面向內收窄；色素細胞位於六角頂點，每個由三個小眼共用。蠅類為「神經疊加型」：感光桿分成 7 根獨立的 R1–R7（R8 疊在 R7 下方），R1–R6 排成梯形。透明球體即眼球曲率球：Δφ = D／R。"
+    },
+    "hexwall-eye-7": {
+      "title": "A Thousand Ways of Seeing · Reverie",
+      "desc": "Many small windows turn toward the world, gathering a thousand glimmers into one gaze. The geometry loosens into the stillness of a dream.",
+      "titleZh": "昆蟲複眼（果蠅） · Y30",
+      "scientificDescription": "複眼由數百個六角形小眼並排在球冠上，每個小眼自有角膜透鏡、偽晶錐與感光桿，光軸都指向眼球曲率中心。果蠅（D. melanogaster）約 700–800 個小眼，小眼間角約 4.5°，小眼直徑約 16–18 µm。小眼約為寬度的 10 倍長、由表面向內收窄；色素細胞位於六角頂點，每個由三個小眼共用。蠅類為「神經疊加型」：感光桿分成 7 根獨立的 R1–R7（R8 疊在 R7 下方），R1–R6 排成梯形。透明球體即眼球曲率球：Δφ = D／R。"
+    },
+    "hexwall-eye-11": {
+      "title": "A Thousand Ways of Seeing · Afterglow",
+      "desc": "Many small windows turn toward the world, gathering a thousand glimmers into one gaze. A final radiance lingers as the form slips from view.",
+      "titleZh": "昆蟲複眼（果蠅） · Z",
+      "scientificDescription": "複眼由數百個六角形小眼並排在球冠上，每個小眼自有角膜透鏡、偽晶錐與感光桿，光軸都指向眼球曲率中心。果蠅（D. melanogaster）約 700–800 個小眼，小眼間角約 4.5°，小眼直徑約 16–18 µm。小眼約為寬度的 10 倍長、由表面向內收窄；色素細胞位於六角頂點，每個由三個小眼共用。蠅類為「神經疊加型」：感光桿分成 7 根獨立的 R1–R7（R8 疊在 R7 下方），R1–R6 排成梯形。透明球體即眼球曲率球：Δφ = D／R。"
+    },
+    "hexwall-rad-15": {
+      "title": "A Lantern beneath the Sea · Dawn",
+      "desc": "A delicate lantern drifts beneath an imagined sea, its luminous ribs remembering the stars. The first glimmers gather at the edge of a new beginning.",
+      "titleZh": "放射蟲骨架 · rotZ",
+      "scientificDescription": "海洋單細胞生物的矽質骨架：外殼為六角與 12 個五角孔組成的測地線球網（Goldberg 多面體），12 根放射刺由內殼穿出五角孔。Haeckel《自然界的藝術形態》（1904）的經典題材，也啟發了 Buckminster Fuller 的測地線穹頂。晶胞邊長 a 即外殼半徑。"
+    },
+    "hexwall-rad-5": {
+      "title": "A Lantern beneath the Sea · Drift",
+      "desc": "A delicate lantern drifts beneath an imagined sea, its luminous ribs remembering the stars. Its fine lines move with the softness of a passing current.",
+      "titleZh": "放射蟲骨架 · rotX",
+      "scientificDescription": "海洋單細胞生物的矽質骨架：外殼為六角與 12 個五角孔組成的測地線球網（Goldberg 多面體），12 根放射刺由內殼穿出五角孔。Haeckel《自然界的藝術形態》（1904）的經典題材，也啟發了 Buckminster Fuller 的測地線穹頂。晶胞邊長 a 即外殼半徑。"
+    },
+    "hexwall-rad-6": {
+      "title": "A Lantern beneath the Sea · Resonance",
+      "desc": "A delicate lantern drifts beneath an imagined sea, its luminous ribs remembering the stars. Every intersection returns a quiet echo of light.",
+      "titleZh": "放射蟲骨架 · Y",
+      "scientificDescription": "海洋單細胞生物的矽質骨架：外殼為六角與 12 個五角孔組成的測地線球網（Goldberg 多面體），12 根放射刺由內殼穿出五角孔。Haeckel《自然界的藝術形態》（1904）的經典題材，也啟發了 Buckminster Fuller 的測地線穹頂。晶胞邊長 a 即外殼半徑。"
+    },
+    "hexwall-rad-11": {
+      "title": "A Lantern beneath the Sea · Reverie",
+      "desc": "A delicate lantern drifts beneath an imagined sea, its luminous ribs remembering the stars. The geometry loosens into the stillness of a dream.",
+      "titleZh": "放射蟲骨架 · Z",
+      "scientificDescription": "海洋單細胞生物的矽質骨架：外殼為六角與 12 個五角孔組成的測地線球網（Goldberg 多面體），12 根放射刺由內殼穿出五角孔。Haeckel《自然界的藝術形態》（1904）的經典題材，也啟發了 Buckminster Fuller 的測地線穹頂。晶胞邊長 a 即外殼半徑。"
+    },
+    "hexwall-rad-10": {
+      "title": "A Lantern beneath the Sea · Afterglow",
+      "desc": "A delicate lantern drifts beneath an imagined sea, its luminous ribs remembering the stars. A final radiance lingers as the form slips from view.",
+      "titleZh": "放射蟲骨架 · rotY",
+      "scientificDescription": "海洋單細胞生物的矽質骨架：外殼為六角與 12 個五角孔組成的測地線球網（Goldberg 多面體），12 根放射刺由內殼穿出五角孔。Haeckel《自然界的藝術形態》（1904）的經典題材，也啟發了 Buckminster Fuller 的測地線穹頂。晶胞邊長 a 即外殼半徑。"
+    }
+  }
+}

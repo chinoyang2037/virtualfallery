@@ -2329,6 +2329,7 @@
   let AIMN = 0;
   let locked = false, unlockAt = 0, aimArt = null, aimT = 0, hoverT = 0;
   function lockMouse() {
+    if(window.__galleryAutoStarting)return;
     if (!canLock || !exploring || editing || locked) return;
     try { const p = cvEl.requestPointerLock(); if (p && p.catch) p.catch(() => {}); } catch (e) {}
   }
@@ -3096,7 +3097,7 @@
     setMode(mode);
     msg("");
     camera.position.set(P.x, EYE, P.z);
-    if (SHARE && SHARE.mode === "fly") { msg("蜂鳥起飛…"); setTimeout(startFly, 700); }
+    if (SHARE && SHARE.mode === "fly") { msg("蜂鳥起飛…"); /* Shared six-second cover controller starts flight. */ }
     window.__ROT = {SCENE_PHOTOS,scenePhotoTake,scenePhotoRender,scenePhotoSave,captureShareCover,ARCH,applyArchitecture,defaultFurniture,LAYOUT,LAYOUT_TYPES,layoutCommit,layoutChoose,layoutValid,layoutSnap,layoutApply,layoutConnected,layoutSnowSources,PLAN,showGalleryPlan,closeGalleryPlan,selectPlanArt,STL_PLAN,STL_ART_SLOTS,STL_ROOF,stlInside, togglePersistentArtLights, toggleAllArtLights, ENV_LIGHTS, ENV_LIGHT_SETTINGS, setEnvLight, ART_LIGHT_SETTINGS, setArtLight, BALCONY, industrialWithinFloor, SKYLIGHT_LIGHTS, ART_LIGHTS, artLightTick, CEILING_FANS, TRACK_LIGHTS, fanTick, INDOOR_SNOW, indoorSnowTick, skylightSnowOpening, SKYLIGHT, toggleSkylight, skylightTick, indPath, indCurve, viewSpot, planDome, moverTick, flyTick, camera, P, stepTo, canStand, showViewer, caption, AUTO, autoTick, autoPlan, SNOW, setSnow, PUP, setPuppy, bark, pupTarget, pickUp, putDown, movePlayer, MUS, musPlay, musPause, musToggle, musNext, musVol, addMusic, startRide, stopRide, RIDE, planVisit, planDome, flyOK, industrialWalkBlocked, industrialFlyBlocked, IND_ROOM, IND_SOLIDS, applyPano, addPano, OUT, get panoCur() { return panoCur; }, startFly, stopFly, exportShare, FLY, importLabels, downloadLabelTemplate, importBatch, snapshotSlot, restoreSlot, setMode, goFloor, startTour, openArt, artworks, floorsAt, renderer, scene, flyTo, adoptCamera, hideCover, get yaw() { return yaw; }, set yaw(v) { yaw = v; }, set pitch(v) { pitch = v; }, keys };
   })().catch(e=>{console.error(e);$("load-msg").textContent="展廳啟動失敗："+e.message;});
 })();

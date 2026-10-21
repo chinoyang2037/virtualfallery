@@ -7213,7 +7213,7 @@
         if (LENS.on) lensClose();
         closeArt();
         if (!TOUCH && exploring && !uiBlocked() && !DRONE.on && !FLY.on && !HB.on && !DOG.on) {
-          try { renderer.domElement.requestPointerLock(); } catch (err) {}
+          if(!window.__galleryAutoStarting)try { renderer.domElement.requestPointerLock(); } catch (err) {}
         }
       };
       addEventListener("contextmenu", (e) => {
@@ -7310,7 +7310,7 @@
       $("blocker").classList.add("hidden");
       $("loader").classList.add("hidden");
       if (renderer && !TOUCH) {
-        try { renderer.domElement.requestPointerLock(); } catch (err) {}
+        if(!window.__galleryAutoStarting)try { renderer.domElement.requestPointerLock(); } catch (err) {}
       }
     }
 
@@ -7958,7 +7958,7 @@
       markShadow();
       hungAll = true;
       setBusy(false);
-      if (AUTOFLY) setTimeout(() => { if (!FLY.on && !TOUR.on && !DRONE.on) flyStart(); }, 600);
+      window.GalleryIPadFlight={get ready(){return hungAll&&artworks.length>0},start:hbStart};
       if (hint) setProg("progReady", { n: artworks.length });
       try {                                          // Excel 改展廳參數後重新載入：顯示套用結果
         const f = JSON.parse(sessionStorage.getItem(FLASH_KEY) || "null");

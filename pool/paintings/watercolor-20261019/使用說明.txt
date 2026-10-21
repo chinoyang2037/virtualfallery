@@ -1,0 +1,1 @@
+此處為水彩50幅網站預覽圖（WebP）。原尺寸JPG、Excel、CSV與原始裁切資料請從圖庫頁下載完整ZIP。作品ID與標題可對照；原始檔名另存於artworks.json的originalFilename。

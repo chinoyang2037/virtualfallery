@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "groups": [
+    {
+      "id": "watercolor-20261020",
+      "name": "水彩山水與彩色水岸｜34幅",
+      "artworks": "../pool/paintings/watercolor-20261020/artworks.json"
+    },
+    {
+      "id": "watercolor-20261019",
+      "name": "水彩風景與村落｜50 幅",
+      "artworks": "../pool/paintings/watercolor-20261019/artworks.json"
+    },
+    {
+      "id": "optical-art",
+      "name": "光學藝術10組",
+      "artworks": "optical-art/artworks.json"
+    },
+    {
+      "id": "original-site",
+      "name": "網站原有30幅",
+      "artworks": "../pool/paintings/original-site/artworks.json"
+    },
+    {
+      "id": "archive-t",
+      "name": "T組水彩30幅",
+      "artworks": "../pool/paintings/archive-t/artworks.json"
+    },
+    {
+      "id": "archive-h",
+      "name": "H組水彩30幅",
+      "artworks": "../pool/paintings/archive-h/artworks.json"
+    },
+    {
+      "id": "archive-w",
+      "name": "W組水彩30幅",
+      "artworks": "../pool/paintings/archive-w/artworks.json"
+    },
+    {
+      "id": "archive-p1",
+      "name": "P1組水彩30幅",
+      "artworks": "../pool/paintings/archive-p1/artworks.json"
+    }
+  ]
+}

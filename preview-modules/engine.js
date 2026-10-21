@@ -1,3 +1,39 @@
+/* Independent full-frame WebP playback for the HexWall pool; no video chroma key. */
+(function(g){'use strict';if(g.HexElectronicAnimation)return;
+const code=(u,o)=>String.fromCharCode(...u.subarray(o,o+4)),u24=(u,o)=>u[o]+u[o+1]*256+u[o+2]*65536;
+function parse(buffer){
+ const u=new Uint8Array(buffer),v=new DataView(u.buffer,u.byteOffset,u.byteLength);if(u.length<30||code(u,0)!=='RIFF'||code(u,8)!=='WEBP')throw Error('不是有效 WebP 動畫');
+ const end=v.getUint32(4,true)+8;if(end>u.length)throw Error('動畫資料不完整');let width=0,height=0,total=0;const frames=[];
+ for(let o=12;o+8<=end;){const size=v.getUint32(o+4,true),at=o+8,next=at+size+(size&1);if(next>end)throw Error('動畫區塊不完整');const tag=code(u,o);
+  if(tag==='VP8X'){if(size<10)throw Error('缺少動畫尺寸');width=u24(u,at+4)+1;height=u24(u,at+7)+1;}
+  if(tag==='ANMF'){
+   if(size<24)throw Error('動畫影格不完整');const x=u24(u,at)*2,y=u24(u,at+3)*2,w=u24(u,at+6)+1,h=u24(u,at+9)+1,ms=Math.max(1,u24(u,at+12));
+   if(x||y||w!==width||h!==height||!(u[at+15]&2))throw Error('此動畫需使用完整獨立影格');
+   const payload=u.subarray(at+16,at+size);let alpha=false,bitstream=false;for(let z=0;z+8<=payload.length;){const n=new DataView(payload.buffer,payload.byteOffset+z+4,4).getUint32(0,true);if(z+8+n+(n&1)>payload.length)throw Error('影格資料不完整');const t=code(payload,z);alpha=alpha||t==='ALPH';bitstream=bitstream||t==='VP8 '||t==='VP8L';z+=8+n+(n&1);}if(!bitstream)throw Error('缺少影格影像');
+   frames.push({payload,alpha,start:total,duration:ms});total+=ms;
+  }o=next;
+ }
+ if(!frames.length||!width||!height)throw Error('缺少動畫影格');return {width,height,frames,duration:total};
+}
+function still(anim,index){const f=anim.frames[index],extra=f.alpha?18:0,u=new Uint8Array(12+extra+f.payload.length),v=new DataView(u.buffer);const put=(o,s)=>{for(let i=0;i<s.length;i++)u[o+i]=s.charCodeAt(i)};put(0,'RIFF');v.setUint32(4,u.length-8,true);put(8,'WEBP');if(extra){put(12,'VP8X');v.setUint32(16,10,true);u[20]=16;for(let i=0;i<3;i++){u[24+i]=((anim.width-1)>>(8*i))&255;u[27+i]=((anim.height-1)>>(8*i))&255;}}u.set(f.payload,12+extra);return new Blob([u],{type:'image/webp'});}
+function frameAt(anim,time){const t=((time%anim.duration)+anim.duration)%anim.duration;let lo=0,hi=anim.frames.length-1;while(lo<hi){const m=(lo+hi+1)>>1;if(anim.frames[m].start<=t)lo=m;else hi=m-1;}return lo;}
+function angleAtFrame(work,index){if((work.electronicRotation??'center')!=='center')return 0;const turns=Math.max(0,Math.min(6,Number(work.electronicTurns??3))),count=Math.max(1,work.frameCount||240);return -Math.PI*2*turns*(Math.max(0,index)%count)/count;}
+const outlineCanvases=new WeakMap();
+function outlinedImage(ctx,image,x,y,w,h,enabled){if(enabled){let c=outlineCanvases.get(ctx);if(!c){c=document.createElement('canvas');outlineCanvases.set(ctx,c);}const iw=image.width||320,ih=image.height||283;if(c.width!==iw)c.width=iw;if(c.height!==ih)c.height=ih;const g=c.getContext('2d');g.clearRect(0,0,iw,ih);g.globalCompositeOperation='source-over';g.drawImage(image,0,0,iw,ih);g.globalCompositeOperation='source-in';g.fillStyle='#ff9d33';g.fillRect(0,0,iw,ih);g.globalCompositeOperation='source-over';for(const [dx,dy]of [[-1.4,0],[1.4,0],[0,-1.4],[0,1.4],[-1,-1],[-1,1],[1,-1],[1,1]])ctx.drawImage(c,x+dx,y+dy,w,h);}ctx.drawImage(image,x,y,w,h);}
+function paint(ctx,image,mode,options={}){const w=ctx.canvas.width,h=ctx.canvas.height;ctx.clearRect(0,0,w,h);ctx.save();if(mode==='round'){const r=Math.min(w,h)/2-1;ctx.beginPath();ctx.arc(w/2,h/2,r,0,Math.PI*2);ctx.fillStyle='#000';ctx.fill();if(options.outline){ctx.strokeStyle='#ff9d33';ctx.lineWidth=1.5;ctx.stroke();}ctx.clip();const s=(2*r-4)/Math.hypot(w,h),dw=w*s,dh=h*s;outlinedImage(ctx,image,(w-dw)/2,(h-dh)/2,dw,dh,options.outline);}else{if(mode==='framed'){ctx.fillStyle='#000';ctx.fillRect(0,0,w,h);}outlinedImage(ctx,image,0,0,w,h,options.outline);}ctx.restore();}
+async function bitmap(blob){if(g.createImageBitmap)try{return await g.createImageBitmap(blob)}catch{}return new Promise((ok,no)=>{const img=new Image(),url=URL.createObjectURL(blob);img.onload=()=>{URL.revokeObjectURL(url);ok(img)};img.onerror=()=>{URL.revokeObjectURL(url);no(Error('動畫影格無法解碼'))};img.src=url;});}
+class Player{
+ constructor(url,onFrame,onError){this.onFrame=onFrame;this.onError=onError;this.cache=new Map();this.pending=new Map();this.controller=new AbortController();this.dead=false;this.last=-1;this.wanted=0;this.ready=this.load(url);}
+ async load(url){try{const r=await fetch(url,{signal:this.controller.signal});if(!r.ok)throw Error('動畫讀取失敗 '+r.status);const data=await r.arrayBuffer();if(this.dead)return;this.anim=parse(data);this.epoch=performance.now();await this.decode(0);if(!this.dead){this.prefetch(0);this.tick(this.epoch);}}catch(e){if(!this.dead){this.failed=true;this.onError?.(e);}}}
+ decode(i){if(this.dead)return Promise.resolve(null);if(this.cache.has(i))return Promise.resolve(this.cache.get(i));if(this.pending.has(i))return this.pending.get(i);const p=bitmap(still(this.anim,i)).then(img=>{if(this.dead){img.close?.();return null;}this.cache.set(i,img);return img;}).catch(e=>{if(!this.dead){this.failed=true;this.onError?.(e);}return null;}).finally(()=>this.pending.delete(i));this.pending.set(i,p);return p;}
+ prefetch(i){if(!this.anim||this.dead||this.failed)return;const keep=new Set();for(let k=0;k<6;k++)keep.add((i+k)%this.anim.frames.length);for(const [key,img]of this.cache)if(!keep.has(key)){img.close?.();this.cache.delete(key);}for(const k of keep)if(this.pending.size<4)this.decode(k);}
+ tick(now){if(!this.anim||this.dead||this.failed)return;const i=frameAt(this.anim,now-this.epoch);this.wanted=i;const image=this.cache.get(i);if(image&&this.last!==i){this.onFrame(image);this.last=i;}this.prefetch(i);}
+ invalidate(){this.last=-1;}
+ destroy(){this.dead=true;this.controller.abort();for(const img of this.cache.values())img.close?.();this.cache.clear();this.anim=null;this.onFrame=null;}
+}
+g.HexElectronicAnimation={parse,still,frameAt,paint,angleAtFrame,Player};
+})(typeof window==='undefined'?globalThis:window);
+
 /* Source segments: "cio" "hn"; build 20261010-v1 */
 /* =====================================================================
    十字形工業展廳引擎（cross-v1）
@@ -300,7 +336,7 @@
   }
   function industrialFlyBlocked(x, y, z, r = 0.26) {
     if (!industrialWithinFloor(x,z,r) || y - r < IND_ROOM.minY || y + r > IND_ROOM.maxY) return true;
-    for (const b of IND_SOLIDS) if (b.fly && sphereHitsAABB(x, y, z, r, b)) return true;
+    for (const b of IND_SOLIDS) if (b.fly && y+r>=b.minY && y-r<=b.maxY && sphereHitsAABB(x, y, z, r, b)) return true;
     return false;
   }
 
@@ -311,7 +347,8 @@
     for(let i=0;i<=n;i++){const q=a.clone().lerp(b,i/n);if(walk?industrialWalkBlocked(q.x,q.z,.38):industrialFlyBlocked(q.x,q.y,q.z,Math.min(.38,Math.max(.08,Math.min(a.y,b.y)-.29))))return false;}
     return true;
   }
-  function indPath(a,b,walk=false) {
+  function indPath(a,b,walk=false,budgetMs=Infinity) {
+    const started=performance.now();
     if(indClear(a,b,walk))return [a.clone(),b.clone()];
     const y=walk?0:Math.min(a.y,b.y), step=.5, nodes=[], seen=new Map();
     const valid=q=>walk?!industrialWalkBlocked(q.x,q.z,.38):!industrialFlyBlocked(q.x,q.y,q.z,Math.min(.38,Math.max(.08,Math.min(a.y,b.y)-.29)));
@@ -319,6 +356,7 @@
     if(!valid(ground)||!valid(end)||!indClear(a,ground,walk)||!indClear(end,b,walk))throw Error('無法建立安全路線');
     nodes.push({q:ground,parent:-1});seen.set('start',0);let found=-1;
     for(let head=0;head<nodes.length&&head<12000;head++){
+      if(head%8===0&&performance.now()-started>budgetMs)throw Error('導覽路徑搜尋逾時');
       const cur=nodes[head];if(indClear(cur.q,end,walk)){found=head;break;}
       for(const [dx,dz] of [[1,0],[-1,0],[0,1],[0,-1]]){
         const q=cur.q.clone();q.x+=dx*step;q.z+=dz*step;
@@ -389,25 +427,30 @@
   }
   function fit(g, s, maxW) { s = String(s || ""); while (s.length > 1 && g.measureText(s).width > maxW) s = s.slice(0, -2) + "…"; return s; }
   function buildArt(a) {
+    restoreElectronic(a.work);
+    if(a.work.electronicId)electronicResize(a,a.work.electronicScale??1.5);
     if (a.group) { scene.remove(a.group); a.group.traverse((o) => { if (o.geometry) o.geometry.dispose(); }); if (a.plaqueTex) a.plaqueTex.dispose(); if (a.plaqueMat) a.plaqueMat.dispose(); }
     const w = a.work, sl = a.slot;
     const asp = a.aspect || 0.8;
     let W = sl.imageW || sl.maxW || 1.55, H = sl.imageH || W / asp; if (!sl.imageH && H > 1.75) { H = 1.75; W = H * asp; }
     const g = new THREE.Group();
-    const fr = FRAMES[w.frame] ? FRAMES[w.frame] : null, fw = fr ? fr.w : 0, fm = frameMat(w.frame);
+    const isElectronic=!!w.electronicId, displayMode=electronicMode(w), frameId=isElectronic?(displayMode==='framed'?'black':'none'):w.frame;
+    const fr = FRAMES[frameId] ? FRAMES[frameId] : null, fw = fr ? fr.w : 0, fm = frameMat(frameId);
+    const picture=isElectronic?new THREE.Group():g;if(isElectronic){g.add(picture);a.eRotator=picture;}
     if (fr) {
-      const d = 0.055, add = (bw, bh, x, y) => { const m = new THREE.Mesh(new THREE.BoxGeometry(bw, bh, d), fm); m.position.set(x, y, d / 2); m.castShadow = true; g.add(m); };
+      const d = 0.055, add = (bw, bh, x, y) => { const m = new THREE.Mesh(new THREE.BoxGeometry(bw, bh, d), fm); m.position.set(x, y, d / 2); m.castShadow = true; picture.add(m); };
       add(W + fw * 2, fw, 0, H / 2 + fw / 2); add(W + fw * 2, fw, 0, -H / 2 - fw / 2);
       add(fw, H, -W / 2 - fw / 2, 0); add(fw, H, W / 2 + fw / 2, 0);
     }
-    const back = new THREE.Mesh(new THREE.BoxGeometry(W, H, 0.03), M.plaster); back.position.z = 0.015; g.add(back);
-    if (!a.mat) a.mat = new THREE.MeshStandardMaterial({ color: 0x555555, roughness: 0.62, emissive: 0x000000, emissiveIntensity: 0 });
-    a.mat.map = a.tex || null; a.mat.emissiveMap = a.tex || null; a.mat.needsUpdate = true;
-    const cvm = new THREE.Mesh(new THREE.PlaneGeometry(W, H), a.mat); cvm.position.z = 0.032; cvm.userData.art = a; g.add(cvm); a.canvas = cvm;
+    if(!isElectronic){const back = new THREE.Mesh(new THREE.BoxGeometry(W, H, 0.03), M.plaster); back.position.z = 0.015; g.add(back);}
+    if (!a.mat) a.mat = isElectronic?new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.7,alphaTest:.015,alphaToCoverage:true,depthTest:true,depthWrite:true,side:THREE.DoubleSide,fog:false,toneMapped:false}):new THREE.MeshStandardMaterial({ color: 0x555555, roughness: 0.62, emissive: 0x000000, emissiveIntensity: 0 });
+    a.mat.map = a.tex || null; if(!isElectronic)a.mat.emissiveMap = a.tex || null; a.mat.needsUpdate = true;
+    if(isElectronic){electronicPaint(a,a.tex.image);a.mat.color.setScalar(w.electronicGlow??1);a.mat.opacity=w.electronicOpacity??.7;}
+    const cvm = new THREE.Mesh(new THREE.PlaneGeometry(W, H), a.mat); cvm.position.z = 0.032; cvm.userData.art = a; picture.add(cvm); a.canvas = cvm;
     a.plaqueTex = plaqueTex(w);
     a.plaqueMat = new THREE.MeshStandardMaterial({ map: a.plaqueTex, roughness: 0.7 });
     const pl = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.16, 0.012), [M.plaster, M.plaster, M.plaster, M.plaster, a.plaqueMat, M.plaster]);
-    pl.position.set(0, -H / 2 - fw - 0.15, 0.006); g.add(pl);
+    pl.position.set(0, -(isElectronic&&(w.electronicRotation??'center')==='center'?Math.hypot(W+2*fw,H+2*fw)/2:H/2+fw)-.15, 0.006); g.add(pl);
     g.position.set(sl.x, sl.hangY??HANG, sl.z); g.rotation.y = sl.ry;
     scene.add(g); a.group = g; a.W = W; a.H = H; a.center = new V3(g.position.x, g.position.y, g.position.z); markShadow();
   }
@@ -415,6 +458,7 @@
 
   const texLoader = (src) => new Promise((res) => {
     const img = new Image();
+    if(/pool\/electronic\/hexwall-60\//.test(src))img.crossOrigin='anonymous';
     img.onload = () => res(img); img.onerror = () => res(null);
     img.src = src;
   });
@@ -435,6 +479,7 @@
     return c;
   }
   async function setArtImage(a, src, blobUrl) {
+    if(a.work.electronicId)src=electronicURL(src);
     const img = await texLoader(src);
     if (!img) return false;
     if (a.tex) a.tex.dispose();
@@ -578,7 +623,7 @@
     M.city.map = t; M.city.toneMapped = false; M.city.needsUpdate = true;
     OUT.street.visible = false; OUT.cap.visible = !spherical;
     if (!OUT.sphere) {
-      OUT.sphere = new THREE.Mesh(new THREE.SphereGeometry(80,128,64), M.city);
+      OUT.sphere = new THREE.Mesh(new THREE.SphereGeometry(80,128,64), M.city);OUT.sphere.renderOrder=-.5;
       OUT.sphere.name = 'Complete panorama including zenith and nadir';
       scene.add(OUT.sphere);
     }
@@ -1069,6 +1114,26 @@
     }
     return false;
   }
+  let wheelTurn = 1;
+  function wheelHeading(dt) {
+    const sign = Math.sign(wheelBoost), base = yaw + (sign < 0 ? Math.PI : 0);
+    const distance = Math.max(.65, Math.min(1.8, Math.abs(wheelBoost) * .16));
+    const clear = angle => {
+      for (let d = .06; d <= distance + .001; d += .06)
+        if (canStand(P.x - Math.sin(angle) * d, P.z - Math.cos(angle) * d, P.y) === null) return false;
+      return true;
+    };
+    if (clear(base)) return;
+    let target = null;
+    for (const degrees of [15,30,45,60,75,90,110,135,160,180]) {
+      for (const side of [wheelTurn, -wheelTurn]) {
+        const turn = side * degrees * Math.PI / 180;
+        if (clear(base + turn)) { target = turn; wheelTurn = side; break; }
+      }
+      if (target !== null) break;
+    }
+    if (target !== null) yaw += Math.sign(target) * Math.min(Math.abs(target), dt * 3.8);
+  }
   function movePlayer(dt) {
     let f = 0, s = 0, mx = 0, mz = 0;
     if (keys.KeyW || keys.ArrowUp) f += 1;
@@ -1077,6 +1142,7 @@
     if (keys.KeyD || keys.ArrowRight) s += 1;
     if (joy.id !== null) { f += -joy.y; s += joy.x; }
     const L = Math.hypot(f, s);
+    if (Math.abs(wheelBoost) > .04 && L <= .05) wheelHeading(dt);
     const fx = -Math.sin(yaw), fz = -Math.cos(yaw), rx = Math.cos(yaw), rz = -Math.sin(yaw);
     if (L > 0.05) {
       const sp = (keys.ShiftLeft || keys.ShiftRight || L > 0.95 && joy.id !== null ? RUN : SPEED) * Math.min(1, L) * dt;
@@ -1091,7 +1157,7 @@
     RIDE.cool -= dt;
     const n = Math.ceil(Math.hypot(mx, mz) / 0.06);
     for (let i = 0; i < n; i++) {
-      if (!slideStep(mx / n, mz / n)) { wheelBoost = 0; break; }
+      if (!slideStep(mx / n, mz / n)) { break; }
     }
     const moved = Math.hypot(P.x - x0, P.z - z0);
     camY += (P.y + eyeH - camY) * Math.min(1, dt * 12);
@@ -1116,7 +1182,7 @@
   function angOf(dir) { const L = dir.length() || 1; return { y: Math.atan2(-dir.x, -dir.z), p: Math.asin(Math.max(-1, Math.min(1, dir.y / L))) }; }
   function flyTo(pos, look, dur, done, arcUp) {
     const from = camera.position.clone();
-    const route = indCurve(indPath(from, pos));
+    const route = indCurve(flyRoute(from, pos));
     camera.getWorldDirection(dTmp);
     const a0 = angOf(dTmp), a1 = angOf(dTmp.subVectors(look, pos));
     let dy = a1.y - a0.y; dy -= Math.round(dy / TAU) * TAU;
@@ -1146,6 +1212,7 @@
   }
   function showViewer(a) {
     editing = a;
+    window.ElectronicDisplay?.select(a);
     const w = a.work;
     $("v-img").src = a.src || "";
     $("v-where").textContent = "工業風展廳・第 " + (a.idx + 1) + " 幅";
@@ -1189,7 +1256,7 @@
   const TOUR = { on: false, list: [], i: 0, hold: 0 };
   function startTour() {
     stopFly(true); stopRide(true); putDown(true); closeViewer(); hideCover();
-    TOUR.on = true; TOUR.i = -2; TOUR.hold = 0;
+    TOUR.on = true; TOUR.i = -2; TOUR.hold = 0; TOUR.cur = null; wheelBoost = 0;
     $("b-tour").classList.add("on"); setLbl("b-tour", "停止導覽");
     const seq = [];
     seq.push({pos:new V3(0,2.2,-2),look:new V3(0,6.7,0),dur:3.2,hold:1.2,arc:false});
@@ -1200,25 +1267,35 @@
   }
   function nextStop() {
     if (!TOUR.on) return;
-    const s = TOUR.list[TOUR.i];
-    if (!s) { stopTour(true); return; }
     caption(null);
-    flyTo(s.pos, s.look, s.dur, () => {
-      if (s.art) caption(s.art);
-      TOUR.hold = s.hold; TOUR.cur = s;
-    }, s.arc);
+    // Bound work per frame; route failure never escapes the animation loop.
+    for (let attempt = 0; attempt < 1; attempt++) {
+      const s = TOUR.list[TOUR.i];
+      if (!s) { stopTour(true); return; }
+      try {
+        flyTo(s.pos, s.look, s.dur, () => {
+          if (!TOUR.on) return;
+          if (s.art) caption(s.art);
+          TOUR.hold = Math.max(.05, s.hold || 0); TOUR.cur = s;
+        }, s.arc);
+      } catch (error) {
+        console.warn('Skipping unavailable tour stop', TOUR.i, error);
+        TOUR.i++; TOUR.hold = 0;
+      }
+    }
   }
   function tourTick(dt) {
     if (mover) return;
     if (TOUR.hold > 0) { TOUR.hold -= dt; if (TOUR.hold <= 0) { TOUR.i++; nextStop(); } }
+    else nextStop();
   }
   function stopTour(finished) {
     if (!TOUR.on) return;
     TOUR.on = false; mover = null; caption(null);
     $("b-tour").classList.remove("on"); setLbl("b-tour", "導覽");
-    const s = TOUR.cur;
-    if (s && s.fy !== undefined) adoptCamera(s.look, s.fy);
-    else { goFloor(camera.position.y > F2 + 0.5 ? 1 : 0, true); }
+    camera.getWorldDirection(dTmp);
+    adoptCamera(camera.position.clone().add(dTmp), 0);
+    TOUR.cur = null; TOUR.hold = 0;
     if (finished) toast("導覽結束");
   }
   function caption(a) {
@@ -1455,21 +1532,60 @@
   function flyJump(dir) {                               /* 上一幅／下一幅：立刻改飛過去 */
     if (!FLY.on) { startFly(); return; }
     FLY.manual = 0; FLY.seg = null; FLY.hold = 0; caption(null);
-    const a = pickArt(dir); FLY.last = a.idx; FLY.visits++;
-    FLY.queue = planVisit(a);
-    flySeg(FLY.queue.shift());
+    if(queueFlyVisit(dir))flySeg(FLY.queue.shift());
+  }
+  function flySegmentBox(a,b,lo,hi,r){
+    let enter=0,exit=1;
+    for(let k=0;k<3;k++){const d=b[k]-a[k],min=lo[k]-r,max=hi[k]+r;
+      if(Math.abs(d)<1e-10){if(a[k]<min||a[k]>max)return false;continue;}
+      let t0=(min-a[k])/d,t1=(max-a[k])/d;if(t0>t1)[t0,t1]=[t1,t0];enter=Math.max(enter,t0);exit=Math.min(exit,t1);if(enter>exit)return false;
+    }return true;
+  }
+  function flyClear(a,b){
+    // The imported Hex footprint is convex and rectangular: exact swept-box tests
+    // avoid thousands of per-centimetre collision samples on the rendering thread.
+    if(!['custom','pdf-backdrop'].includes(GEN_PROJECT.modelMode))return indClear(a,b);
+    const key=STL_PLAN.flat().join(',');let rect=flyClear.rectCache;
+    if(!rect||rect.key!==key){const xs=STL_PLAN.map(p=>p[0]),zs=STL_PLAN.map(p=>p[1]),x0=Math.min(...xs),x1=Math.max(...xs),z0=Math.min(...zs),z1=Math.max(...zs);let area=0;STL_PLAN.forEach((p,i)=>{const q=STL_PLAN[(i+1)%STL_PLAN.length];area+=p[0]*q[1]-q[0]*p[1];});rect={key,x0,x1,z0,z1,valid:Math.abs(Math.abs(area)/2-(x1-x0)*(z1-z0))<.001&&STL_PLAN.every(([x,z])=>Math.abs(x-x0)<.001||Math.abs(x-x1)<.001||Math.abs(z-z0)<.001||Math.abs(z-z1)<.001)};flyClear.rectCache=rect;}
+    if(!rect.valid)return indClear(a,b);
+    const r=Math.min(.38,Math.max(.08,Math.min(a.y,b.y)-.29));
+    for(const p of [a,b])if(p.x-r<rect.x0||p.x+r>rect.x1||p.z-r<rect.z0||p.z+r>rect.z1||p.y-r<IND_ROOM.minY||p.y+r>IND_ROOM.maxY)return false;
+    for(const wall of IND_SOLIDS){if(!wall.fly||Math.min(a.y,b.y)-r>wall.maxY||Math.max(a.y,b.y)+r<wall.minY)continue;
+      let start,end,lo,hi;
+      if(wall.layoutCircle)return indClear(a,b);
+      if(wall.layoutId){const c=Math.cos(wall.layoutAngle),s=Math.sin(wall.layoutAngle),local=p=>[(p.x-wall.cx)*c+(p.z-wall.cz)*s,p.y,-(p.x-wall.cx)*s+(p.z-wall.cz)*c];start=local(a);end=local(b);lo=[-wall.halfW,wall.minY,-wall.halfD];hi=[wall.halfW,wall.maxY,wall.halfD];}
+      else{start=[a.x,a.y,a.z];end=[b.x,b.y,b.z];lo=[wall.minX,wall.minY,wall.minZ];hi=[wall.maxX,wall.maxY,wall.maxZ];}
+      if(flySegmentBox(start,end,lo,hi,r))return false;
+    }return true;
+  }
+  function flyOverWallHeight(){
+    if(!['custom','pdf-backdrop'].includes(GEN_PROJECT.modelMode)||ARCH.ceiling)return null;
+    const top=Math.max(0,...IND_SOLIDS.filter(b=>b.fly).map(b=>b.maxY));
+    const y=Math.max(EYE+.5,top+.55);return y<=IND_ROOM.maxY-.42?y:null;
+  }
+  function flyRoute(from,to){
+    if(flyClear(from,to))return [from.clone(),to.clone()];
+    const y=flyOverWallHeight();
+    if(y!==null){const up=from.clone(),across=to.clone();up.y=across.y=Math.max(y,from.y,to.y);
+      const points=[from.clone(),up,across,to.clone()];
+      if(points.slice(1).every((p,i)=>flyClear(points[i],p)))return points.filter((p,i)=>!i||p.distanceTo(points[i-1])>.001);
+    }
+    return indPath(from,to,false,40);
   }
   function planVisit(a) {
-    const v=viewSpot(a),look=a.center.clone().add(new V3(0,-.13,0));
-    const normal=new V3(Math.sin(a.slot.ry),0,Math.cos(a.slot.ry));
-    const close=a.center.clone().addScaledVector(normal,2.1);close.y=HANG-.05;
-    const back=v.pos.clone();back.y=EYE+.35;
-    return [{pts:indPath(camera.position,v.pos),follow:true,look:v.look,speed:3.1,hold:1,art:a,cap:true},
-      {pts:indPath(v.pos,close),look,dur:2.3,hold:3,art:a,keepCap:true,near:true},
-      {pts:indPath(close,back),look,dur:2.5,hold:.8}];
+    const v=viewSpot(a),look=a.center.clone(),normal=new V3(Math.sin(a.slot.ry),0,Math.cos(a.slot.ry));
+    if(industrialFlyBlocked(v.pos.x,v.pos.y,v.pos.z,.38))throw Error('作品觀看位置受阻');
+    // A close-up stays on the same clear side of the wall; it must never force a detour.
+    const distance=Math.hypot(v.pos.x-a.center.x,v.pos.z-a.center.z)*.9,near=a.center.clone().addScaledVector(normal,distance);near.y=v.pos.y;
+    const close=flyClear(v.pos,near)?near:v.pos.clone(),back=v.pos.clone();
+    if(!flyClear(close,back))back.copy(v.pos);
+    return [{pts:flyRoute(camera.position,v.pos),follow:true,look:v.look,speed:3.1,hold:1,art:a,cap:true},
+      {pts:[v.pos.clone(),close.clone()],look,dur:2.3,hold:3,art:a,keepCap:true,near:true},
+      {pts:[close.clone(),back.clone()],look,dur:2.5,hold:.8}];
   }
   function planDome() {
-    return [{pts:indPath(camera.position,new V3(STL_ROOF.cx,4.4,STL_ROOF.cz)),follow:true,look:new V3(STL_ROOF.cx,6.7,STL_ROOF.cz),speed:2.5,hold:2.6}];
+    const y=flyOverWallHeight(),target=new V3(STL_ROOF.cx,y??4.4,STL_ROOF.cz);
+    return [{pts:flyRoute(camera.position,target),follow:true,look:new V3(STL_ROOF.cx,(y??4.4)+1,STL_ROOF.cz),speed:2.5,hold:2.6}];
   }
   function flySeg(step) {
     const curve = indCurve(step.pts);
@@ -1497,16 +1613,24 @@
       if (st.cap && st.art) caption(st.art);
     }
   }
+  function queueFlyVisit(dir=1){
+    FLY.failedUntil=FLY.failedUntil||new Map();
+    for(let attempt=0;attempt<Math.min(6,artworks.length);attempt++){
+      const a=pickArt(dir);if(!a)break;
+      if((FLY.failedUntil.get(a.idx)||0)>FLY.t)continue;
+      try{const steps=planVisit(a);if(!steps.length)continue;FLY.queue=steps;FLY.last=a.idx;FLY.visits++;return true;}
+      catch(error){FLY.failedUntil.set(a.idx,FLY.t+30);}
+    }
+    stopFly(true);toast('目前找不到可通行的導覽路線，已暫停蜂鳥；可換一個位置後再開啟。');return false;
+  }
   function flyNextStep() {
     if (!FLY.queue.length) {
       FLY.domeAgo++;
-      if (FLY.order === "step") {
-        if (FLY.seqIdx === artworks.length - 1 && !FLY.domeDone) { FLY.domeDone = true; FLY.queue = planDome(); }   // 看完 30 幅：圓頂下晃一下再從頭
-        else { FLY.domeDone = false; FLY.visits++; const a = pickArt(); FLY.last = a.idx; FLY.queue = planVisit(a); }
-      } else if (FLY.visits > 2 && FLY.domeAgo > 4 && Math.random() < 0.18) { FLY.domeAgo = 0; FLY.queue = planDome(); }
-      else { FLY.visits++; FLY.queue = planVisit(pickArt()); }
+      const dome=FLY.order==='step'?(FLY.seqIdx===artworks.length-1&&!FLY.domeDone):(FLY.visits>2&&FLY.domeAgo>4&&Math.random()<.18);
+      if(dome){try{FLY.queue=planDome();FLY.domeDone=true;FLY.domeAgo=0;}catch(error){FLY.queue=[];}}
+      if(!FLY.queue.length){FLY.domeDone=false;if(!queueFlyVisit())return;}
     }
-    flySeg(FLY.queue.shift());
+    const step=FLY.queue.shift();if(step)flySeg(step);
   }
   function hover(dt) {
     FLY.held += dt;
@@ -1580,7 +1704,7 @@
     closeViewer(); stopTour(); stopRide(true); putDown(true); hideCover();
     FLY.on = true; FLY.manual = 0; FLY.hold = 0; FLY.t = 0; FLY.queue = []; FLY.seg = null; FLY.visits = 0; FLY.domeAgo = 0;
     $("b-fly").classList.add("on"); setLbl("b-fly", "停止蜂鳥");
-    FLY.hist = [];
+    FLY.hist = []; FLY.failedUntil=new Map();
     tip("fly", "蜂鳥飛行・O 隨機／逐步・, . 上／下一幅・H 或 Esc 結束");
     resumeAuto();
   }
@@ -2312,6 +2436,7 @@
   let AIMN = 0;
   let locked = false, unlockAt = 0, aimArt = null, aimT = 0, hoverT = 0;
   function lockMouse() {
+    if(window.__galleryAutoStarting)return;
     if (!canLock || !exploring || editing || locked) return;
     try { const p = cvEl.requestPointerLock(); if (p && p.catch) p.catch(() => {}); } catch (e) {}
   }
@@ -2489,8 +2614,12 @@
   const SKYLIGHT_LIGHTS=[];
   const ENV_LIGHTS=[];
   const ENV_LIGHT_SETTINGS={brightness:.7,color:"yellow"};
-  const ART_LIGHT_SETTINGS={all:false,persistent:false,brightness:1,color:'yellow',moveStarted:false,moveTime:0,lastX:0,lastZ:0,blackout:0};
+  const ART_LIGHT_SETTINGS={all:false,persistent:false,brightness:0,color:'blue',projection:'circle-center',moveStarted:false,moveTime:0,lastX:0,lastZ:0,blackout:0};
   const ART_LIGHT_COLORS={white:0xfff8ef,yellow:0xffd27a,blue:0x8bcaff,red:0xff8d87};
+  // Optical projection is independent of the permanent conventional-picture lighting.
+  function opticalLightWork(work){return !!(work?.optoArt||work?.opticalId||work?.electronicId||work?.category==='optical-art'||/^optical-/.test(work?.id||''));}
+  function artworkLighting(work){const optical=opticalLightWork(work);return {optical,circle:optical&&ART_LIGHT_SETTINGS.projection==='circle-center',power:optical?(work?.lightBrightness??ART_LIGHT_SETTINGS.brightness):(work?.regularLightBrightness??CFG.artLight?.regularBrightness??.7),color:optical?ART_LIGHT_COLORS[ART_LIGHT_SETTINGS.color]:ART_LIGHT_COLORS.yellow,persistent:!optical&&(CFG.artLight?.regularPersistent??true)};}
+  function optoLightDefaults(config,works){if(config.artLightRevision==='opto-20261020-v9')return;config.artLight={...config.artLight,brightness:0};config.artLightRevision='opto-20261020-v9';for(const w of [...(works||[]),...(window.GENERATOR_PROJECT?.artworks||[]),...(window.GENERATOR_PROJECT?.pool||[])])if(opticalLightWork(w))delete w.lightBrightness;}
   function setArtLight(brightness,color){
     ART_LIGHT_SETTINGS.brightness=Math.max(0,Math.min(2,Number.isFinite(Number(brightness))?Number(brightness):1));
     ART_LIGHT_SETTINGS.color=Object.hasOwn(ART_LIGHT_COLORS,color)?color:'yellow';
@@ -2508,6 +2637,9 @@
   }
   $('art-light-brightness').addEventListener('input',e=>setArtLight(Number(e.target.value)/100,ART_LIGHT_SETTINGS.color));
   for(const key of Object.keys(ART_LIGHT_COLORS))$('art-light-'+key).addEventListener('click',()=>setArtLight(ART_LIGHT_SETTINGS.brightness,key));
+
+  function setupArtProjection(){optoLightDefaults(CFG,WORKS);if($('art-light-projection'))return;const label=document.createElement('label');label.style.cssText='display:grid;gap:6px;font-size:12px;padding:8px 0';label.append(document.createTextNode('光電藝術投射光形狀'));const select=document.createElement('select');select.id='art-light-projection';select.style.cssText='width:100%;min-height:36px;background:#17140f;color:var(--paper);border:1px solid var(--gold);font:inherit';for(const [value,text]of [['circle-center','圓形置中'],['ceiling','上方投射']]){const o=document.createElement('option');o.value=value;o.textContent=text;select.append(o);}select.value=CFG.artLight?.projection||'circle-center';ART_LIGHT_SETTINGS.projection=select.value;label.append(select);$('b-art-light-all').before(label);const note=document.createElement('p');note.id='regular-art-light-note';note.style.cssText='font-size:12px;line-height:1.6;color:var(--paper)';note.textContent='一般圖畫：原上方投射燈・70%・持續亮（暖黃光）';label.after(note);for(const t of ['keydown','keyup','pointerdown','pointerup'])select.addEventListener(t,e=>e.stopPropagation());select.onchange=()=>{ART_LIGHT_SETTINGS.projection=select.value;CFG.artLight.projection=select.value;genLampUpdate();markShadow();};}
+
   function setEnvLight(brightness,color){
     ENV_LIGHT_SETTINGS.brightness=Math.max(0,Math.min(2,Number.isFinite(Number(brightness))?Number(brightness):1));
     ENV_LIGHT_SETTINGS.color=Object.hasOwn(ART_LIGHT_COLORS,color)?color:'yellow';
@@ -2528,7 +2660,7 @@
     ART_LIGHT_SETTINGS.lastX=camera.position.x;ART_LIGHT_SETTINGS.lastZ=camera.position.z;
     if(ART_LIGHT_SETTINGS.all){
       const first=TRACK_LIGHTS[0],parent=first.parent;
-      while(TRACK_LIGHTS.length<ART_LIGHTS.length){
+      while(TRACK_LIGHTS.length<Math.min(3,ART_LIGHTS.length)){
         const light=new THREE.SpotLight(ART_LIGHT_COLORS[ART_LIGHT_SETTINGS.color],0,14,Math.PI/9,.7,1);
         light.name='全亮畫作投射燈';light.userData.artIndex=-1;parent.add(light);parent.add(light.target);TRACK_LIGHTS.push(light);
       }
@@ -2572,18 +2704,18 @@
     }
     ART_LIGHT_SETTINGS.lastX=camera.position.x;ART_LIGHT_SETTINGS.lastZ=camera.position.z;
     ART_LIGHT_SETTINGS.blackout=Math.max(0,ART_LIGHT_SETTINGS.blackout-dt);
-    const near=ART_LIGHT_SETTINGS.blackout>0?[]:ART_LIGHT_SETTINGS.all?ART_LIGHTS.map(a=>({a,d:0})):ART_LIGHTS.map(a=>({a,d:Math.hypot(camera.position.x-a.x,camera.position.z-a.z)}))
-      .filter(v=>v.d<5.5&&(camera.position.x-v.a.x)*v.a.nx+(camera.position.z-v.a.z)*v.a.nz>0&&stlArtVisible(v.a))
+    const near=ART_LIGHTS.map(a=>({a,d:Math.hypot(camera.position.x-a.x,camera.position.z-a.z)}))
+      .filter(v=>(artworkLighting(artworks[v.a.idx]?.work).persistent||ART_LIGHT_SETTINGS.blackout<=0)&&v.d<5.5&&(camera.position.x-v.a.x)*v.a.nx+(camera.position.z-v.a.z)*v.a.nz>0&&stlArtVisible(v.a))
       .sort((a,b)=>a.d-b.d).slice(0,3);
     const selected=new Map(near.map(v=>[v.a.idx,Math.min(1,(5.5-v.d)/2)]));
     const fade=1-Math.exp(-dt*4);
     for(const a of ART_LIGHTS){
-      a.amount+=( (selected.get(a.idx)||0)-a.amount)*fade;
-      const power=artworks[a.idx]?.work.lightBrightness??ART_LIGHT_SETTINGS.brightness;a.lens.material.opacity=a.amount*Math.min(1,power);a.halo.material.opacity=a.amount*.16*power;
+      const lighting=artworkLighting(artworks[a.idx]?.work),target=lighting.persistent||ART_LIGHT_SETTINGS.all?1:(selected.get(a.idx)||0);a.amount+=(target-a.amount)*fade;
+      const power=lighting.power;a.lens.material.color.setHex(lighting.color);a.halo.material.color.setHex(lighting.color);a.lens.material.opacity=a.amount*Math.min(1,power);a.halo.material.opacity=a.amount*.16*power;
       a.halo.visible=a.amount>.001;
       const art=artworks[a.idx];
-      if(art?.mat){
-        art.mat.emissiveIntensity=0;
+      if(art?.mat&&!art.work.electronicId){
+        art.mat.emissive.setHex(lighting.persistent?0xffffff:0x000000);art.mat.emissiveIntensity=lighting.persistent?power*.35:0;
         const brightness=.12+.88*a.amount*Math.min(1,power);
         art.mat.color.setRGB(brightness,brightness,brightness);
       }
@@ -2597,8 +2729,8 @@
     for(const v of near){
       let light=TRACK_LIGHTS.find(l=>l.userData.artIndex===v.a.idx);
       if(!light){light=TRACK_LIGHTS.find(l=>l.userData.artIndex===-1);if(!light)continue;light.userData.artIndex=v.a.idx;}
-      light.position.set(v.a.lx,v.a.ly??5.52,v.a.lz);light.target.position.set(v.a.tx,v.a.ty??HANG,v.a.tz);
-      light.angle=v.a.beamAngle||Math.PI/9;light.penumbra=1;light.distance=v.a.beamDistance||12;light.intensity+=(v.a.amount*37.5*(artworks[v.a.idx]?.work.lightBrightness??ART_LIGHT_SETTINGS.brightness)-light.intensity)*fade;
+      const lighting=artworkLighting(artworks[v.a.idx]?.work),circle=lighting.circle,radius=Math.hypot(artworks[v.a.idx]?.W||1,artworks[v.a.idx]?.H||1)*.58;light.color.setHex(lighting.color);light.position.set(circle?v.a.x+v.a.nx*1.8:v.a.lx,circle?(v.a.ty??HANG):(v.a.ly??5.52),circle?v.a.z+v.a.nz*1.8:v.a.lz);light.target.position.set(v.a.tx,v.a.ty??HANG,v.a.tz);
+      light.angle=circle?Math.atan2(radius,1.8):(v.a.beamAngle||Math.PI/9);light.penumbra=circle?.55:1;light.distance=circle?1.8+radius*1.5:(v.a.beamDistance||12);light.intensity+=(v.a.amount*37.5*lighting.power-light.intensity)*fade;
     }
   }
   function fanTick(dt){for(const fan of CEILING_FANS)fan.rotation.y+=dt*.9;}
@@ -2796,7 +2928,7 @@
     const trussMesh=new THREE.InstancedMesh(new THREE.CylinderGeometry(1,1,1,6),silver,trussMatrices.length);trussMatrices.forEach((matrix,i)=>trussMesh.setMatrixAt(i,matrix));trussMesh.userData.archRole='rig';trussMesh.castShadow=true;trussMesh.receiveShadow=true;scene.add(trussMesh);
     // Panorama stays outside the new footprint and is compatible with imported panoramas.
     const st=new THREE.PlaneGeometry(100,100);st.rotateX(-Math.PI/2);OUT.street=new THREE.Mesh(st,M.street);OUT.street.position.y=-.09;scene.add(OUT.street);
-    OUT.cityTex=cityTex();M.city=new THREE.MeshBasicMaterial({map:OUT.cityTex,side:THREE.BackSide,fog:false});const cg=new THREE.CylinderGeometry(40,40,1,96,1,true);cg.translate(0,.5,0);OUT.mesh=new THREE.Mesh(cg,M.city);OUT.mesh.scale.y=30;OUT.mesh.position.y=-2;scene.add(OUT.mesh);
+    OUT.cityTex=cityTex();M.city=new THREE.MeshBasicMaterial({map:OUT.cityTex,side:THREE.BackSide,fog:false,depthWrite:false});const cg=new THREE.CylinderGeometry(40,40,1,96,1,true);cg.translate(0,.5,0);OUT.mesh=new THREE.Mesh(cg,M.city);OUT.mesh.scale.y=30;OUT.mesh.position.y=-2;OUT.mesh.renderOrder=-.5;scene.add(OUT.mesh);
     const cap=new THREE.CircleGeometry(40.5,64);cap.rotateX(-Math.PI/2);OUT.cap=new THREE.Mesh(cap,new THREE.MeshBasicMaterial({color:0x777777,fog:false,toneMapped:false}));OUT.cap.position.y=-.1;OUT.cap.visible=false;scene.add(OUT.cap);
     M.sky=new THREE.ShaderMaterial({side:THREE.BackSide,depthWrite:false,uniforms:{top:{value:new THREE.Color(0x78addf)},bot:{value:new THREE.Color(0xe2edf3)},stars:{value:0}},vertexShader:'varying vec3 vD;void main(){vD=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',fragmentShader:'uniform vec3 top;uniform vec3 bot;varying vec3 vD;void main(){float h=clamp(normalize(vD).y,0.0,1.0);gl_FragColor=vec4(mix(bot,top,pow(h,.6)),1.0);}'});const industrialSky=new THREE.Mesh(new THREE.SphereGeometry(95,24,12),M.sky);industrialSky.name='Industrial procedural sky';industrialSky.renderOrder=-1;scene.add(industrialSky);
     atrium.position.set(STL_ROOF.cx,5.3,STL_ROOF.cz);sun.target.position.set(-4,2,1);Object.assign(sun.shadow.camera,{left:-28,right:28,top:28,bottom:-28});sun.shadow.camera.updateProjectionMatrix();
@@ -3036,11 +3168,12 @@
   $('layout-export').onclick=()=>exportShare('view');
 
   let GEN_PROJECT=window.GENERATOR_PROJECT;
+  for(const w of GEN_PROJECT.artworks){if(!w.electronicId)continue;for(const k of ['animation','video'])if(w[k])w[k]=electronicURL(w[k]);const r=GEN_PROJECT.resources[w.image?.slice(6)];if(r?.url)r.url=electronicURL(r.url);}
   let GEN_NODES=[],GEN_SOLIDS=[],GEN_FIXED_NODES=[],GEN_FIXED_SOLIDS=[];
   function genWallBuild(){
     layoutRemoveNodes(GEN_NODES,GEN_SOLIDS);GEN_NODES=[];GEN_SOLIDS=[];
     const mat=new THREE.MeshStandardMaterial({color:0xf5f3ee,roughness:.9});
-    GEN_PROJECT.walls.filter(w=>!w.outer).forEach(w=>{const dx=w.x2-w.x1,dz=w.z2-w.z1,L=Math.hypot(dx,dz),cx=(w.x1+w.x2)/2,cz=(w.z1+w.z2)/2,angle=Math.atan2(dz,dx);let m=new THREE.Mesh(new THREE.BoxGeometry(L,w.h,w.t),mat);m.position.set(cx,w.h/2,cz);m.rotation.y=-angle;m.castShadow=true;m.receiveShadow=true;m.name=w.id;scene.add(m);occluders.push(m);GEN_NODES.push(m);let b={layoutId:w.id,layoutAngle:angle,cx,cz,halfW:L/2,halfD:w.t/2,minX:cx-Math.abs(dx)/2-w.t/2,maxX:cx+Math.abs(dx)/2+w.t/2,minZ:cz-Math.abs(dz)/2-w.t/2,maxZ:cz+Math.abs(dz)/2+w.t/2,minY:0,maxY:w.h,walk:true,fly:true,name:w.id};IND_SOLIDS.push(b);GEN_SOLIDS.push(b);});
+    GEN_PROJECT.walls.filter(w=>!w.outer||['custom','pdf-backdrop'].includes(GEN_PROJECT.modelMode)).forEach(w=>{const dx=w.x2-w.x1,dz=w.z2-w.z1,L=Math.hypot(dx,dz),cx=(w.x1+w.x2)/2,cz=(w.z1+w.z2)/2,angle=Math.atan2(dz,dx);let m=new THREE.Mesh(new THREE.BoxGeometry(L,w.h,w.t),mat);m.position.set(cx,w.h/2,cz);m.rotation.y=-angle;m.castShadow=true;m.receiveShadow=true;m.name=w.id;m.userData.gallerySurface='wall';scene.add(m);occluders.push(m);GEN_NODES.push(m);let b={layoutId:w.id,layoutAngle:angle,cx,cz,halfW:L/2,halfD:w.t/2,minX:cx-Math.abs(dx)/2-w.t/2,maxX:cx+Math.abs(dx)/2+w.t/2,minZ:cz-Math.abs(dz)/2-w.t/2,maxZ:cz+Math.abs(dz)/2+w.t/2,minY:0,maxY:w.h,walk:true,fly:true,name:w.id};IND_SOLIDS.push(b);GEN_SOLIDS.push(b);});
   }
   function genLampUpdate(){
     for(let i=0;i<ART_LIGHTS.length;i++){
@@ -3051,7 +3184,7 @@
       if(!a.bracket){a.bracket=new THREE.Group();a.bracket.name='Artwork wall bracket';a.bracket.userData.archRole='rig';const mat=new THREE.MeshStandardMaterial({color:0x24282c,roughness:.6,metalness:.5});a.mount=new THREE.Mesh(new THREE.BoxGeometry(.14,.18,.06),mat);a.arm=new THREE.Mesh(new THREE.CylinderGeometry(.025,.025,1,8),mat);a.bracket.add(a.mount,a.arm);scene.add(a.bracket)}
       a.mount.position.set(s.x,top-.12,s.z);a.mount.rotation.y=s.ry;const base=new V3(s.x,top-.12,s.z),tip=new V3(lx,ly,lz),delta=tip.clone().sub(base);a.arm.position.copy(base.clone().add(tip).multiplyScalar(.5));a.arm.scale.y=delta.length();a.arm.quaternion.setFromUnitVectors(new V3(0,1,0),delta.normalize());
       const fw=window.GeneratorCore.frameWidths[GEN_PROJECT.artworks[i]?.frame]||0,outerH=s.imageH+fw*2;
-      a.halo.position.set(s.x+nx*.01,s.hangY,s.z+nz*.01);a.halo.rotation.y=s.ry;a.halo.scale.set(s.outerW*1.2/3.15,outerH*1.2/3.1,1);
+      a.halo.position.set(s.x+nx*.01,s.hangY,s.z+nz*.01);a.halo.rotation.y=s.ry;const circle=artworkLighting(GEN_PROJECT.artworks[i]).circle,diameter=Math.hypot(s.outerW,outerH)*1.15;a.halo.scale.set((circle?diameter:s.outerW*1.2)/3.15,(circle?diameter:outerH*1.2)/3.1,1);
       const distance=Math.hypot(.65,ly-s.hangY);a.beamAngle=Math.max(.04,Math.min(.6,Math.atan2(s.outerW*.7,distance)));a.beamDistance=distance+Math.max(.5,outerH*.6);
     }
   }
@@ -3062,37 +3195,51 @@
     const sources=next.artworks.map(a=>window.GeneratorAssets.source(next,a));
     const imgs=await Promise.all(sources.map(src=>texLoader(src)));let missing=imgs.findIndex(x=>!x);if(missing>=0)throw Error('圖片載入失敗：'+next.artworks[missing].title);
     stopTour();stopFly();closeViewer();mover=null;
-    const oldArts=artworks.slice();for(let a of oldArts){if(a.group){scene.remove(a.group);a.group.traverse(o=>o.geometry?.dispose());}a.tex?.dispose();a.plaqueTex?.dispose();a.plaqueMat?.dispose();a.mat?.dispose();if(a.blobUrl)URL.revokeObjectURL(a.blobUrl);}
+    const oldArts=artworks.slice();for(let a of oldArts){electronicDispose(a);if(a.group){scene.remove(a.group);a.group.traverse(o=>o.geometry?.dispose());}a.tex?.dispose();a.plaqueTex?.dispose();a.plaqueMat?.dispose();a.mat?.dispose();if(a.blobUrl)URL.revokeObjectURL(a.blobUrl);}
     for(let a of ART_LIGHTS){if(a.bracket){a.bracket.removeFromParent();a.bracket.traverse(o=>{o.geometry?.dispose();o.material?.dispose()})}a.head.removeFromParent();a.halo.removeFromParent();a.head.traverse(o=>{o.geometry?.dispose();if(o.material&&o!==a.lens)o.material.dispose?.()});a.lens.material.dispose();a.halo.geometry.dispose();a.halo.material.dispose()};ART_LIGHTS.length=0;
-    GEN_PROJECT=next;window.GENERATOR_PROJECT=next;WORKS.splice(0,WORKS.length,...next.artworks.map(w=>({...w})));STL_ART_SLOTS.splice(0,STL_ART_SLOTS.length,...fit.slots);artworks.length=0;
+    GEN_PROJECT=next;window.GENERATOR_PROJECT=next;for(const w of next.artworks){if(!w.electronicId)continue;const r=next.resources[w.image?.slice(6)];if(r?.url)r.url=electronicURL(r.url);}WORKS.splice(0,WORKS.length,...next.artworks.map(w=>({...w})));STL_ART_SLOTS.splice(0,STL_ART_SLOTS.length,...fit.slots);for(const old of artworks){old.eVideo?.pause();if(old.eVideo){old.eVideo.removeAttribute('src');old.eVideo.load();}old.eVideoTex?.dispose();}artworks.length=0;
     genWallBuild();
     for(let i=0;i<WORKS.length;i++){let a={work:WORKS[i],idx:i,slot:STL_ART_SLOTS[i],aspect:imgs[i].width/imgs[i].height,src:sources[i],placeholder:false};a.tex=imgTex(imgs[i]);artworks.push(a);buildArt(a);
       const s=a.slot,nx=Math.sin(s.ry),nz=Math.cos(s.ry),head=new THREE.Group(),dark=new THREE.MeshStandardMaterial({color:0x181d20,roughness:.65,metalness:.55});head.add(new THREE.Mesh(new THREE.CylinderGeometry(.11,.12,.28,12),dark));const lens=new THREE.Mesh(new THREE.CircleGeometry(.09,12),new THREE.MeshBasicMaterial({color:0xffd783,toneMapped:false,transparent:true,opacity:0}));lens.rotation.x=Math.PI/2;lens.position.y=-.15;head.add(lens);head.userData.archRole='rig';scene.add(head);
       const cv0=cv(128,128),gc=cv0.getContext('2d'),gr=gc.createRadialGradient(64,64,3,64,64,64);gr.addColorStop(0,'rgba(255,255,255,.7)');gr.addColorStop(.4,'rgba(255,255,255,.25)');gr.addColorStop(1,'rgba(255,255,255,0)');gc.fillStyle=gr;gc.fillRect(0,0,128,128);const halo=new THREE.Mesh(new THREE.PlaneGeometry(3.15,3.1),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(cv0),color:0xffd58a,transparent:true,opacity:0,depthWrite:false,toneMapped:false,blending:THREE.AdditiveBlending}));scene.add(halo);ART_LIGHTS.push({idx:i,x:s.x,z:s.z,nx,nz,lx:s.x+nx*.7,lz:s.z+nz*.7,tx:s.x,tz:s.z,lens,halo,head,amount:0});
     }
-    Object.assign(CFG,next.config);LAYOUT.objects=window.GeneratorCore.clone(next.layout.objects);layoutBuildObjects();TEMPLATE.layout.objects=layoutCopy();TEMPLATE.artworks=WORKS;saveMeta();genLampUpdate();setArtLight(next.config.artLight?.brightness??.7,next.config.artLight?.color||'yellow');genModelApply();markShadow();
+    Object.assign(CFG,next.config);optoLightDefaults(CFG,WORKS);LAYOUT.objects=window.GeneratorCore.clone(next.layout.objects);layoutBuildObjects();TEMPLATE.layout.objects=layoutCopy();TEMPLATE.artworks=WORKS;saveMeta();genLampUpdate();setArtLight(CFG.artLight?.brightness??0,CFG.artLight?.color||'blue');ART_LIGHT_SETTINGS.projection=next.config.artLight?.projection||'circle-center';if($('art-light-projection'))$('art-light-projection').value=ART_LIGHT_SETTINGS.projection;genLampUpdate();genModelApply();markShadow();
     document.querySelector('.card h1').textContent=next.config.title;document.querySelector('.brand strong').textContent=next.config.title;document.title=next.config.title+'｜展廳生成工具 V1.5';
     if(PLAN.dialog.open)showGalleryPlan();
     if(industrialWalkBlocked(P.x,P.z,.3)){P.x=STL_START.x;P.z=STL_START.z;P.y=0;camera.position.set(P.x,EYE,P.z)}
     const blocked=artworks.filter(a=>canStand(viewSpot(a).pos.x,viewSpot(a).pos.z,0)===null);if(blocked.length)fit.warnings.push(blocked.length+' 幅的預設觀看點受阻，請調整隔牆或作品位置；自動導覽仍受碰撞限制');
+    window.ElectronicDisplay?.refresh();
     return fit;
   }
-  function genViewSpot(a){let sl=a.slot,nx=Math.sin(sl.ry),nz=Math.cos(sl.ry),desired=Math.max(.85,Math.max(a.W,a.H)*1.5+.3);for(let d=desired;d>=.75;d-=.12){let x=sl.x+nx*d,z=sl.z+nz*d;if(canStand(x,z,0)!==null){let blocked=false;for(let t=.03;t<d;t+=.05)if(industrialFlyBlocked(sl.x+nx*t,a.center.y,sl.z+nz*t,.01)){blocked=true;break}if(!blocked)return {pos:new V3(x,EYE,z),look:a.center.clone(),fy:0}}}return {pos:new V3(sl.x+nx*desired,EYE,sl.z+nz*desired),look:a.center.clone(),fy:0};}
+  function genViewSpot(a){
+    const sl=a.slot,nx=Math.sin(sl.ry),nz=Math.cos(sl.ry);
+    const fov=(camera.getEffectiveFOV?camera.getEffectiveFOV():camera.fov||60)*Math.PI/180;
+    const aspect=Math.max(.2,camera.aspect||1),fit=Math.max(a.H,a.W/aspect)/(2*Math.tan(fov/2)*.72);
+    const desired=Math.max(.85,fit+.18),height=Math.max(IND_ROOM.minY+.42,Math.min(IND_ROOM.maxY-.42,a.center.y));
+    for(let d=desired;d>=.75;d-=.12){
+      const x=sl.x+nx*d,z=sl.z+nz*d;
+      if(canStand(x,z,0)===null||industrialFlyBlocked(x,height,z,.38))continue;
+      let blocked=false;
+      for(let t=.03;t<d;t+=.05)if(industrialFlyBlocked(sl.x+nx*t,a.center.y,sl.z+nz*t,.01)){blocked=true;break}
+      if(!blocked)return {pos:new V3(x,height,z),look:a.center.clone(),fy:0};
+    }
+    return {pos:new V3(sl.x+nx*desired,height,sl.z+nz*desired),look:a.center.clone(),fy:0};
+  }
 
-  function genModelVisibility(){const custom=GEN_PROJECT.modelMode==='custom'||GEN_PROJECT.modelMode==='pdf-backdrop';for(let m of GEN_FIXED_NODES){const floor=m.name?.includes('磨石地板'),lamp=ART_LIGHTS.some(a=>a.head===m||a.halo===m||a.bracket===m);const exterior=[OUT.mesh,OUT.sphere,OUT.street,OUT.cap].includes(m)||m.name==='Industrial procedural sky'||m.name==='Shared 360 panorama';if(custom&&!floor&&!m.isLight&&!lamp&&!exterior)m.visible=false;}}
+  function genModelVisibility(){const custom=GEN_PROJECT.modelMode==='custom'||GEN_PROJECT.modelMode==='pdf-backdrop';for(let m of GEN_FIXED_NODES){const floor=m.name?.includes('磨石地板'),lamp=ART_LIGHTS.some(a=>a.head===m||a.halo===m||a.bracket===m);const exterior=[OUT.mesh,OUT.sphere,OUT.street,OUT.cap].includes(m)||m.name==='Industrial procedural sky'||m.name==='Shared 360 panorama';if(custom&&!floor&&!m.isLight&&!lamp&&!exterior)m.visible=false;}for(const m of GEN_NODES){if(m.userData.gallerySurface==='wall'){m.visible=true;m.material.transparent=false;m.material.opacity=1;m.material.depthTest=true;m.material.depthWrite=true;}}}
   function genModelApply(){
     const custom=GEN_PROJECT.modelMode==='custom'||GEN_PROJECT.modelMode==='pdf-backdrop',set=new Set(GEN_FIXED_SOLIDS);
     if(custom){for(let i=IND_SOLIDS.length-1;i>=0;i--)if(set.has(IND_SOLIDS[i]))IND_SOLIDS.splice(i,1);}else for(let b of GEN_FIXED_SOLIDS)if(!IND_SOLIDS.includes(b))IND_SOLIDS.push(b);
     STL_PLAN.splice(0,STL_PLAN.length,...window.GeneratorCore.clone(GEN_PROJECT.plan));
-    const floor=GEN_FIXED_NODES.find(m=>m.name?.includes('磨石地板'));if(floor){const shape=new THREE.Shape();STL_PLAN.forEach(([x,z],i)=>i?shape.lineTo(x,-z):shape.moveTo(x,-z));shape.closePath();const geo=new THREE.ShapeGeometry(shape);geo.rotateX(-Math.PI/2);const pos=geo.attributes.position,uv=geo.attributes.uv;for(let i=0;i<pos.count;i++)uv.setXY(i,pos.getX(i)/4,pos.getZ(i)/4);floor.geometry.dispose();floor.geometry=geo;floor.visible=true;}
+    const floor=GEN_FIXED_NODES.find(m=>m.name?.includes('磨石地板'));if(floor){const shape=new THREE.Shape();STL_PLAN.forEach(([x,z],i)=>i?shape.lineTo(x,-z):shape.moveTo(x,-z));shape.closePath();const geo=new THREE.ShapeGeometry(shape);geo.rotateX(-Math.PI/2);const pos=geo.attributes.position,uv=geo.attributes.uv;for(let i=0;i<pos.count;i++)uv.setXY(i,pos.getX(i)/4,pos.getZ(i)/4);floor.geometry.dispose();floor.geometry=geo;floor.material.side=THREE.DoubleSide;floor.visible=true;}
     const exteriorRadius=Math.max(95,...STL_PLAN.map(([x,z])=>Math.hypot(x,z)+20));if(OUT.mesh){OUT.mesh.scale.x=OUT.mesh.scale.z=custom?exteriorRadius/40:1;}if(OUT.sphere)OUT.sphere.scale.setScalar(custom?exteriorRadius/80:1);let sky=GEN_FIXED_NODES.find(m=>m.name==='Industrial procedural sky');if(sky){sky.visible=true;sky.scale.setScalar(custom?exteriorRadius/95:1);}
     for(let m of GEN_FIXED_NODES)if(!custom)m.visible=true;applyArchitecture();genModelVisibility();
     if(canStand(P.x,P.z,0)===null){const xs=STL_PLAN.map(p=>p[0]),zs=STL_PLAN.map(p=>p[1]),x0=Math.min(...xs),x1=Math.max(...xs),z0=Math.min(...zs),z1=Math.max(...zs);let found=false;for(let z=z0+1;z<z1&&!found;z+=Math.max(1,(z1-z0)/30))for(let x=x0+1;x<x1;x+=Math.max(1,(x1-x0)/30))if(canStand(x,z,0)!==null){P.x=x;P.z=z;P.y=0;camera.position.set(x,EYE,z);found=true;break;}}
   }
 
   async function genSnapshot(){
-    const p=window.GeneratorCore.clone(GEN_PROJECT);p.config={...p.config,...CFG,architecture:{...ARCH},light:mode,snow:SNOW.level,artLight:{brightness:ART_LIGHT_SETTINGS.brightness,color:ART_LIGHT_SETTINGS.color},envLight:{brightness:ENV_LIGHT_SETTINGS.brightness,color:ENV_LIGHT_SETTINGS.color}};p.layout.objects=layoutCopy();const musicId=MUS.cur||musIdx().active,track=(window.VG_SHARED_MUSIC_TRACKS||[]).find(t=>t.id===musicId);p.runtime={pano:await panoForShare(),music:track?{id:track.id,name:track.name,src:track.src}:await musicForShare()};
-    for(let i=0;i<artworks.length;i++){let a=artworks[i],w=p.artworks[i];Object.assign(w,{title:a.work.title,artist:a.work.artist,year:a.work.year,desc:a.work.desc,frame:a.work.frame,aspect:a.aspect});if(a.src!==window.GeneratorAssets.source(p,w)){let src=await shareImg(a);if(!src)throw Error('無法保存改過的作品：'+a.work.title);let key='edited-'+w.id;p.resources[key]={data:src,path:'edited-'+w.id+'.jpg',kind:'local'};w.image='asset:'+key;}}
+    const p=window.GeneratorCore.clone(GEN_PROJECT);p.config={...p.config,...CFG,architecture:{...ARCH},light:mode,snow:SNOW.level,artLight:{brightness:ART_LIGHT_SETTINGS.brightness,color:ART_LIGHT_SETTINGS.color,projection:ART_LIGHT_SETTINGS.projection,regularBrightness:CFG.artLight?.regularBrightness??.7,regularPersistent:CFG.artLight?.regularPersistent??true},envLight:{brightness:ENV_LIGHT_SETTINGS.brightness,color:ENV_LIGHT_SETTINGS.color}};p.layout.objects=layoutCopy();const musicId=MUS.cur||musIdx().active,track=(window.VG_SHARED_MUSIC_TRACKS||[]).find(t=>t.id===musicId);p.runtime={pano:await panoForShare(),music:track?{id:track.id,name:track.name,src:track.src}:await musicForShare()};
+    for(let i=0;i<artworks.length;i++){let a=artworks[i],w=p.artworks[i];Object.assign(w,{title:a.work.title,artist:a.work.artist,year:a.work.year,desc:a.work.desc,frame:a.work.frame,aspect:a.aspect});if(a.work.electronicId)Object.assign(w,electronicProperties(a.work));if(a.src!==window.GeneratorAssets.source(p,w)){let src=await shareImg(a);if(!src)throw Error('無法保存改過的作品：'+a.work.title);let key='edited-'+w.id;p.resources[key]={data:src,path:'edited-'+w.id+'.jpg',kind:'local'};w.image='asset:'+key;}}
     return p;
   }
   function genReady(){genLampUpdate();genModelApply();window.GeneratorRuntime={apply:genApply,snapshot:genSnapshot,get project(){return GEN_PROJECT},get camera(){return camera},capture:()=>captureShareCover(true),get materials(){return ARCH}};window.dispatchEvent(new Event('generator-ready'));}
@@ -3100,13 +3247,98 @@
   /* ================= 啟動 ================= */
   function build() {
     const fixedBefore=new Set(scene.children);buildIndustrialGallery();GEN_FIXED_SOLIDS=IND_SOLIDS.slice();genWallBuild();layoutBuildObjects();
-    setArtLight(lsGet('stl-gallery-art-light-brightness')??CFG.artLight.brightness,lsGet('stl-gallery-art-light-color')||CFG.artLight.color);
+    setupArtProjection();setArtLight(CFG.artLight.brightness??0,CFG.artLight.color||'blue');
     setEnvLight(lsGet('stl-gallery-env-light-brightness')??CFG.envLight.brightness,lsGet('stl-gallery-env-light-color')||CFG.envLight.color);
     if(!ART_LIGHT_SETTINGS.all)toggleAllArtLights();
     flushStatic();GEN_FIXED_NODES=scene.children.filter(m=>!fixedBefore.has(m)&&!GEN_NODES.includes(m));applyArchitecture();genModelApply();
     // single-level industrial space: hide obsolete 2F / stair controls
     ["b-2f","b-ride"].forEach(id=>{ const el=$(id); if(el) el.style.display="none"; });
   }
+
+
+
+  // Resolve pool media against the actual viewing origin, including Site/workbench frames.
+  function electronicURL(src){try{const u=new URL(src,document.baseURI),match=u.pathname.match(/\/pool\/electronic\/hexwall-60\/[^/]+$/);if(match){const origin=new URL(location.href).origin;if(/^https?:/.test(origin))return new URL(match[0],origin).href;}}catch{}return src;}
+
+  const ELECTRONIC_MODES=['transparent','round','framed'];
+  const electronicStorageKey='hex-electronic-display-v1-'+CFG.id;
+  let electronicSaved={};try{electronicSaved=JSON.parse(localStorage.getItem(electronicStorageKey)||'{}')}catch{}
+  function electronicMode(w){return ELECTRONIC_MODES.includes(w.electronicMode)?w.electronicMode:'transparent';}
+  const electronicRestored=new WeakSet();
+  function electronicProperties(w){return {electronicMode:electronicMode(w),electronicGlow:w.electronicGlow??1,electronicRotation:w.electronicRotation??'center',electronicTurns:w.electronicTurns??3,electronicOpacity:w.electronicOpacity??.7,electronicOutline:w.electronicOutline??true,electronicScale:w.electronicScale??1.5,electronicBaseWidth:w.electronicBaseWidth,frame:w.frame};}
+  function restoreElectronic(w){if(!w.electronicId||electronicRestored.has(w))return;electronicRestored.add(w);const s=electronicSaved[w.id];if(s&&ELECTRONIC_MODES.includes(s.mode)){w.electronicMode=s.mode;w.electronicGlow=Math.max(0,Math.min(2,Number(s.glow)||0));if(Number.isFinite(s.scale))w.electronicScale=s.scale;for(const key of ['electronicRotation','electronicTurns','electronicOpacity','electronicOutline'])if(s[key]!==undefined)w[key]=s[key];}}
+  function electronicPaint(a,image){
+    if(!a.eSurface){a.eSurface=cv(320,283);a.eTexture=new THREE.CanvasTexture(a.eSurface);a.eTexture.colorSpace=THREE.SRGBColorSpace;a.eTexture.minFilter=THREE.LinearFilter;a.eTexture.magFilter=THREE.LinearFilter;a.eTexture.generateMipmaps=false;}
+    HexElectronicAnimation.paint(a.eSurface.getContext('2d'),image,electronicMode(a.work),{outline:a.work.electronicOutline??true});a.eTexture.needsUpdate=true;
+    if(a.mat&&a.mat.map!==a.eTexture){a.mat.map=a.eTexture;a.mat.needsUpdate=true;}
+  }
+  function electronicDispose(a){a.ePlayer?.destroy();a.ePlayer=null;a.eTexture?.dispose();a.eTexture=null;a.eSurface=null;}
+
+  function electronicResize(a,scale){
+    const w=a.work,sl=a.slot,wall=GEN_PROJECT.walls?.find(wall=>wall.id===sl.wallId);if(!wall)return;
+    const base=w.electronicBaseWidth??sl.imageW/(w.electronicScale||1),requested=Math.max(.5,Math.min(2,Number(scale)||1.5)),fw=electronicMode(w)==='framed'?.05:0,L=Math.hypot(wall.x2-wall.x1,wall.z2-wall.z1),aspect=w.aspect||a.aspect||320/283;
+    let maxW=Math.min(2*Math.min(sl.u,1-sl.u)*L-2*fw-.02,2*(Math.min(sl.hangY-.28,wall.h-.1-sl.hangY)-fw)*aspect);
+    if((w.electronicRotation??'center')==='center'){const factor=Math.hypot(1,1/aspect),span=2*Math.min(sl.u,1-sl.u)*L;maxW=Math.min(maxW,(span-.02-2*fw*Math.SQRT2)/factor,(2*(Math.min(sl.hangY-.28-.3,wall.h-.1-sl.hangY))-2*fw*Math.SQRT2)/factor);}
+    for(const other of artworks){if(other===a||other.slot.wallId!==sl.wallId||other.slot.side!==sl.side)continue;const os=other.slot,gap=wall.gapRatio||0,ow=os.outerW||os.imageW;maxW=Math.min(maxW,2*Math.abs(sl.u-os.u)*L/(1+gap)-ow-2*fw);}
+    const width=Math.max(.1,Math.min(base*requested,maxW)),actual=width/base;Object.assign(w,{electronicBaseWidth:base,electronicScale:actual});Object.assign(sl,{imageW:width,imageH:width/aspect,maxW:width,maxH:width/aspect,outerW:width+2*fw});
+    for(const p of [GEN_PROJECT,window.GeneratorUI?.draft]){const item=p?.artworks?.find(x=>x.id===w.id);if(item)Object.assign(item,{electronicBaseWidth:base,electronicScale:actual});const ass=p?.assignments?.find(x=>x.artId===w.id);if(ass)ass.manualWidth=width;const slot=p?.slots?.find(x=>x.artId===w.id);if(slot)Object.assign(slot,sl);}
+  }
+  function electronicPanel(){let box=$('electronic-controls');if(!box){box=document.createElement('section');box.id='electronic-controls';const title=document.createElement('div');title.className='p-sec';title.textContent='電子藝術';box.append(title);$('p-body').prepend(box);}return box;}
+
+  function electronicWrite(a,mode,glow,scale=a.work.electronicScale??1.5,extra={}){
+    Object.assign(a.work,extra,{electronicMode:mode,electronicGlow:glow,frame:mode==='framed'?'black':'none'});electronicResize(a,scale);
+    for(const p of [GEN_PROJECT,window.GeneratorUI?.draft])for(const name of ['artworks','pool'])for(const w of p?.[name]||[])if(w.id===a.work.id||w.electronicId===a.work.electronicId)Object.assign(w,electronicProperties(a.work));
+    electronicSaved[a.work.id]={mode,glow,scale:a.work.electronicScale,...electronicProperties(a.work)};buildArt(a);a.ePlayer?.invalidate();
+  }
+
+  function setupElectronicDisplay(){
+    if($('electronic-display'))return;const list=()=>artworks.filter(a=>a.work.electronicId&&a.work.animation);if(!list().length)return;
+    const details=document.createElement('details');details.id='electronic-display';details.style.cssText='position:static;width:100%;box-sizing:border-box;padding:8px 0;border:0;color:var(--paper);font:inherit';
+    details.innerHTML='<summary style="cursor:pointer;min-height:30px">顯示、旋轉與透明度</summary><div style="display:grid;gap:10px;padding-top:12px"><label>作品<select id="electronic-work"></select></label><label>套用範圍<select id="electronic-scope"><option value="one">目前作品</option><option value="all">全部電子藝術</option></select></label><label>顯示模式<select id="electronic-mode"><option value="transparent">透明無框（預設）</option><option value="round">圓形黑底</option><option value="framed">方框黑底</option></select></label><label>畫面大小 <output id="electronic-scale-value"></output><input id="electronic-scale" type="range" min="50" max="200" step="5" style="width:100%"></label><label>發光強度 <output id="electronic-glow-value"></output><input id="electronic-glow" type="range" min="0" max="200" step="5" style="width:100%"></label><label>旋轉模式<select id="electronic-rotation"><option value="center">中心旋轉</option><option value="none">不旋轉</option></select></label><label>每 240 格旋轉 <output id="electronic-turns-value"></output><input id="electronic-turns" type="range" min="1" max="6" step="1" style="width:100%"></label><label>不透明度 <output id="electronic-opacity-value"></output><input id="electronic-opacity" type="range" min="0" max="100" step="5" style="width:100%"></label><label><input id="electronic-outline" type="checkbox"> 橙色輪廓</label><p id="electronic-display-status" role="status" style="margin:0;font-size:12px">設定會自動記住；工作台可保存預設值後輸出。</p></div>';
+    for(const t of ['keydown','keyup','pointerdown','pointerup','pointermove','wheel','click'])details.addEventListener(t,e=>e.stopPropagation());electronicPanel().append(details);for(const el of details.querySelectorAll('select'))el.style.cssText='width:100%;min-height:38px;max-width:100%;background:#17140f;color:var(--paper);border:1px solid var(--gold);font:inherit';
+    const select=$('electronic-work');function options(){select.replaceChildren();for(const a of list()){const o=document.createElement('option');o.value=a.work.id;o.textContent=a.work.title;select.append(o);}}
+    function selected(){return list().find(a=>a.work.id===select.value)||list()[0];}
+    function labels(){for(const id of ['scale','glow','opacity'])$('electronic-'+id+'-value').textContent=$('electronic-'+id).value+'%';$('electronic-turns-value').textContent=$('electronic-turns').value+' 圈';$('electronic-turns').disabled=$('electronic-rotation').value==='none';}
+    function sync(){const a=selected();if(!a)return;const w=a.work;$('electronic-mode').value=electronicMode(w);$('electronic-glow').value=Math.round((w.electronicGlow??1)*100);$('electronic-scale').value=Math.round((w.electronicScale??1.5)*100);$('electronic-rotation').value=w.electronicRotation??'center';$('electronic-turns').value=w.electronicTurns??3;$('electronic-opacity').value=Math.round((w.electronicOpacity??.7)*100);$('electronic-outline').checked=w.electronicOutline??true;labels();}
+    function apply(){const targets=$('electronic-scope').value==='all'?list():[selected()],mode=$('electronic-mode').value,glow=Number($('electronic-glow').value)/100,scale=Number($('electronic-scale').value)/100,extra={electronicRotation:$('electronic-rotation').value,electronicTurns:Number($('electronic-turns').value),electronicOpacity:Number($('electronic-opacity').value)/100,electronicOutline:$('electronic-outline').checked};
+      for(const a of targets)if(a)electronicWrite(a,mode,glow,scale,extra);genLampUpdate();try{localStorage.setItem(electronicStorageKey,JSON.stringify(electronicSaved));$('electronic-display-status').textContent='已套用 '+targets.length+' 件；工作台保存預設值後，輸出也會保留設定。';}catch{$('electronic-display-status').textContent='已套用；請在工作台保存預設值。';}sync();
+    }
+    select.onchange=sync;for(const id of ['scale','glow','opacity','turns']){$('electronic-'+id).oninput=labels;$('electronic-'+id).onchange=apply;}for(const id of ['mode','rotation','outline'])$('electronic-'+id).onchange=apply;
+    window.ElectronicDisplay={select:a=>{if(a?.work.electronicId){select.value=a.work.id;sync();}},refresh:()=>{options();sync();}};options();sync();
+  }
+
+  let electronicActive=new Set(),electronicSelectAt=0;
+  function updateElectronicVideos(){
+    const now=performance.now();if(now-electronicSelectAt>200){electronicSelectAt=now;const forward=new V3();camera.getWorldDirection(forward);
+      const candidates=artworks.filter(a=>a.work.electronicId&&a.work.animation&&a.center&&a.mat).map(a=>{const dir=a.center.clone().sub(camera.position),d=dir.length();return {a,d,visible:d<12&&dir.normalize().dot(forward)>.55};}).filter(x=>x.visible).sort((a,b)=>a.d-b.d).slice(0,3);
+      electronicActive=new Set(document.hidden||!exploring?[]:candidates.map(x=>x.a));
+      for(const a of artworks){if(!a.work.electronicId)continue;if(electronicActive.has(a)){a.eInactiveAt=0;if(!a.ePlayer&&!a.eAnimationFailed){a.ePlayer=new HexElectronicAnimation.Player(electronicURL(a.work.animation),img=>electronicPaint(a,img),e=>{a.eAnimationFailed=true;console.warn('電子藝術動畫播放失敗',a.work.id,e);const s=$('electronic-display-status');if(s)s.textContent='動畫讀取失敗，暫時顯示透明封面；重新整理可重試。';});}}else if(a.ePlayer){a.eInactiveAt=a.eInactiveAt||now;if(now-a.eInactiveAt>1500){a.ePlayer.destroy();a.ePlayer=null;}}}
+    }
+    if(!document.hidden&&exploring)for(const a of electronicActive){a.ePlayer?.tick(now);if(a.eRotator)a.eRotator.rotation.z=HexElectronicAnimation.angleAtFrame(a.work,Math.max(0,a.ePlayer?.last??0));}
+    updateLegacyVideos();
+  }
+
+  let electronicTickAt=0;
+  function updateLegacyVideos(){
+    if(performance.now()-electronicTickAt<200)return;electronicTickAt=performance.now();
+    const candidates=artworks.filter(a=>a.work?.video&&!a.work.electronicId&&a.group&&a.mat).map(a=>{
+      const target=a.center.clone(),dir=target.clone().sub(camera.position),distance=dir.length();
+      const forward=new THREE.Vector3();camera.getWorldDirection(forward);
+      return {a,distance,visible:distance<12&&dir.normalize().dot(forward)>.55};
+    }).filter(x=>x.visible).sort((a,b)=>a.distance-b.distance).slice(0,3);
+    const active=new Set(candidates.map(x=>x.a));
+    for(const a of artworks){if(!a.work?.video||a.work.electronicId)continue;
+      if(document.hidden||!exploring||!active.has(a)){a.eVideo?.pause();continue;}
+      if(!a.eVideo){
+        const v=document.createElement('video');v.muted=true;v.defaultMuted=true;v.loop=true;v.playsInline=true;v.preload='none';v.crossOrigin='anonymous';v.setAttribute('playsinline','');v.src=a.work.video;a.eVideo=v;
+        v.addEventListener('loadeddata',()=>{if(!a.mat)return;const t=new THREE.VideoTexture(v);t.colorSpace=THREE.SRGBColorSpace;t.minFilter=THREE.LinearFilter;t.magFilter=THREE.LinearFilter;t.generateMipmaps=false;a.eVideoTex=t;a.mat.map=t;a.mat.emissiveMap=t;a.mat.color.setHex(0xffffff);a.mat.needsUpdate=true;});
+        v.addEventListener('error',()=>{a.eVideoFailed=true;if(a.tex&&a.mat){a.mat.map=a.tex;a.mat.emissiveMap=a.tex;a.mat.needsUpdate=true;}});
+      }
+      if(a.eVideo.paused&&!a.eVideoFailed)a.eVideo.play().catch(()=>{});
+    }
+  }
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)for(const a of artworks)a.eVideo?.pause();});
+
   const clock = new THREE.Clock();
   function loop() {
     requestAnimationFrame(loop);
@@ -3123,8 +3355,20 @@
     else if (!exploring) { yaw += dt * 0.05; camera.position.set(STL_START.x,1.9,STL_START.z); camera.rotation.set(0.32, yaw, 0); }
     aimTick(dt); uiTick(); pupTick(dt); snowTick(dt); artLightTick(dt);
     floorLabel();
+    updateElectronicVideos();
     renderer.render(scene, camera);
   }
+
+
+  function setupElectronicNavigation(){
+    if($('electronic-next'))return;const list=()=>artworks.filter(a=>a.work.electronicId&&a.center).sort((a,b)=>Math.hypot(a.center.x-STL_START.x,a.center.z-STL_START.z)-Math.hypot(b.center.x-STL_START.x,b.center.z-STL_START.z));
+    if(!list().length)return;let index=0;
+    const button=document.createElement('button');button.id='electronic-next';button.type='button';button.textContent='前往電子藝術 · '+list().length+' 件';button.style.cssText='position:static;min-height:40px;font:inherit';
+    function visit(){const works=list();if(!works.length)return;const a=works[index++%works.length];stopTour();stopFly(true);stopRide(true);putDown(true);closeViewer();hideCover();const v=viewSpot(a);camera.position.copy(v.pos);adoptCamera(v.look,v.fy??0);caption(a);window.ElectronicDisplay?.select(a);button.textContent='下一件電子藝術 · '+((index-1)%works.length+1)+' / '+works.length;}
+    button.addEventListener('click',visit);electronicPanel().append(button);
+    if(new URLSearchParams(location.search).has('electronic'))$('enter').addEventListener('click',()=>{if(!index)visit()},{once:true});
+  }
+
   (async function start() {
 
 
@@ -3137,13 +3381,15 @@
     if (snow0) setSnow(snow0, true);
     loop();
     await loadArtworks(msg);
+    setupElectronicNavigation();
+    setupElectronicDisplay();
     if(window.VG360) await window.VG360.install({THREE,scene,renderer,panel:document.getElementById('p-body'),entries:PANO_PRESET,activate: id=>applyPano(id||'city',{say:true})});
     try{await applyPano(SHARE ? ((SHARE.pano && SHARE.pano.id) || CFG.panorama) : panoIdx().active, { noSave: true });}catch(e){console.warn('環景不可用，使用街景',e);await applyPano('city',{noSave:true})}
     setMode(mode);
     msg("");
     camera.position.set(P.x, EYE, P.z);
     genReady();
-    if (SHARE && SHARE.mode === "fly") { msg("蜂鳥起飛…"); setTimeout(startFly, 700); }
+    if (SHARE && SHARE.mode === "fly") { msg("蜂鳥起飛…"); /* Shared six-second cover controller starts flight. */ }
     window.__ROT = {SCENE_PHOTOS,scenePhotoTake,scenePhotoRender,scenePhotoSave,captureShareCover,ARCH,applyArchitecture,defaultFurniture,LAYOUT,LAYOUT_TYPES,layoutCommit,layoutChoose,layoutValid,layoutSnap,layoutApply,layoutConnected,layoutSnowSources,PLAN,showGalleryPlan,closeGalleryPlan,selectPlanArt,STL_PLAN,STL_ART_SLOTS,STL_ROOF,stlInside, togglePersistentArtLights, toggleAllArtLights, ENV_LIGHTS, ENV_LIGHT_SETTINGS, setEnvLight, ART_LIGHT_SETTINGS, setArtLight, BALCONY, industrialWithinFloor, SKYLIGHT_LIGHTS, ART_LIGHTS, artLightTick, CEILING_FANS, TRACK_LIGHTS, fanTick, INDOOR_SNOW, indoorSnowTick, skylightSnowOpening, SKYLIGHT, toggleSkylight, skylightTick, indPath, indCurve, viewSpot, planDome, moverTick, flyTick, camera, P, stepTo, canStand, showViewer, caption, AUTO, autoTick, autoPlan, SNOW, setSnow, PUP, setPuppy, bark, pupTarget, pickUp, putDown, movePlayer, MUS, musPlay, musPause, musToggle, musNext, musVol, addMusic, startRide, stopRide, RIDE, planVisit, planDome, flyOK, industrialWalkBlocked, industrialFlyBlocked, IND_ROOM, IND_SOLIDS, applyPano, addPano, OUT, get panoCur() { return panoCur; }, startFly, stopFly, exportShare, FLY, importLabels, downloadLabelTemplate, importBatch, snapshotSlot, restoreSlot, setMode, goFloor, startTour, openArt, artworks, floorsAt, renderer, scene, flyTo, adoptCamera, hideCover, get yaw() { return yaw; }, set yaw(v) { yaw = v; }, set pitch(v) { pitch = v; }, keys };
   })().catch(e=>{console.error(e);$("load-msg").textContent="展廳啟動失敗："+e.message;});
 })();

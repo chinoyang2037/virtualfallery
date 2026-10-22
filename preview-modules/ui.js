@@ -123,7 +123,7 @@ $('gen-catalog-add').onclick=()=>run(async()=>{let items=await catalogItems(),p=
 function mergeNative(snap,p){p.config={...snap.config,id:p.config.id,title:p.config.title,subtitle:p.config.subtitle};p.layout=snap.layout;p.runtime=snap.runtime;for(let w of p.artworks){let old=applied.artworks.find(a=>a.id===w.id),live=snap.artworks.find(a=>a.id===w.id);if(!old||!live)continue;if(A.source(p,w)===A.source(applied,old)){Object.assign(w,live);if(live.image.startsWith('asset:')){let key=live.image.slice(6);if(snap.resources[key])p.resources[key]=snap.resources[key]}}}}
 
 function refreshFromRuntime(snapshot){draft.config=snapshot.config;draft.layout=snapshot.layout;draft.runtime=snapshot.runtime;for(let [key,res] of Object.entries(snapshot.resources))if(key.startsWith('edited-'))draft.resources[key]=res;for(let i=0;i<snapshot.artworks.length;i++){let w=snapshot.artworks[i];Object.assign(draft.artworks[i],w)}draft.updatedAt=new Date().toISOString()}
-function exportHTML(){status('請先預覽並保存預設值，再使用工作台左側的 HTML／完整網站 ZIP 輸出。');}
+async function exportHTML(type,kind='view'){if(!window.VGShare){await new Promise((ok,no)=>{const s=document.createElement('script');s.src=new URL('shared/gallery-share.js?v=share22',draft.siteRoot||location.href).href;s.onload=ok;s.onerror=()=>no(Error('分享程式無法載入'));document.body.append(s)});}return window.VGShare.export(kind);}
 async function savePreviewDefaults(options={}){
  if(isBusy)throw Error('展廳正在處理，請稍後再保存');
  if(!window.GeneratorRuntime)throw Error('3D 引擎尚未載入');

@@ -188,7 +188,7 @@ document.addEventListener('change',e=>{if(e.target.id==='shared-360-select')gtag
         <button class="btn" id="tour-go">自動導覽<kbd>T</kbd></button>
         <button class="btn" id="fly-go" title="像蜂鳥一樣在畫與畫之間穿梭、懸停；W A D／↓（Shift+S 後退）／滑鼠隨時接手自由飛">蜂鳥飛行<kbd>H</kbd></button>
       </div>
-      <div class="sub-row edit-only">
+      <div class="sub-row">
         <button class="btn share busy" id="share-view" title="匯出一個 HTML：內含目前 30 幅圖與標籤，只能觀賞，沒有匯入、編輯、記憶組、Excel 功能">分享檔（欣賞版）<kbd>V</kbd></button>
         <button class="btn share busy" id="share-fly" title="同欣賞版，打開後直接開始蜂鳥飛行">分享檔（直接飛行）<kbd>Shift+V</kbd></button>
       </div>
@@ -284,8 +284,8 @@ document.addEventListener('change',e=>{if(e.target.id==='shared-360-select')gtag
         <div class="p-mem edit-only" id="p-mem"></div>
         <button id="b-reset" class="edit-only busy" type="button"><span class="lb">還原預設</span><kbd>Shift+Z</kbd></button>
         <div class="p-sec edit-only">分享</div>
-        <button id="b-sv" class="edit-only busy" type="button"><span class="lb">分享檔（欣賞版）</span><kbd>V</kbd></button>
-        <button id="b-sf" class="edit-only busy" type="button"><span class="lb">分享檔（直接飛行）</span><kbd>Shift+V</kbd></button>
+        <button id="b-sv" class=" busy" type="button"><span class="lb">分享檔（欣賞版）</span><kbd>V</kbd></button>
+        <button id="b-sf" class=" busy" type="button"><span class="lb">分享檔（直接飛行）</span><kbd>Shift+V</kbd></button>
         <div class="p-sec">場景拍照</div>
         <button id="b-scene-photo" type="button"><span class="lb">拍攝目前場景</span><kbd>S</kbd></button>
         <div id="scene-thumbs"></div><div id="scene-photo-status" class="scene-status" role="status">尚未拍照</div>
@@ -2971,7 +2971,7 @@ window.GALLERY_SHARE = {"mode":"fly","light":2,"made":"1005","pano":{"id":"ice",
   }
 
   async function exportShare(kind) {
-    if (busy || SHARE) return;
+    if (busy) return;
     const s0 = SRC0.indexOf(EMB_OPEN), s1 = s0 < 0 ? -1 : SRC0.indexOf(SC_END, s0);
     if (s1 < 0) { setProgress("讀不到頁面原始內容，無法產生分享檔。", true); return; }
     setBusy(true);
@@ -3999,4 +3999,4 @@ window.GALLERY_SHARE = {"mode":"fly","light":2,"made":"1005","pano":{"id":"ice",
     window.__ROT = { toggleAllArtLights, ENV_LIGHTS, ENV_LIGHT_SETTINGS, setEnvLight, ART_LIGHT_SETTINGS, setArtLight, BALCONY, industrialWithinFloor, SKYLIGHT_LIGHTS, ART_LIGHTS, artLightTick, CEILING_FANS, TRACK_LIGHTS, fanTick, INDOOR_SNOW, indoorSnowTick, skylightSnowOpening, SKYLIGHT, toggleSkylight, skylightTick, indPath, indCurve, viewSpot, planDome, moverTick, flyTick, camera, P, stepTo, canStand, showViewer, caption, AUTO, autoTick, autoPlan, SNOW, setSnow, PUP, setPuppy, bark, pupTarget, pickUp, putDown, movePlayer, MUS, musPlay, musPause, musToggle, musNext, musVol, addMusic, startRide, stopRide, rideTick, RIDE, buildRide, stairAt, planVisit, planDome, flyOK, industrialWalkBlocked, industrialFlyBlocked, IND_ROOM, IND_SOLIDS, applyPano, addPano, OUT, get panoCur() { return panoCur; }, startFly, stopFly, exportShare, FLY, importLabels, downloadLabelTemplate, importBatch, snapshotSlot, restoreSlot, setMode, goFloor, startTour, openArt, artworks, floorsAt, renderer, scene, flyTo, adoptCamera, hideCover, get yaw() { return yaw; }, set yaw(v) { yaw = v; }, set pitch(v) { pitch = v; }, keys };
   })();
 })();
-</script></body></html>
+</script><script src="shared/gallery-share.js?v=share22"></script></body></html>

@@ -737,7 +737,7 @@ g.HexElectronicAnimation={parse,still,frameAt,paint,angleAtFrame,Player};
                      /* 分享檔帶走目前的窗外 */
     if (!OUT.pano) return { id: "city" };
     const id = OUT.pano.id, hz = panoHz(id), pre = PANO_PRESET.find((p) => p.id === id);
-    if (pre && pre.src) return { id, hz };
+    if (pre && pre.src) return { id, hz, name:pre.name, src:pre.src };
     const im = OUT.pano.img, s = Math.min(1, 4096 / im.width), c = cv(Math.round(im.width * s), Math.round(im.height * s));
     c.getContext("2d").drawImage(im, 0, 0, c.width, c.height);
     return { id: "share", hz, name: (panoList().find((p) => p.id === id) || {}).name || "環景", src: c.toDataURL("image/jpeg", 0.88) };
@@ -2141,7 +2141,7 @@ g.HexElectronicAnimation={parse,still,frameAt,paint,angleAtFrame,Player};
   },true);
   SCENE_PHOTOS.ready=scenePhotoLoad();
   if(!SHARE)for(const el of document.querySelectorAll('kbd'))if(el.textContent.trim()==='W A S D')el.textContent='W A D / ↓';
-  async function exportShare(kind){if(window.GeneratorUI)return window.GeneratorUI.exportHTML('share',kind);}
+  async function exportShare(kind){if(window.VGShare)return window.VGShare.export(kind);if(window.GeneratorUI)return window.GeneratorUI.exportHTML('share',kind);setProgress('分享程式尚未載入，請重新整理展廳。',true);}
 
   /* ================= 作品目錄與記憶組（同 La-77：1～3 固定，「+」最多 12 組） ================= */
   const SLOT_N = 3, SLOT_MAX = 12, SLOT_KEY = "stl-gallery-slots-v1";
